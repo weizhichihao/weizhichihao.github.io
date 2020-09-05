@@ -214,7 +214,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 15px;
+  font-size: 1em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -1412,6 +1412,73 @@ pre code {
 .use-motion .menu-item {
   visibility: hidden;
 }
+.github-corner :hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+.github-corner svg {
+  color: #fff;
+  fill: #222;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+@media (max-width: 991px) {
+  .github-corner svg {
+    color: #222;
+    fill: #fff;
+  }
+  .github-corner .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+@-moz-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-o-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
 .sidebar-inner {
   color: #999;
   padding: 18px 10px;
@@ -1621,6 +1688,7 @@ pre code {
   margin: 0;
   padding: 0 2px 5px 10px;
   text-align: left;
+  font-size: 1em;
 }
 .post-toc ol > ol {
   padding-left: 0;
@@ -1983,7 +2051,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1.125em;
+    font-size: 0.875em;
   }
 }
 @media (min-width: 992px) {
@@ -2136,7 +2204,7 @@ pre code {
   text-align: center;
 }
 .posts-expand .post-title {
-  font-size: 1.5em;
+  font-size: 1.125em;
   font-weight: normal;
   margin: initial;
   overflow-wrap: break-word;
@@ -2844,6 +2912,21 @@ ul.breadcrumb li:last-child {
 .links-of-author-item a:hover,
 .links-of-author-item span.exturl:hover {
   background: var(--body-bg-color);
+}
+.links-of-blogroll-item {
+  display: inline-block;
+  max-width: 100%;
+  margin: 5px 0 0;
+}
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .main-inner > .sub-menu,
 .main-inner > .post-block,
