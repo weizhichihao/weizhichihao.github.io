@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Docker安装</title>
+    <url>/2020/09/07/Docker%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>记录一下云服务器上Docker的安装过程。</p>
+<a id="more"></a>
+
+<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git使用总结</title>
+    <url>/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
+<a id="more"></a>
+
+<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
+<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
+<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
+<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
+</ul>
+<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
+<li><code>git config list</code>    一一 列出当前配置</li>
+<li><code>git config --local --list</code>    一一 列出仓库设置</li>
+<li><code>git config --global --list</code>    一一 列出全局配置</li>
+<li><code>git config --system --list</code>    一一 列出系统配置</li>
+<li><code>git config --global user.name</code>    一一 配置用户名</li>
+<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
+</ul>
+<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
+<li><code>git branch</code>    一一 查看本地分支</li>
+<li><code>git branch -r</code>    一一 查看远程分支</li>
+<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
+<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
+<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
+<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
+<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
+<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
+<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
+<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
+<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
+<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
+<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
+</ul>
+<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
+<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
+<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
+<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
+</ul>
+<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
+<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
+<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
+<li><code>git stash list</code>    一一 查看stash列表</li>
+<li><code>git stash clear</code>    一一 删除全部缓存</li>
+<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
+<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
+</ul>
+<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
+<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
+<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
+<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
+</ul>
+<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
+<li><code>git diff</code>    一一 比较工作区与缓存区</li>
+<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
+<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
+<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
+</ul>
+<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
+<ul>
+<li><code>untracked</code>    在暂存区没有该文件</li>
+<li><code>modified</code>      文件发生了修改</li>
+</ul>
+<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
+<li><code>master</code>分支<ul>
+<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
+<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
+</ul>
+</li>
+<li><code>develop</code>分支<ul>
+<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
+<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
+</ul>
+</li>
+<li><code>feature</code>分支<ul>
+<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
+<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
+</ul>
+</li>
+<li><code>release</code>分支<ul>
+<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
+</ul>
+</li>
+<li><code>hotfix</code>分支<ul>
+<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
+<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>版本管理</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>版本管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uni-app使用总结</title>
+    <url>/2020/09/07/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。</p>
+<a id="more"></a>
+
+
+
+<h4 id="1、使用动画"><a href="#1、使用动画" class="headerlink" title="1、使用动画"></a>1、使用动画</h4><ul>
+<li><p>下载animate.css</p>
+</li>
+<li><p>将文件拷贝到项目资源文件夹common内</p>
+</li>
+<li><p>在App.vue文件里面引用该动画库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;App.vue</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入样式文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;animate.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="2、应用字体图标"><a href="#2、应用字体图标" class="headerlink" title="2、应用字体图标"></a>2、应用字体图标</h4><ul>
+<li><p>去iconfont官网将选好的图标加入到自己的项目里面进行管理</p>
+</li>
+<li><p>下载字体文件和示例压缩包</p>
+</li>
+<li><p>将iconfont.css拷贝到资源文件夹common内</p>
+</li>
+<li><p>在App.vue中引入该样式文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入字体文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;iconfont.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>打开iconfont.css文件，将里面的<code>@font-face</code>里面的url只保留base64位的数据就行。</p>
+</li>
+<li><p>使用如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;iconfont icon-user&quot;&gt;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="3、UI框架"><a href="#3、UI框架" class="headerlink" title="3、UI框架"></a>3、UI框架</h4><ul>
+<li>ColorUI-UniApp</li>
+</ul>
+<h4 id="4、清除缓存"><a href="#4、清除缓存" class="headerlink" title="4、清除缓存"></a>4、清除缓存</h4><ul>
+<li><p>获取数据缓存信息</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    uni.clearStorageSync();</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除本地缓存</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    uni.clearStorageSync();</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="5、检测更新"><a href="#5、检测更新" class="headerlink" title="5、检测更新"></a>5、检测更新</h4><ul>
+<li><p>核心代码如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// #ifdef APP-PLUS</span></span><br><span class="line">plus.runtime.getProperty(plus.runtime.appid, <span class="function"><span class="keyword">function</span>(<span class="params">widgetInfo</span>) </span>&#123;  </span><br><span class="line">    uni.request(&#123;  </span><br><span class="line">        url: <span class="string">&#x27;http://www.example.com/update/&#x27;</span>,  </span><br><span class="line">        data: &#123;  </span><br><span class="line">            version: widgetInfo.version,  </span><br><span class="line">            name: widgetInfo.name  </span><br><span class="line">        &#125;,  </span><br><span class="line">        success: <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;  </span><br><span class="line">            <span class="keyword">var</span> data = result.data;  </span><br><span class="line">            <span class="keyword">if</span> (data.update &amp;&amp; data.wgtUrl) &#123;  </span><br><span class="line">                uni.downloadFile(&#123;  </span><br><span class="line">                    url: data.wgtUrl,  </span><br><span class="line">                    success: <span class="function">(<span class="params">downloadResult</span>) =&gt;</span> &#123;  </span><br><span class="line">                        <span class="keyword">if</span> (downloadResult.statusCode === <span class="number">200</span>) &#123;  </span><br><span class="line">                            plus.runtime.install(downloadResult.tempFilePath, &#123;  </span><br><span class="line">                                force: <span class="literal">false</span>  </span><br><span class="line">                            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">                                <span class="built_in">console</span>.log(<span class="string">&#x27;install success...&#x27;</span>);  </span><br><span class="line">                                plus.runtime.restart();  </span><br><span class="line">                            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;  </span><br><span class="line">                                <span class="built_in">console</span>.error(<span class="string">&#x27;install fail...&#x27;</span>);  </span><br><span class="line">                            &#125;);  </span><br><span class="line">                        &#125;  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;);  </span><br><span class="line">&#125;);  </span><br><span class="line"><span class="comment">// #endif</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="6、网络检测"><a href="#6、网络检测" class="headerlink" title="6、网络检测"></a>6、网络检测</h4><ul>
+<li><p>检测网络状态</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+<th align="left">平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wifi</td>
+<td>wifi 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>2g</td>
+<td>2g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>3g</td>
+<td>3g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>4g</td>
+<td>4g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>ethernet</td>
+<td>有线网络</td>
+<td align="left">App</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>Android 下不常见的网络类型</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>none</td>
+<td>无网络</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">uni.getNetworkType(&#123;</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.networkType);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听网络状态变化</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+<th>平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isConnected</td>
+<td>Boolean</td>
+<td>当前是否有网络连接</td>
+<td>字节跳动小程序不支持</td>
+</tr>
+<tr>
+<td>networkType</td>
+<td>String</td>
+<td>网络类型</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">uni.onNetworkStatusChange(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res.isConnected);</span><br><span class="line">    <span class="built_in">console</span>.log(res.networkType);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="7、自定义导航栏"><a href="#7、自定义导航栏" class="headerlink" title="7、自定义导航栏"></a>7、自定义导航栏</h4><ul>
+<li><p><code>custom-navbar.vue</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;custom-bar&quot;&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;status-bar&quot; :style&#x3D;&quot;&#123;height:statusBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;nav-bar&quot;&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style&#x3D;&quot;&#123;height:navBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				navBarHeight:0,</span><br><span class="line">				statusBarHeight:0</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			this.navBarHeight&#x3D;uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #ifdef APP-PLUS</span><br><span class="line">			this.statusBarHeight&#x3D;plus.navigator.getStatusbarHeight();</span><br><span class="line">			this.navBarHeight&#x3D;this.statusBarHeight+uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #endif</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:0;</span><br><span class="line">		right:0;</span><br><span class="line">		top:0;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">		font-size:41.66rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:100rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>index.vue</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref&#x3D;&#39;custombar&#39;&gt;&lt;&#x2F;custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;filter-box&quot; :style&#x3D;&quot;&#123;top:filterBoxTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;select-time&quot; :style&#x3D;&quot;&#123;top:timeSelectTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;pad&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;item&quot; v-for&#x3D;&quot;(item,index) in 100&quot; :Key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">				&#123;&#123;index+1&#125;&#125;</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:100rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:85.41rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:185.41rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>navbar.mixin</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export default&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			filterBoxTop:0,</span><br><span class="line">			timeSelectTop:0</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		if(this.$refs[&#39;custombar&#39;])&#123;</span><br><span class="line">			this.filterBoxTop&#x3D;this.$refs[&#39;custombar&#39;].navBarHeight;</span><br><span class="line">			this.timeSelectTop&#x3D;this.filterBoxTop+uni.upx2px(85.41);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="8、封装、使用工具函数"><a href="#8、封装、使用工具函数" class="headerlink" title="8、封装、使用工具函数"></a>8、封装、使用工具函数</h4><ul>
+<li><p>在common文件夹内新建一个util.js文件</p>
+</li>
+<li><p>在里面封装一些工具函数并导出</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//util.js</span></span><br><span class="line"><span class="keyword">const</span> formatTime=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    formatTime</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js里面引入并挂载到Vue的原型上</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">&#x27;./common/util.js&#x27;</span></span><br><span class="line">Vue.prototype.$util=utils</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>页面中使用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//index.vue</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatTime(time)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.$util.formatTime(time)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="9、Api统一管理"><a href="#9、Api统一管理" class="headerlink" title="9、Api统一管理"></a>9、Api统一管理</h4><ul>
+<li><p>新建apis文件夹，里面依据业务新建不同的接口文件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example</span></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">&#x27;../../commons/http&#x27;</span></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 测试接口</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">//获取列表</span></span><br><span class="line"> <span class="keyword">const</span> getList=<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> http(&#123;</span><br><span class="line"> 		url:<span class="string">&#x27;/app/list&#x27;</span>,</span><br><span class="line"> 		data</span><br><span class="line"> 	&#125;);</span><br><span class="line"> &#125;;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	 getList</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>在apis文件中新建一个index.js主文件，检测接口函数并自动导出。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用require.context自动导出api接口函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> apis=<span class="built_in">require</span>.context(<span class="string">&#x27;.&#x27;</span>,<span class="literal">true</span>,<span class="regexp">/.js$/</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> apisObj=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">apis.keys().forEach(<span class="function"><span class="params">key</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(key === <span class="string">&#x27;./index.js&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">let</span> obj=apis(key).default;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">		apisObj[key]=obj[key];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	...apisObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js里面引入接口</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引入api</span></span><br><span class="line"><span class="keyword">import</span> apis <span class="keyword">from</span> <span class="string">&#x27;./apis/index&#x27;</span>;</span><br><span class="line"><span class="comment">//挂载到Vue原型上面</span></span><br><span class="line">Vue.prototype.$api=apis;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方法如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.$api.getList().then(<span class="function"><span class="params">res</span>=&gt;</span><span class="built_in">console</span>.log(res)).catch(<span class="function"><span class="params">err</span>=&gt;</span><span class="built_in">console</span>.log(err))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>跨平台开发</category>
+      </categories>
+      <tags>
+        <tag>uni-app</tag>
+        <tag>app</tag>
+        <tag>跨平台</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Hexo和Gitee Pages搭建个人博客</title>
+    <url>/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
+<a id="more"></a>
+
+<p><a href="https://hexo.io/">Hexo官网</a></p>
+<p><a href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
+<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
+<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+</search>
