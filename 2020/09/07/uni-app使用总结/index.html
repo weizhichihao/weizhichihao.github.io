@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avator.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avator.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avator.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信&#x2F;支付宝&#x2F;百度&#x2F;头条&#x2F;QQ&#x2F;钉钉&#x2F;淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uni-app使用总结">
+<meta property="og:url" content="http://example.com/2020/09/07/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="韦枝池的博客">
+<meta property="og:description" content="uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信&#x2F;支付宝&#x2F;百度&#x2F;头条&#x2F;QQ&#x2F;钉钉&#x2F;淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-07T13:35:37.377Z">
+<meta property="article:modified_time" content="2020-09-07T13:35:37.403Z">
+<meta property="article:author" content="JackeyW">
+<meta property="article:tag" content="uni-app">
+<meta property="article:tag" content="app">
+<meta property="article:tag" content="跨平台">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/09/07/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>uni-app使用总结 | 韦枝池的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">韦枝池的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">生活就是一场修行</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E4%BD%BF%E7%94%A8%E5%8A%A8%E7%94%BB"><span class="nav-text">1、使用动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%BA%94%E7%94%A8%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87"><span class="nav-text">2、应用字体图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81UI%E6%A1%86%E6%9E%B6"><span class="nav-text">3、UI框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-text">4、清除缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%A3%80%E6%B5%8B%E6%9B%B4%E6%96%B0"><span class="nav-text">5、检测更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B"><span class="nav-text">6、网络检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F"><span class="nav-text">7、自定义导航栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E5%B0%81%E8%A3%85%E3%80%81%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0"><span class="nav-text">8、封装、使用工具函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9%E3%80%81Api%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86"><span class="nav-text">9、Api统一管理</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JackeyW"
+      src="/images/avator.png">
+  <p class="site-author-name" itemprop="name">JackeyW</p>
+  <div class="site-description" itemprop="description">不积跬步，无以至千里；不积小流，无以成江海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/weizhichihao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;weizhichihao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15119631881@163.com" title="E-Mail → mailto:15119631881@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-fw fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://segmentfault.com/" title="https:&#x2F;&#x2F;segmentfault.com&#x2F;" rel="noopener" target="_blank">思否</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.oschina.net/" title="https:&#x2F;&#x2F;www.oschina.net&#x2F;" rel="noopener" target="_blank">开源中国</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net&#x2F;" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.douban.com/" title="https:&#x2F;&#x2F;www.douban.com&#x2F;" rel="noopener" target="_blank">豆瓣</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;" rel="noopener" target="_blank">知乎</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/weizhichihao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/07/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="JackeyW">
+      <meta itemprop="description" content="不积跬步，无以至千里；不积小流，无以成江海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="韦枝池的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          uni-app使用总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-07 21:35:37" itemprop="dateCreated datePublished" datetime="2020-09-07T21:35:37+08:00">2020-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">跨平台开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。</p>
+<a id="more"></a>
+
+
+
+<h4 id="1、使用动画"><a href="#1、使用动画" class="headerlink" title="1、使用动画"></a>1、使用动画</h4><ul>
+<li><p>下载animate.css</p>
+</li>
+<li><p>将文件拷贝到项目资源文件夹common内</p>
+</li>
+<li><p>在App.vue文件里面引用该动画库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;App.vue</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入样式文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;animate.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="2、应用字体图标"><a href="#2、应用字体图标" class="headerlink" title="2、应用字体图标"></a>2、应用字体图标</h4><ul>
+<li><p>去iconfont官网将选好的图标加入到自己的项目里面进行管理</p>
+</li>
+<li><p>下载字体文件和示例压缩包</p>
+</li>
+<li><p>将iconfont.css拷贝到资源文件夹common内</p>
+</li>
+<li><p>在App.vue中引入该样式文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入字体文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;iconfont.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>打开iconfont.css文件，将里面的<code>@font-face</code>里面的url只保留base64位的数据就行。</p>
+</li>
+<li><p>使用如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;iconfont icon-user&quot;&gt;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="3、UI框架"><a href="#3、UI框架" class="headerlink" title="3、UI框架"></a>3、UI框架</h4><ul>
+<li>ColorUI-UniApp</li>
+</ul>
+<h4 id="4、清除缓存"><a href="#4、清除缓存" class="headerlink" title="4、清除缓存"></a>4、清除缓存</h4><ul>
+<li><p>获取数据缓存信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    uni.clearStorageSync();</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除本地缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    uni.clearStorageSync();</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="5、检测更新"><a href="#5、检测更新" class="headerlink" title="5、检测更新"></a>5、检测更新</h4><ul>
+<li><p>核心代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #ifdef APP-PLUS</span></span><br><span class="line">plus.runtime.getProperty(plus.runtime.appid, <span class="function"><span class="keyword">function</span>(<span class="params">widgetInfo</span>) </span>&#123;  </span><br><span class="line">    uni.request(&#123;  </span><br><span class="line">        url: <span class="string">&#x27;http://www.example.com/update/&#x27;</span>,  </span><br><span class="line">        data: &#123;  </span><br><span class="line">            version: widgetInfo.version,  </span><br><span class="line">            name: widgetInfo.name  </span><br><span class="line">        &#125;,  </span><br><span class="line">        success: <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;  </span><br><span class="line">            <span class="keyword">var</span> data = result.data;  </span><br><span class="line">            <span class="keyword">if</span> (data.update &amp;&amp; data.wgtUrl) &#123;  </span><br><span class="line">                uni.downloadFile(&#123;  </span><br><span class="line">                    url: data.wgtUrl,  </span><br><span class="line">                    success: <span class="function">(<span class="params">downloadResult</span>) =&gt;</span> &#123;  </span><br><span class="line">                        <span class="keyword">if</span> (downloadResult.statusCode === <span class="number">200</span>) &#123;  </span><br><span class="line">                            plus.runtime.install(downloadResult.tempFilePath, &#123;  </span><br><span class="line">                                force: <span class="literal">false</span>  </span><br><span class="line">                            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">                                <span class="built_in">console</span>.log(<span class="string">&#x27;install success...&#x27;</span>);  </span><br><span class="line">                                plus.runtime.restart();  </span><br><span class="line">                            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;  </span><br><span class="line">                                <span class="built_in">console</span>.error(<span class="string">&#x27;install fail...&#x27;</span>);  </span><br><span class="line">                            &#125;);  </span><br><span class="line">                        &#125;  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;);  </span><br><span class="line">&#125;);  </span><br><span class="line"><span class="comment">// #endif</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="6、网络检测"><a href="#6、网络检测" class="headerlink" title="6、网络检测"></a>6、网络检测</h4><ul>
+<li><p>检测网络状态</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+<th align="left">平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wifi</td>
+<td>wifi 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>2g</td>
+<td>2g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>3g</td>
+<td>3g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>4g</td>
+<td>4g 网络</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>ethernet</td>
+<td>有线网络</td>
+<td align="left">App</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>Android 下不常见的网络类型</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>none</td>
+<td>无网络</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uni.getNetworkType(&#123;</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.networkType);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听网络状态变化</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+<th>平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isConnected</td>
+<td>Boolean</td>
+<td>当前是否有网络连接</td>
+<td>字节跳动小程序不支持</td>
+</tr>
+<tr>
+<td>networkType</td>
+<td>String</td>
+<td>网络类型</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uni.onNetworkStatusChange(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res.isConnected);</span><br><span class="line">    <span class="built_in">console</span>.log(res.networkType);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="7、自定义导航栏"><a href="#7、自定义导航栏" class="headerlink" title="7、自定义导航栏"></a>7、自定义导航栏</h4><ul>
+<li><p><code>custom-navbar.vue</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;custom-bar&quot;&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;status-bar&quot; :style&#x3D;&quot;&#123;height:statusBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;nav-bar&quot;&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style&#x3D;&quot;&#123;height:navBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				navBarHeight:0,</span><br><span class="line">				statusBarHeight:0</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			this.navBarHeight&#x3D;uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #ifdef APP-PLUS</span><br><span class="line">			this.statusBarHeight&#x3D;plus.navigator.getStatusbarHeight();</span><br><span class="line">			this.navBarHeight&#x3D;this.statusBarHeight+uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #endif</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:0;</span><br><span class="line">		right:0;</span><br><span class="line">		top:0;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">		font-size:41.66rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:100rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>index.vue</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref&#x3D;&#39;custombar&#39;&gt;&lt;&#x2F;custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;filter-box&quot; :style&#x3D;&quot;&#123;top:filterBoxTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;select-time&quot; :style&#x3D;&quot;&#123;top:timeSelectTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;pad&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;item&quot; v-for&#x3D;&quot;(item,index) in 100&quot; :Key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">				&#123;&#123;index+1&#125;&#125;</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:100rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:85.41rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:185.41rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>navbar.mixin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">export default&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			filterBoxTop:0,</span><br><span class="line">			timeSelectTop:0</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		if(this.$refs[&#39;custombar&#39;])&#123;</span><br><span class="line">			this.filterBoxTop&#x3D;this.$refs[&#39;custombar&#39;].navBarHeight;</span><br><span class="line">			this.timeSelectTop&#x3D;this.filterBoxTop+uni.upx2px(85.41);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="8、封装、使用工具函数"><a href="#8、封装、使用工具函数" class="headerlink" title="8、封装、使用工具函数"></a>8、封装、使用工具函数</h4><ul>
+<li><p>在common文件夹内新建一个util.js文件</p>
+</li>
+<li><p>在里面封装一些工具函数并导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//util.js</span></span><br><span class="line"><span class="keyword">const</span> formatTime=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    formatTime</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js里面引入并挂载到Vue的原型上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">&#x27;./common/util.js&#x27;</span></span><br><span class="line">Vue.prototype.$util=utils</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>页面中使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.vue</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">methods:&#123;</span><br><span class="line">    formatTime(time)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.$util.formatTime(time)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="9、Api统一管理"><a href="#9、Api统一管理" class="headerlink" title="9、Api统一管理"></a>9、Api统一管理</h4><ul>
+<li><p>新建apis文件夹，里面依据业务新建不同的接口文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example</span></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">&#x27;../../commons/http&#x27;</span></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 测试接口</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">//获取列表</span></span><br><span class="line"> <span class="keyword">const</span> getList=<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line"> 	<span class="keyword">return</span> http(&#123;</span><br><span class="line"> 		url:<span class="string">&#x27;/app/list&#x27;</span>,</span><br><span class="line"> 		data</span><br><span class="line"> 	&#125;);</span><br><span class="line"> &#125;;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	 getList</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>在apis文件中新建一个index.js主文件，检测接口函数并自动导出。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用require.context自动导出api接口函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> apis=<span class="built_in">require</span>.context(<span class="string">&#x27;.&#x27;</span>,<span class="literal">true</span>,<span class="regexp">/.js$/</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> apisObj=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">apis.keys().forEach(<span class="function"><span class="params">key</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(key === <span class="string">&#x27;./index.js&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">let</span> obj=apis(key).default;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">		apisObj[key]=obj[key];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	...apisObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js里面引入接口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入api</span></span><br><span class="line"><span class="keyword">import</span> apis <span class="keyword">from</span> <span class="string">&#x27;./apis/index&#x27;</span>;</span><br><span class="line"><span class="comment">//挂载到Vue原型上面</span></span><br><span class="line">Vue.prototype.$api=apis;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方法如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$api.getList().then(<span class="function"><span class="params">res</span>=&gt;</span><span class="built_in">console</span>.log(res)).catch(<span class="function"><span class="params">err</span>=&gt;</span><span class="built_in">console</span>.log(err))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/uni-app/" rel="tag"># uni-app</a>
+              <a href="/tags/app/" rel="tag"># app</a>
+              <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" rel="tag"># 跨平台</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/07/Docker%E5%AE%89%E8%A3%85/" rel="prev" title="Docker安装">
+                  <i class="fa fa-chevron-left"></i> Docker安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackeyW</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

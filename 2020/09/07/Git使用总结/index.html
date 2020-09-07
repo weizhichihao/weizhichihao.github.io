@@ -21,21 +21,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="Typescript学习笔记">
+  <meta name="description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typescript学习笔记">
-<meta property="og:url" content="http://example.com/2020/09/05/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Git使用总结">
+<meta property="og:url" content="http://example.com/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="韦枝池的博客">
-<meta property="og:description" content="Typescript学习笔记">
+<meta property="og:description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-05T11:18:03.000Z">
-<meta property="article:modified_time" content="2020-09-05T11:36:02.483Z">
+<meta property="article:published_time" content="2020-09-07T07:53:21.000Z">
+<meta property="article:modified_time" content="2020-09-07T13:35:37.375Z">
 <meta property="article:author" content="JackeyW">
-<meta property="article:tag" content="ts">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="版本管理">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2020/09/05/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://example.com/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
 
 
 <script class="page-configurations">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>Typescript学习笔记 | 韦枝池的博客</title>
+  <title>Git使用总结 | 韦枝池的博客</title>
   
 
 
@@ -119,6 +120,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -152,11 +154,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -181,7 +210,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81Typescript%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="nav-text">1、Typescript基础类型</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2"><span class="nav-text">1、文档查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4"><span class="nav-text">2、配置命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="nav-text">3、分支管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81fetch%E6%8C%87%E4%BB%A4"><span class="nav-text">4、fetch指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%96%87%E4%BB%B6%E6%9A%82%E5%AD%98"><span class="nav-text">5、文件暂存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E6%92%A4%E9%94%80%E7%9B%B8%E5%85%B3"><span class="nav-text">6、撤销相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E5%B7%AE%E5%BC%82%E6%AF%94%E8%BE%83"><span class="nav-text">7、差异比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81Git%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="nav-text">8、Git文件状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9%E3%80%81%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83"><span class="nav-text">9、分支管理规范</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -197,20 +226,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -281,7 +310,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/05/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.png">
@@ -297,7 +326,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Typescript学习笔记
+          Git使用总结
         </h1>
 
         <div class="post-meta-container">
@@ -309,7 +338,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-09-05 19:18:03 / 修改时间：19:36:02" itemprop="dateCreated datePublished" datetime="2020-09-05T19:18:03+08:00">2020-09-05</time>
+      <time title="创建时间：2020-09-07 15:53:21 / 修改时间：21:35:37" itemprop="dateCreated datePublished" datetime="2020-09-07T15:53:21+08:00">2020-09-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -317,7 +346,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+          <a href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">版本管理</span></a>
         </span>
     </span>
 
@@ -331,10 +360,93 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Typescript学习笔记</p>
+        <p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
 <a id="more"></a>
 
-<h5 id="1、Typescript基础类型"><a href="#1、Typescript基础类型" class="headerlink" title="1、Typescript基础类型"></a>1、Typescript基础类型</h5>
+<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
+<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
+<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
+<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
+</ul>
+<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
+<li><code>git config list</code>    一一 列出当前配置</li>
+<li><code>git config --local --list</code>    一一 列出仓库设置</li>
+<li><code>git config --global --list</code>    一一 列出全局配置</li>
+<li><code>git config --system --list</code>    一一 列出系统配置</li>
+<li><code>git config --global user.name</code>    一一 配置用户名</li>
+<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
+</ul>
+<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
+<li><code>git branch</code>    一一 查看本地分支</li>
+<li><code>git branch -r</code>    一一 查看远程分支</li>
+<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
+<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
+<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
+<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
+<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
+<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
+<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
+<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
+<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
+<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
+<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
+</ul>
+<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
+<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
+<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
+<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
+</ul>
+<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
+<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
+<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
+<li><code>git stash list</code>    一一 查看stash列表</li>
+<li><code>git stash clear</code>    一一 删除全部缓存</li>
+<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
+<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
+</ul>
+<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
+<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
+<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
+<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
+</ul>
+<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
+<li><code>git diff</code>    一一 比较工作区与缓存区</li>
+<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
+<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
+<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
+</ul>
+<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
+<ul>
+<li><code>untracked</code>    在暂存区没有该文件</li>
+<li><code>modified</code>      文件发生了修改</li>
+</ul>
+<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
+<li><code>master</code>分支<ul>
+<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
+<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
+</ul>
+</li>
+<li><code>develop</code>分支<ul>
+<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
+<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
+</ul>
+</li>
+<li><code>feature</code>分支<ul>
+<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
+<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
+</ul>
+</li>
+<li><code>release</code>分支<ul>
+<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
+</ul>
+</li>
+<li><code>hotfix</code>分支<ul>
+<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
+<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -343,7 +455,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ts/" rel="tag"># ts</a>
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
           </div>
 
         
@@ -355,8 +468,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/05/Flutter%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Flutter布局学习笔记">
-                  Flutter布局学习笔记 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/07/Docker%E5%AE%89%E8%A3%85/" rel="next" title="Docker安装">
+                  Docker安装 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -422,6 +535,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 

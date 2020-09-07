@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="使用Hexo搭建个人博客">
+  <meta name="description" content="最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择GiteePages是因为Gitee是国内代码托管平台，访问速度比Github要快。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Hexo搭建个人博客">
 <meta property="og:url" content="http://example.com/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="韦枝池的博客">
-<meta property="og:description" content="使用Hexo搭建个人博客">
+<meta property="og:description" content="最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择GiteePages是因为Gitee是国内代码托管平台，访问速度比Github要快。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-05T09:09:27.000Z">
-<meta property="article:modified_time" content="2020-09-05T09:29:54.219Z">
+<meta property="article:modified_time" content="2020-09-07T14:06:44.894Z">
 <meta property="article:author" content="JackeyW">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -119,6 +119,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -152,11 +153,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -169,7 +197,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -181,6 +209,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81Hexo%E5%AE%89%E8%A3%85"><span class="nav-text">1、Hexo安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">2、初始化你的博客文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E8%BF%9B%E5%85%A5%E8%AF%A5%E7%9B%AE%E5%BD%95%E5%B9%B6%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="nav-text">3、进入该目录并启动服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%9C%A8Gitee%E4%B8%8A%E9%9D%A2%E6%96%B0%E5%A2%9E%E4%BB%93%E5%BA%93"><span class="nav-text">4、在Gitee上面新增仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-text">5、清除缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%B9%B6%E9%83%A8%E7%BD%B2"><span class="nav-text">6、生成静态资源并部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E9%83%A8%E7%BD%B2%E9%85%8D%E7%BD%AE"><span class="nav-text">7、部署配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E5%9C%A8%E5%90%AF%E7%94%A8Gitee-Pages%E6%9C%8D%E5%8A%A1"><span class="nav-text">8、在启用Gitee Pages服务</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -196,20 +225,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -306,10 +335,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-09-05 17:09:27 / 修改时间：17:29:54" itemprop="dateCreated datePublished" datetime="2020-09-05T17:09:27+08:00">2020-09-05</time>
+      <time title="创建时间：2020-09-05 17:09:27" itemprop="dateCreated datePublished" datetime="2020-09-05T17:09:27+08:00">2020-09-05</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-07 22:06:44" itemprop="dateModified" datetime="2020-09-07T22:06:44+08:00">2020-09-07</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -330,8 +365,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>使用Hexo搭建个人博客</p>
+        <p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择GiteePages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
 <a id="more"></a>
+
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://hexo.io/">Hexo官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://gitee.com/help/articles/4136">GiteePages文档</a></p>
+<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
+<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8、在启用Gitee-Pages服务"><a href="#8、在启用Gitee-Pages服务" class="headerlink" title="8、在启用Gitee Pages服务"></a>8、在启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a target="_blank" rel="noopener" href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
+
     </div>
 
     
@@ -347,13 +405,10 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/05/Docker%E5%AE%89%E8%A3%85/" rel="prev" title="docker安装">
-                  <i class="fa fa-chevron-left"></i> docker安装
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/05/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Typescript学习笔记">
-                  Typescript学习笔记 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="next" title="Git使用总结">
+                  Git使用总结 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -419,6 +474,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 

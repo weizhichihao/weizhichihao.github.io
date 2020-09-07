@@ -116,6 +116,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -149,11 +150,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -193,20 +221,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -293,35 +321,15 @@
     <header class="post-header">
       <div class="post-meta-container">
         <time itemprop="dateCreated"
-              datetime="2020-09-07T00:16:24+08:00"
+              datetime="2020-09-07T21:35:37+08:00"
               content="2020-09-07">
           09-07
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2020/09/07/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">Nginx学习笔记</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-05T13:35:35+08:00"
-              content="2020-09-05">
-          09-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/05/Docker%E5%AE%89%E8%A3%85/" itemprop="url">
-            <span itemprop="name">docker安装</span>
+          <a class="post-title-link" href="/2020/09/07/Docker%E5%AE%89%E8%A3%85/" itemprop="url">
+            <span itemprop="name">Docker安装</span>
           </a>
       </div>
 
@@ -393,6 +401,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 
