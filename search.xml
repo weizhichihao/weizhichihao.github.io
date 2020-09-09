@@ -1,139 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git使用总结</title>
-    <url>/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
-</blockquote>
-<a id="more"></a>
-
-<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
-<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
-<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
-<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
-</ul>
-<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
-<li><code>git config list</code>    一一 列出当前配置</li>
-<li><code>git config --local --list</code>    一一 列出仓库设置</li>
-<li><code>git config --global --list</code>    一一 列出全局配置</li>
-<li><code>git config --system --list</code>    一一 列出系统配置</li>
-<li><code>git config --global user.name</code>    一一 配置用户名</li>
-<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
-</ul>
-<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
-<li><code>git branch</code>    一一 查看本地分支</li>
-<li><code>git branch -r</code>    一一 查看远程分支</li>
-<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
-<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
-<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
-<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
-<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
-<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
-<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
-<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
-<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
-<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
-<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
-</ul>
-<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
-<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
-<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
-<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
-</ul>
-<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
-<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
-<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
-<li><code>git stash list</code>    一一 查看stash列表</li>
-<li><code>git stash clear</code>    一一 删除全部缓存</li>
-<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
-<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
-</ul>
-<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
-<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
-<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
-<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
-</ul>
-<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
-<li><code>git diff</code>    一一 比较工作区与缓存区</li>
-<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
-<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
-<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
-</ul>
-<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
-<ul>
-<li><code>untracked</code>    在暂存区没有该文件</li>
-<li><code>modified</code>      文件发生了修改</li>
-</ul>
-<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
-<li><code>master</code>分支<ul>
-<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
-<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
-</ul>
-</li>
-<li><code>develop</code>分支<ul>
-<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
-<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
-</ul>
-</li>
-<li><code>feature</code>分支<ul>
-<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
-<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
-</ul>
-</li>
-<li><code>release</code>分支<ul>
-<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
-</ul>
-</li>
-<li><code>hotfix</code>分支<ul>
-<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
-<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>版本管理</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>版本管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装</title>
-    <url>/2020/09/09/Docker%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>记录一下在云服务器上安装Docker过程。</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
-
-<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>部署运维</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>部署</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>uni-app使用总结</title>
     <url>/2020/09/09/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -337,8 +204,178 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker安装</title>
+    <url>/2020/09/09/Docker%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>记录一下在云服务器上安装Docker过程。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git使用总结</title>
+    <url>/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
+<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
+<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
+<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
+</ul>
+<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
+<li><code>git config list</code>    一一 列出当前配置</li>
+<li><code>git config --local --list</code>    一一 列出仓库设置</li>
+<li><code>git config --global --list</code>    一一 列出全局配置</li>
+<li><code>git config --system --list</code>    一一 列出系统配置</li>
+<li><code>git config --global user.name</code>    一一 配置用户名</li>
+<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
+</ul>
+<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
+<li><code>git branch</code>    一一 查看本地分支</li>
+<li><code>git branch -r</code>    一一 查看远程分支</li>
+<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
+<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
+<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
+<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
+<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
+<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
+<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
+<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
+<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
+<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
+<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
+</ul>
+<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
+<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
+<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
+<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
+</ul>
+<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
+<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
+<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
+<li><code>git stash list</code>    一一 查看stash列表</li>
+<li><code>git stash clear</code>    一一 删除全部缓存</li>
+<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
+<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
+</ul>
+<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
+<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
+<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
+<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
+</ul>
+<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
+<li><code>git diff</code>    一一 比较工作区与缓存区</li>
+<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
+<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
+<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
+</ul>
+<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
+<ul>
+<li><code>untracked</code>    在暂存区没有该文件</li>
+<li><code>modified</code>      文件发生了修改</li>
+</ul>
+<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
+<li><code>master</code>分支<ul>
+<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
+<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
+</ul>
+</li>
+<li><code>develop</code>分支<ul>
+<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
+<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
+</ul>
+</li>
+<li><code>feature</code>分支<ul>
+<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
+<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
+</ul>
+</li>
+<li><code>release</code>分支<ul>
+<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
+</ul>
+</li>
+<li><code>hotfix</code>分支<ul>
+<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
+<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>版本管理</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>版本管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Hexo和Gitee Pages搭建个人博客</title>
+    <url>/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
+</blockquote>
+<a id="more"></a>
+
+<p><a href="https://hexo.io/">Hexo官网</a></p>
+<p><a href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
+<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
+<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浏览器数据库IndexDB入门</title>
-    <url>/2020/09/09/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%BA%93IndexDB%E5%85%A5%E9%97%A8/</url>
+    <url>/2020/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%95%B0%E6%8D%AE%E5%BA%93IndexDB%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
 <p>现在经常遇到一些场景，需要在浏览器客户端存储大量的数据，这样就可以不用从服务器获取数据，直接在本地进行读取操作。而浏览器提供的本地存储方案有Cookie,LocalStorage,SessionStorage,IndexDB等。</p>
 </blockquote>
@@ -456,43 +493,6 @@
       </categories>
       <tags>
         <tag>本地存储，IndexDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo和Gitee Pages搭建个人博客</title>
-    <url>/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
-</blockquote>
-<a id="more"></a>
-
-<p><a href="https://hexo.io/">Hexo官网</a></p>
-<p><a href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
-<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
-<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
