@@ -36,7 +36,7 @@
   <entry>
     <title>Git使用总结</title>
     <url>/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
 </blockquote>
 <a id="more"></a>
@@ -136,7 +136,7 @@
   <entry>
     <title>uni-app使用总结</title>
     <url>/2020/09/05/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。</p>
 </blockquote>
 <a id="more"></a>
@@ -337,6 +337,43 @@
       </tags>
   </entry>
   <entry>
+    <title>使用Hexo和Gitee Pages搭建个人博客</title>
+    <url>/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
+</blockquote>
+<a id="more"></a>
+
+<p><a href="https://hexo.io/">Hexo官网</a></p>
+<p><a href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
+<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
+<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浏览器数据库IndexDB入门</title>
     <url>/2020/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%95%B0%E6%8D%AE%E5%BA%93IndexDB%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -456,43 +493,6 @@
       </categories>
       <tags>
         <tag>本地存储，IndexDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo和Gitee Pages搭建个人博客</title>
-    <url>/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
-</blockquote>
-<a id="more"></a>
-
-<p><a href="https://hexo.io/">Hexo官网</a></p>
-<p><a href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
-<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
-<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
