@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blog_ico.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="前言 Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统。是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统，能运行主要的 UNIX 工具软件、应用程序和网络协议，Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础知识点整理">
+<meta property="og:url" content="https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="韦枝池的博客">
+<meta property="og:description" content="前言 Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统。是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统，能运行主要的 UNIX 工具软件、应用程序和网络协议，Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-12T05:45:30.000Z">
+<meta property="article:modified_time" content="2020-09-12T16:34:52.548Z">
+<meta property="article:author" content="JackeyW">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux基础知识点整理 | 韦枝池的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">韦枝池的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">生活就是一场修行</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81Linux%E6%AF%94%E8%BE%83%E6%B5%81%E8%A1%8C%E7%9A%84%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-text">1、Linux比较流行的发行版</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="nav-text">2、命令行相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1%E3%80%81%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E5%92%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="nav-text">1、查找命令和命令的历史记录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2%E3%80%81%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">2、一些使用的快捷键</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3%E3%80%81Linux%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-text">3、Linux中的文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4%E3%80%81Linux%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-text">4、Linux的目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5%E3%80%81%E6%93%8D%E7%BA%B5%E6%96%87%E4%BB%B6"><span class="nav-text">5、操纵文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6%E3%80%81%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%9B%B8%E5%85%B3"><span class="nav-text">6、用户权限相关</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-text">7、软件安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8%E3%80%81%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%8E%8B%E5%92%8C%E5%8E%8B%E7%BC%A9"><span class="nav-text">8、文件的解压和压缩</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%B5%8B"><span class="nav-text">9、进程和系统监测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#10%E3%80%81%E6%93%8D%E4%BD%9C%E8%BF%9B%E7%A8%8B%E5%92%8C%E9%87%8D%E5%90%AF%E5%85%B3%E9%97%AD%E7%B3%BB%E7%BB%9F"><span class="nav-text">10、操作进程和重启关闭系统</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JackeyW"
+      src="/images/avator.png">
+  <p class="site-author-name" itemprop="name">JackeyW</p>
+  <div class="site-description" itemprop="description">不积跬步，无以至千里；不积小流，无以成江海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/weizhichihao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;weizhichihao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15119631881@163.com" title="E-Mail → mailto:15119631881@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-fw fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://segmentfault.com/" title="https:&#x2F;&#x2F;segmentfault.com&#x2F;" rel="noopener" target="_blank">思否</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.oschina.net/" title="https:&#x2F;&#x2F;www.oschina.net&#x2F;" rel="noopener" target="_blank">开源中国</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net&#x2F;" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.douban.com/" title="https:&#x2F;&#x2F;www.douban.com&#x2F;" rel="noopener" target="_blank">豆瓣</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;" rel="noopener" target="_blank">知乎</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=316654&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/weizhichihao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="JackeyW">
+      <meta itemprop="description" content="不积跬步，无以至千里；不积小流，无以成江海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="韦枝池的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux基础知识点整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-12 13:45:30" itemprop="dateCreated datePublished" datetime="2020-09-12T13:45:30+08:00">2020-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>Linux，全称GNU/Linux，是一套免费使用和自由传播的类UNIX操作系统。是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统，能运行主要的 UNIX 工具软件、应用程序和网络协议，Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1、Linux比较流行的发行版"><a href="#1、Linux比较流行的发行版" class="headerlink" title="1、Linux比较流行的发行版"></a>1、Linux比较流行的发行版</h5><ul>
+<li><p>Slackware</p>
+<blockquote>
+<p>最早的Linux发行版中的一员，在Linux极客中比较流行</p>
+</blockquote>
+</li>
+<li><p>Red Hat</p>
+<blockquote>
+<p>主要用于Internet服务器的商业发行版，性能稳定</p>
+</blockquote>
+</li>
+<li><p>RHEL</p>
+<blockquote>
+<p>Red Hat的企业版</p>
+</blockquote>
+</li>
+<li><p>Fedora</p>
+<blockquote>
+<p>从Red Hat分离出的社区免费版</p>
+</blockquote>
+</li>
+<li><p>CentOS</p>
+<blockquote>
+<p>算是RHEL的克隆版，免费。结合了RHEL和Fedora的特性，兼具Community(社区)和Enterprise(企业)的特性，稳定，每个版本一般都有长期的支持(10年)，适合做服务器</p>
+</blockquote>
+</li>
+<li><p>Deepin</p>
+<blockquote>
+<p>中国发行。对优秀的开源产品进行集成和配置，开发软件</p>
+</blockquote>
+</li>
+<li><p>Gentoo</p>
+<blockquote>
+<p>为高级Linux用户设计的发行版，仅包含Linux源代码</p>
+</blockquote>
+</li>
+<li><p>openSUSE</p>
+<blockquote>
+<p>用于商用和家用的发行版</p>
+</blockquote>
+</li>
+<li><p>Debian</p>
+<blockquote>
+<p>在Linux专家和商用Linux产品中流行的发行版，迄今为止，最遵循GNU规范的Linux系统</p>
+</blockquote>
+</li>
+<li><p>Ubuntu</p>
+<blockquote>
+<p>Debian的后继或一个分支</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="2、命令行相关操作"><a href="#2、命令行相关操作" class="headerlink" title="2、命令行相关操作"></a>2、命令行相关操作</h5><h6 id="1、查找命令和命令的历史记录"><a href="#1、查找命令和命令的历史记录" class="headerlink" title="1、查找命令和命令的历史记录"></a>1、查找命令和命令的历史记录</h6><ul>
+<li>查找命令<ul>
+<li><code>Tab</code>键：可以补全命令，也可以补全文件名、路径名，按两次Tab键即可</li>
+</ul>
+</li>
+<li>命令的历史记录<ul>
+<li><code>↑</code>键：按时间顺序向前查找用过的命令，每按一次就前进一个命令</li>
+<li><code>↓</code>键：按时间顺序向后查找用过的命令，没按一次就前进一个命令</li>
+<li><code>Ctrl + R</code>：用于查找使用过的命令</li>
+<li><code>history</code>命令：用于列出之前使用过的所有命令，可以用<code>!编号</code>这样的格式来重新运行history输出中对应编号的命令</li>
+</ul>
+</li>
+</ul>
+<h6 id="2、一些使用的快捷键"><a href="#2、一些使用的快捷键" class="headerlink" title="2、一些使用的快捷键"></a>2、一些使用的快捷键</h6><ul>
+<li><code>Ctrl + L</code>：用于清理终端的内容，清屏，和<code>clear</code>命令一样</li>
+<li><code>Ctrl + D</code>：给终端传递EOF（End Of File，文件结束符） </li>
+<li><code>Shift + PgUp</code>：用于向上滚屏，与鼠标的滚轮向上滚屏是一个效果</li>
+<li><code>Shift + PgDn</code>：用于向下滚屏，与鼠标的滚轮向下滚屏是一个效果</li>
+<li><code>Ctrl + A</code>：光标跳到一行命令的开头，Home键有相同的效果</li>
+<li><code>Ctrl + E</code>：光标跳到一行命令的结尾，End键有相同的效果</li>
+<li><code>Ctrl + U</code>：删除所在光标的左侧的所有命令字符</li>
+<li><code>Ctrl + K</code>：删除所在光标的右侧的所有命令字符  </li>
+<li><code>Ctrl + W</code>：删除所在光标的左侧的一个单词，即使用空格隔开的字符串 </li>
+</ul>
+<h6 id="3、Linux中的文件"><a href="#3、Linux中的文件" class="headerlink" title="3、Linux中的文件"></a>3、Linux中的文件</h6><blockquote>
+<p>Linux中一切都是文件</p>
+</blockquote>
+<ul>
+<li><p>普通文件</p>
+<ul>
+<li>文本类型的文件（.txt,.doc,.odt等）</li>
+<li>声音文件（.wav,.mp3,.ogg）,还有程序等</li>
+</ul>
+</li>
+<li><p>特殊文件</p>
+<ul>
+<li>光盘驱动器</li>
+</ul>
+</li>
+</ul>
+<h6 id="4、Linux的目录"><a href="#4、Linux的目录" class="headerlink" title="4、Linux的目录"></a>4、Linux的目录</h6><p>目录基础概念：</p>
+<blockquote>
+<p>Linux有且只有一个根目录，就是<code>/</code>。</p>
+<p>Linux中没有比根目录再高一阶的目录了，没有目录包含根目录。</p>
+<p>Linux中用斜杠<code>/</code>来标明目录的层级与包含关系。</p>
+<p>目录形式是这样的 <code>/usr/bin</code>，<code>bin</code>是<code>usr</code>目录的子目录，<code>usr</code>是<code>/</code>这个根目录的子目录</p>
+</blockquote>
+<p>目录组织：</p>
+<ul>
+<li><code>bin</code>：英语binary的缩写，表示“二进制文件”，可执行文件时二进制的，该目录包含了会被所有用户使用的可执行程序</li>
+<li><code>boot</code>：英语boot表示“启动”，该目录包含于Linux启动密切相关的文件</li>
+<li><code>dev</code>：英语device的缩写，表示“设备”，该目录包含外设，它里面的子目录，每一个对应一个外设，比如代表光盘驱动器的文件就会出现在这个目录下面 </li>
+<li><code>etc</code>：该目录包含系统的配置文件</li>
+<li><code>home</code>：用户的私人目录 ，Linux中的每个用户都在home目录下有一个私人目录，假设用户的用户名是test_name,那么他的私人目录就是<code>/home/test_name</code></li>
+<li><code>lib</code>：英语library的缩写，表示库，该目录包含被程序所调用的库文件，例如.so结尾的文件</li>
+<li><code>media</code>：英语media表示“媒体”，可移动的外设（USB盘，SD卡，DVD，光盘，等等）插入电脑时，我们可以通过<code>media</code>的子目录来访问这些外设中的内容</li>
+<li><code>mnt</code>：英语mount的缩写，表示“挂载”，类似<code>media</code>目录，但一般用于临时挂载一些装置</li>
+<li><code>opt</code>：英语optional application software package的缩写，表示“可选的英语软件包” ，用于安装多数第三方软件和插件</li>
+<li><code>root</code>：超级用户root的家目录，一般用户的家目录位于<code>/home</code>下，root用户例外</li>
+<li><code>sbin</code>：英语system binary的缩写，表示“系统二进制文件”，比<code>bin</code>目录多了一个前缀system（“系统”），该目录包含系统级的重要可执行程序</li>
+<li><code>tmp</code>：英语temporary的缩写，表示“临时的”，是普通用户和程序存放临时文件的地方</li>
+<li><code>srv</code>：英语service的缩写，表示“服务”，该目录包含一些网络服务启动之后所需要取用的数据</li>
+<li><code>usr</code>：英语Unix Software Resource的缩写，表示”Unix操作系统软件资源”，类似<code>etc</code>，是历史遗留的命名，<code>usr</code>目录是最庞大的目录之一，安装了大部分用户要调用的程序</li>
+<li><code>var</code>：英语variable的缩写，表示”动态的，可变的“，通常包含程序的数据，比如log（日志）文件，log文件记录电脑中发生了什么事</li>
+</ul>
+<p>目录相关命令：</p>
+<ul>
+<li><p><code>pwd</code>：显示当前目录的路径</p>
+</li>
+<li><p><code>which</code>：获取命令的可执行文件的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">which pwd <span class="comment">//获取pwd命令的可执行文件的位置</span></span><br><span class="line"></span><br><span class="line">/usr/bin/pwd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ls</code>：列出文件和目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ls --color=auto	<span class="comment">//开启颜色标注  红色-&gt;压缩文件   浅蓝色-&gt;链接文件  灰色-&gt;其他文件</span></span><br><span class="line">ls --color=none	<span class="comment">//关闭颜色标注</span></span><br><span class="line">ls -a	<span class="comment">//显示所有的文件和目录，包括隐藏的</span></span><br><span class="line">ls -l	<span class="comment">//列出一个显示文件和目录的详细信息的列表，每个文件和目录都有一行详细的信息</span></span><br><span class="line">ls -h	<span class="comment">//以K,M,G为单位的形式显示文件大小</span></span><br><span class="line">ls -t	<span class="comment">//按文件最近一次修改时间排序</span></span><br><span class="line">ls -i	<span class="comment">//显示文件的inode</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ls的常用参数合并在一次使用，效果是叠加的</span></span><br><span class="line">ls -alth</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>cd</code>：切换目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /	<span class="comment">//切换到根目录</span></span><br><span class="line">cd ~	<span class="comment">//切换到家目录</span></span><br><span class="line">cd		<span class="comment">//cd命令不加参数默切换到家目录</span></span><br><span class="line">cd ..	<span class="comment">//切换到上级目录</span></span><br><span class="line">cd ../..	<span class="comment">//切换到上上级目录</span></span><br><span class="line">cd /usr/bin	<span class="comment">//切换到usr-&gt;bin目录</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>tip：之前的Tab键也可以用到路径的补全上。</p>
+</li>
+<li><p><code>du</code>：英语disk usage的缩写，表示“磁盘使用/占用”，该命令可以让我们知道文件和目录所占的空间大小，相比<code>ls -l</code>命令，<code>du</code>命令统计的才是真正的文件大小。<code>du</code>命令会深入遍历每个目录的子目录，统计所有文件的大小</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du	<span class="comment">//列出所有文件的大小并统计当前目录的总大小</span></span><br><span class="line">du -s	<span class="comment">//只看当前目录的总大小</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h6 id="5、操纵文件"><a href="#5、操纵文件" class="headerlink" title="5、操纵文件"></a>5、操纵文件</h6><ul>
+<li><p>显示文件内容</p>
+<ul>
+<li><p><code>cat</code>：一次性在终端汇总显示文件的所有内容，在命令后面加上文件路径即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat hello.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>less</code>：和<code>cat</code>命令不同的是，<code>less</code>命令会分页的显示文件内容,分页内容的多少根据终端屏幕来界定 ，配合键盘空格、上下键、回车键进行阅读</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less hello.txt</span><br></pre></td></tr></table></figure>
+
+<p><code>d</code>键：前进半页</p>
+<p><code>u</code>键：后退半页</p>
+<p><code>b</code>键：后退一页，与PageUp(上一页)效果一样</p>
+<p><code>space</code>空格键：前进整页</p>
+<p><code>y</code>键：后退一行，与向上键效果一样</p>
+<p><code>q</code>键：停止读取文件，终止<code>less</code>命令</p>
+<p><code>=</code>号：显示你当前在文件处于的位置</p>
+<p><code>h</code>键：显示帮助文档。<code>q</code>键退出帮助文档</p>
+<p><code>/</code>：进入搜索模式，搜索完按<code>n</code>键到下一个搜索结果，<code>N</code>键到上一个搜索结果</p>
+</li>
+<li><p><code>more</code>：类似<code>less</code>分页显示内容，<code>more</code>没有<code>less</code>那么强大，比如不能往后翻页，只能往前</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more hello.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>head</code>：显示文件的开头几行，默认10行，如果要指定显示的行数，可以用<code>-n 行数</code>参数来指定几行</p>
+</li>
+<li><p><code>tail</code>：显示文件结尾的几行，用法和<code>head</code>类似，而且该命令配合<code>-f</code>参数可以实时追踪文件的更新，频率是1秒检查一次文件是否有新内容，如果要指定间隔检查的时间，用<code>-s</code>参数，<code>tail -f -s 4 filename</code>，使用<code>Ctrl + c</code>退出追踪状态</p>
+</li>
+</ul>
+</li>
+<li><p>创建文件</p>
+<ul>
+<li><p><code>touch</code>：创建空白文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">touch new_file	<span class="comment">//创建一个新文件</span></span><br><span class="line">touch new_file1 new_file2	<span class="comment">//同时创建多个新文件</span></span><br><span class="line">touch <span class="string">&#x27;filename with space&#x27;</span> <span class="comment">//如果创建的文件名有空格，使用双引号</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建目录</p>
+<ul>
+<li><p><code>mkdir</code>：创建一个目录 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_folder	<span class="comment">//创建目录new_folder</span></span><br><span class="line">mkdir -p one/two/three	<span class="comment">//使用-p参数来递归创建目录结构</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>复制文件或目录</p>
+<ul>
+<li><p><code>cp</code>命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cp file file_copy	<span class="comment">//复制文件file为file_copy</span></span><br><span class="line">cp file ../file_copy	<span class="comment">//复制文件file到上一级目录中</span></span><br><span class="line">cp -r folder folder_copy	<span class="comment">//复制文件夹folder为folder_copy</span></span><br><span class="line">cp *.txt folder	把当前目录下所有的txt后缀的文件拷贝到folder目录中</span><br><span class="line">cp ha* folder	<span class="comment">//把当前目录以ha开头的文件都拷贝到folder目录中</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>移动文件</p>
+<ul>
+<li><p><code>mv</code>命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv file one/file	<span class="comment">//将当前文件下的file文件移动到one目录下</span></span><br><span class="line">mv file file_mv	<span class="comment">//将file文件改名为file_mv</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>删除文件和目录</p>
+<ul>
+<li><p><code>rm</code>命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm file1	<span class="comment">//删除文件file1</span></span><br><span class="line">rm file1 file2	<span class="comment">//同时删除文件file1和file2</span></span><br><span class="line">rm -i file	<span class="comment">//删除文件前向用户确认</span></span><br><span class="line">rm -r folder	<span class="comment">//删除folder目录</span></span><br><span class="line">rm -f file1	<span class="comment">//强制删除文件file1，不经过询问确认</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>查找文件</p>
+<ul>
+<li><p><code>locate</code>命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate &lt;filename&gt;	<span class="comment">//查找文件，如果是刚创建的就会搜索不到</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>find</code>命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">finde &lt;filename&gt;	<span class="comment">//查找文件，包括刚创建的文件</span></span><br><span class="line">find /<span class="keyword">var</span> -size +<span class="number">10</span>M <span class="comment">//查找/var中大小超过10M的文件</span></span><br><span class="line">find /<span class="keyword">var</span> -size <span class="number">-50</span>k <span class="comment">//查找/var中大小小于50k的文件</span></span><br><span class="line">find /<span class="keyword">var</span> -size <span class="number">10</span>k	<span class="comment">//查找/var中大小等于10k的文件</span></span><br><span class="line">find  -name <span class="string">&quot;*.txt&quot;</span> -atime <span class="number">-7</span>	<span class="comment">//根据文件的最近7天访问时间查找名字以.txt为后缀的文件</span></span><br><span class="line">find -type d -name <span class="string">&quot;test&quot;</span>	<span class="comment">//只查找查找名字包含test的目录</span></span><br><span class="line">find -type f -name <span class="string">&quot;test&quot;</span>	<span class="comment">//只查找名字包含test的文件，如果不是用-type参数指定类型，默认同时查找目录和文件</span></span><br><span class="line">find -name <span class="string">&quot;test&quot;</span> -<span class="keyword">delete</span>	<span class="comment">//找到文件后对文件进行删除操作</span></span><br><span class="line">find -name <span class="string">&quot;test&quot;</span> -exec chmod <span class="number">600</span> &#123;&#125; \; <span class="comment">//查找到文件并进行权限修改操作</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>创建链接</p>
+<p>相关概念：</p>
+<blockquote>
+<p><strong>Linux下有两种链接类型</strong>：</p>
+<ul>
+<li>Physical link：物理链接或硬链接</li>
+<li>Symbolic link：符号链接或软链接</li>
+</ul>
+<p><strong>文件的存储</strong>：</p>
+<ul>
+<li>每个文件有三部分：文件名、权限和文件内容</li>
+<li>每个文件的文件内容被分配到一个表示号码，就是inode</li>
+<li>每个文件名都绑定到它的文件内容（用inode标识）</li>
+</ul>
+<p><strong>硬链接原理</strong>：使链接的两个文件共享同样文件内容，就是同样的inode，一旦文件1和文件2之间有了硬链接，那么你修改文件1或文件2，修改的是相同的一块内容 ，只不过可以用两个文件名来取到文件内容</p>
+<p><strong>硬链接缺陷</strong>：只能创建指向文件的硬链接，不能创建指向目录的，通过一些参数的修改，也可以指向目录的硬链接，但比较复杂，软链接可以指向文件或目录。对于目录，一般都是用软链接</p>
+<p>对<strong>硬链接</strong>来说，删除任意一方的文件，共同指向的文件内容并不会从硬盘上被删除</p>
+<p>对<strong>软链接</strong>来说，删除软链接文件后，原文件不会受到影响，如果删除原文件，对应的软链接就会变成“死链接”，因为其指向的文件不见了</p>
+<p>软链接可以指向目录，硬链接不行</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln file1 file2 <span class="comment">//创建一个文件file2，使其成为file1的硬链接</span></span><br><span class="line">ln -s file1 file2 <span class="comment">//为file1创建软链接file2</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h6 id="6、用户权限相关"><a href="#6、用户权限相关" class="headerlink" title="6、用户权限相关"></a>6、用户权限相关</h6><ul>
+<li><p>普通用户以root身份运行命令</p>
+<ul>
+<li><code>sodu &lt;command&gt;</code>   输入该命令后，需要输入密码才能使用root身份执行相关命令，临时成为root身份</li>
+<li><code>sudo su</code> 一直成为root用户，也是需要输入密码，如果要退出root身份，使用回普通用户身份，可以使用<code>exit</code>命令</li>
+<li><code>su</code>  使用root身份执行命令，也是需要输入密码，不过这时候输入的密码是root的密码，而不是普通用户的密码</li>
+</ul>
+</li>
+<li><p>添加新用户</p>
+<ul>
+<li><code>useradd &lt;username&gt;</code></li>
+</ul>
+</li>
+<li><p>修改密码</p>
+<ul>
+<li><code>passwd &lt;username&gt;</code></li>
+</ul>
+</li>
+<li><p>删除用户</p>
+<ul>
+<li><code>userdel &lt;username&gt;</code></li>
+<li><code>userdel -r/--remove &lt;username&gt;</code> 连同<code>/home/username</code>目录一起删掉</li>
+</ul>
+</li>
+<li><p>新增群组</p>
+<ul>
+<li><code>groupadd &lt;groupname&gt;</code></li>
+</ul>
+</li>
+<li><p>修改用户账户</p>
+<ul>
+<li><code>usermod -g &lt;groupname&gt; &lt;username&gt;</code>将用户放到某个群组里面，会将用户从原有群组移除，再添加到新的指定群组</li>
+<li><code>usermod -G &lt;groupname1&gt;,&lt;groupname2&gt;</code>将用户同时放到多个群组里面，会将用户从原有群组移除，再添加到新的指定群组</li>
+<li><code>usermod -ag &lt;groupname&gt;</code>将用户添加到groupname群组里面，同时保留其原在群组</li>
+</ul>
+</li>
+<li><p>查看用户属于哪些群组</p>
+<ul>
+<li><code>groups &lt;usernmae&gt;</code></li>
+</ul>
+</li>
+<li><p>删除群组</p>
+<ul>
+<li><code>groupdel &lt;groupname&gt;</code></li>
+</ul>
+</li>
+<li><p>修改文件的所有者和群组</p>
+<ul>
+<li><code>chown &lt;username&gt; &lt;filename&gt;</code>改变文件的所有者</li>
+<li><code>chown -R &lt;username&gt; &lt;foldername&gt;</code>改变目录所有者</li>
+<li><code>chgrp &lt;groupname&gt; &lt;filename&gt;</code>改变文件所在的群组 </li>
+<li><code>chown &lt;username&gt;:&lt;groupname&gt; &lt;filename&gt;</code>同时修改文件所有者和所在群组</li>
+</ul>
+</li>
+<li><p>修改权限</p>
+<ul>
+<li><p><code>chmod 600 &lt;filename&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>数字</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>—</td>
+<td>0</td>
+<td>0+0+0</td>
+</tr>
+<tr>
+<td>r–</td>
+<td>4</td>
+<td>4+0+0</td>
+</tr>
+<tr>
+<td>-w-</td>
+<td>2</td>
+<td>0+2+0</td>
+</tr>
+<tr>
+<td>–x</td>
+<td>1</td>
+<td>0+0+1</td>
+</tr>
+<tr>
+<td>rw-</td>
+<td>6</td>
+<td>4+2+0</td>
+</tr>
+<tr>
+<td>-wx</td>
+<td>3</td>
+<td>0+2+1</td>
+</tr>
+<tr>
+<td>r-x</td>
+<td>5</td>
+<td>4+0+1</td>
+</tr>
+<tr>
+<td>wrx</td>
+<td>7</td>
+<td>4+2+1</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="7、软件安装"><a href="#7、软件安装" class="headerlink" title="7、软件安装"></a>7、软件安装</h6><p>  相关概念：</p>
+<blockquote>
+<p><strong>软件包 Package</strong>：软件的所有文件的压缩包，二进制形式的包含了安装软件的所有指令，在Red Hat一族里，软件包的后缀是<code>.rpm</code></p>
+<p><strong>rpm</strong>：是Red Hat Package Manager的缩写，表示“红帽软件包管理器”</p>
+<p>Centos作为<strong>Red Hat一族</strong>的一员，也是用<code>.rpm</code>的软件包</p>
+<p><strong>Debian一族</strong>（Ubuntu，Debian等）的软件包是<code>.deb</code>为后缀</p>
+<p>Linux的软件包都存放在一个地方，叫做<strong>软件仓库（repository）</strong></p>
+<p>软件仓库不只是存放在一台服务器上，全球有很多个软件仓库（也就是有很多服务器）</p>
+</blockquote>
+<ul>
+<li><p>更换软件仓库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改/etc/yum.repos.d/CentOS-Base.repo文件更换仓库地址</span><br></pre></td></tr></table></figure>
+
+<p>CentosOS官方的软件源列表：<a target="_blank" rel="noopener" href="https://www.centos.org/download/mirrors">https://www.centos.org/download/mirrors</a></p>
+</li>
+<li><p>包管理</p>
+<ul>
+<li><code>yum</code><ul>
+<li><code>yum update/upgrade</code>：更新软件包，如果后面不带具体的软件包名称，就会升级所有的软件包</li>
+<li><code>yum search &lt;package-name&gt;</code>：搜索软件包</li>
+<li><code>yum install &lt;package-name&gt;</code>：安装软件包</li>
+<li><code>yum remove/autoremove &lt;package-name&gt;</code>：删除软件包</li>
+<li><code>yum localinstall *.rpm</code>：安装本地的.rpm软件包</li>
+<li><code>yum remove &lt;package-name&gt;</code>：卸载本地的.rpm软件包</li>
+</ul>
+</li>
+<li><code>rpm</code><ul>
+<li><code>sudo rpm -i *.rpm</code>：安装本地的.rpm软件包</li>
+<li><code>sudo rpm -e &lt;package-name&gt;</code>：卸载本地的.rpm软件包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="8、文件的解压和压缩"><a href="#8、文件的解压和压缩" class="headerlink" title="8、文件的解压和压缩"></a>8、文件的解压和压缩</h6><ul>
+<li><p><code>tar</code>命令：归档</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf sorting.tar sorting/	<span class="comment">//创建一个tar归档 参数c-&gt;创建 v-&gt;显示操作的细节 f-&gt;归档文件</span></span><br><span class="line">tar -cvf file1 file2 file3</span><br><span class="line">tar -tf sorting.tar	<span class="comment">//显示归档的内容，但是不解开归档</span></span><br><span class="line">tar -rvf archive.tar file_extra.txt	<span class="comment">//追加文件到归档</span></span><br><span class="line">tar -xvf archive.tar	<span class="comment">//将生成的归档解开</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>gzip</code>命令：压缩</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip archive.tar	<span class="comment">//压缩归档，生成文件archive.tar.gz</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>bzip2</code>命令：压缩</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bzip2 archive.tar	<span class="comment">//压缩归档，生成文件archive.tar.bz2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>gunzip</code>命令：解压缩</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip archive.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>bunzip2</code>命令：解压缩</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bunzip2 archive.tar.bz2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>-zcvf</code>参数：归档并压缩</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf sorting.tar sorting/	<span class="comment">//归档并压缩</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>-zxvf</code>参数：解压并解开归档</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf sorting.tar.gz	<span class="comment">//解压并解开归档</span></span><br><span class="line">tar -jxvf sorting.tar.bz2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>zcat、zmore、zless</code>命令：查看gzip压缩文件内容</p>
+</li>
+<li><p><code>bzcat、bzmore、bzless</code>命令：查看bzip2压缩文件内容</p>
+</li>
+<li><p><code>zip</code>命令：压缩文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -r sorting.zip sorting	<span class="comment">//压缩成sorting.zip文件 </span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>unzip</code>命令：解压zip文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unzip archive.zip	<span class="comment">//解压.zip文件</span></span><br><span class="line">unzip -l archive.zip	<span class="comment">//不解开.zip文件，只看其中的内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果没有unzip命令 可以通过以下方式安装</span></span><br><span class="line">sudo yum install unzip</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h6 id="9、进程和系统监测"><a href="#9、进程和系统监测" class="headerlink" title="9、进程和系统监测"></a>9、进程和系统监测</h6><ul>
+<li><p><code>w</code>：帮助快速了解系统中目前有哪些用户登录着以及他们在干什么，还可以查看负载</p>
+</li>
+<li><p><code>tload</code>：查看负载曲线图</p>
+</li>
+<li><p><code>ps</code>命令：列出运行的进程列表，显示的进程列表不会随时间而更新，是静态的，类似进程的快照snapshot</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -ef	<span class="comment">//列出所有用户在所有终端的所有进程</span></span><br><span class="line">ps -ef | less <span class="comment">//配合less查看</span></span><br><span class="line">ps -aux	<span class="comment">//通过CPU和内存使用来过滤进程</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>pstree</code>：以树形结构显示进程</p>
+</li>
+</ul>
+<h6 id="10、操作进程和重启关闭系统"><a href="#10、操作进程和重启关闭系统" class="headerlink" title="10、操作进程和重启关闭系统"></a>10、操作进程和重启关闭系统</h6><ul>
+<li><code>top</code>：进程的动态列表，使用<code>q</code>退出</li>
+<li><code>kill</code>：结束一个进程</li>
+<li><code>halt</code>：关闭系统</li>
+<li><code>reboot</code>：重启系统</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer" style="font-size:15px;">
+    <hr>
+    <div>    
+        
+        <ul class="post-copyright">
+          <li class="post-copyright-link">
+            <strong>本文作者：</strong>
+            <a href="/" title="欢迎访问 韦枝池 的个人博客">JackeyW</a>
+          </li>
+
+          <li class="post-copyright-link">
+            <strong>本文标题：</strong>
+            <a href="https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" title="Linux基础知识点整理">Linux基础知识点整理</a>
+          </li>
+
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" title="Linux基础知识点整理">https://wzhichi.gitee.io/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/</a>
+          </li>
+
+          <li class="post-copyright-date">
+              <strong>发布时间：</strong>2020年9月12日 - 13时09分
+          </li>  
+
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本文由 JackeyW 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> </br>转载请保留以上声明信息！
+          </li>
+        </ul>
+      
+    </div>
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E7%B3%BB%E7%BB%9F/" rel="tag"># 系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%95%B0%E6%8D%AE%E5%BA%93IndexDB%E5%85%A5%E9%97%A8/" rel="prev" title="浏览器数据库IndexDB入门">
+                  <i class="fa fa-chevron-left"></i> 浏览器数据库IndexDB入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackeyW</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      本站访客数：
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      人次
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      本站总访问量：
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+      次
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
