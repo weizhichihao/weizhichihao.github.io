@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker安装</title>
+    <url>/2020/09/08/Docker%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>记录一下在云服务器上安装Docker过程。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git使用总结</title>
     <url>/2020/09/07/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
@@ -98,39 +131,6 @@
       <tags>
         <tag>Git</tag>
         <tag>版本管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装</title>
-    <url>/2020/09/08/Docker%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>记录一下在云服务器上安装Docker过程。</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
-
-<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>部署运维</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>部署</tag>
       </tags>
   </entry>
   <entry>
@@ -490,6 +490,12 @@ https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</code></pre>
     - 带宽扩容 + CDN
     提高犯罪成本</code></pre>
 ]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用Hexo和Gitee Pages搭建个人博客</title>
