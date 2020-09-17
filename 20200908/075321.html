@@ -22,21 +22,22 @@
     var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="前言 最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。">
+  <meta name="description" content="前言 记录一下在云服务器上安装Docker过程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Hexo和Gitee Pages搭建个人博客">
-<meta property="og:url" content="https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="Docker安装">
+<meta property="og:url" content="https://wzhichi.gitee.io/20200908/075321.html">
 <meta property="og:site_name" content="韦枝池的博客">
-<meta property="og:description" content="前言 最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。">
+<meta property="og:description" content="前言 记录一下在云服务器上安装Docker过程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-05T09:09:27.000Z">
-<meta property="article:modified_time" content="2020-09-09T13:28:17.994Z">
+<meta property="article:published_time" content="2020-09-08T11:53:21.000Z">
+<meta property="article:modified_time" content="2020-09-09T12:55:49.238Z">
 <meta property="article:author" content="JackeyW">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="部署">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="https://wzhichi.gitee.io/20200908/075321.html">
 
 
 <script class="page-configurations">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>使用Hexo和Gitee Pages搭建个人博客 | 韦枝池的博客</title>
+  <title>Docker安装 | 韦枝池的博客</title>
   
 
 
@@ -208,7 +209,7 @@
       </ul>
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81Hexo%E5%AE%89%E8%A3%85"><span class="nav-text">1、Hexo安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">2、初始化你的博客文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E8%BF%9B%E5%85%A5%E8%AF%A5%E7%9B%AE%E5%BD%95%E5%B9%B6%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="nav-text">3、进入该目录并启动服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%9C%A8Gitee%E4%B8%8A%E9%9D%A2%E6%96%B0%E5%A2%9E%E4%BB%93%E5%BA%93"><span class="nav-text">4、在Gitee上面新增仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-text">5、清除缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%B9%B6%E9%83%A8%E7%BD%B2"><span class="nav-text">6、生成静态资源并部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E9%83%A8%E7%BD%B2%E9%85%8D%E7%BD%AE"><span class="nav-text">7、部署配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E5%90%AF%E7%94%A8Gitee-Pages%E6%9C%8D%E5%8A%A1"><span class="nav-text">8、启用Gitee Pages服务</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E9%80%89%E6%8B%A9%E5%9B%BD%E5%86%85%E7%9A%84%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%95%86%EF%BC%8C%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%BA%E4%BE%8B"><span class="nav-text">1.选择国内的云服务商，这里选择阿里云为例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%8C%85"><span class="nav-text">2.安装所需要的包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0%E4%BD%BF%E7%94%A8-HTTPS-%E4%BC%A0%E8%BE%93%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E4%BB%A5%E5%8F%8A-CA-%E8%AF%81%E4%B9%A6"><span class="nav-text">3.添加使用 HTTPS 传输的软件包以及 CA 证书</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0GPG%E5%AF%86%E9%92%A5"><span class="nav-text">4.添加GPG密钥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E6%B7%BB%E5%8A%A0%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="nav-text">5.添加软件源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9F%E5%90%8E%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%BC%93%E5%AD%98"><span class="nav-text">6.添加成功后更新软件包缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E5%AE%89%E8%A3%85docker"><span class="nav-text">7.安装docker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-%E5%90%AF%E5%8A%A8-docker"><span class="nav-text">8.启动 docker</span></a></li></ol></div>
       </section>
       <!--/noindex-->
       <section class="site-overview-wrap sidebar-panel">
@@ -223,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,7 +237,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -309,7 +310,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/20200908/075321.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.png">
@@ -325,7 +326,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          使用Hexo和Gitee Pages搭建个人博客
+          Docker安装
         </h1>
 
         <div class="post-meta-container">
@@ -336,7 +337,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-09-05 17:09:27" itemprop="dateCreated datePublished" datetime="2020-09-05T17:09:27+08:00">2020-09-05</time>
+      <time title="创建时间：2020-09-08 19:53:21" itemprop="dateCreated datePublished" datetime="2020-09-08T19:53:21+08:00">2020-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -344,7 +345,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+          <a href="/categories/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">部署运维</span></a>
         </span>
     </span>
 
@@ -365,32 +366,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
-<p>最近想捣鼓一下个人博客，以用来承载自己的一些想法，记录自己的成长，于是想到了用Hexo+GiteePages来搭建自己的个人博客。Hexo是一款快速、简洁且高效的博客框架，而选择Gitee Pages是因为Gitee是国内代码托管平台，访问速度比Github要快。</p>
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>记录一下在云服务器上安装Docker过程。</p>
 </blockquote>
 <a id="more"></a>
 
-<p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo官网</a></p>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/help/articles/4136">GiteePages文档</a></p>
-<h4 id="1、Hexo安装"><a href="#1、Hexo安装" class="headerlink" title="1、Hexo安装"></a>1、Hexo安装</h4><p>安装Hexo需要用到node.js，这里默认已经安装好了node环境。</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h5 id="1-选择国内的云服务商，这里选择阿里云为例"><a href="#1-选择国内的云服务商，这里选择阿里云为例" class="headerlink" title="1.选择国内的云服务商，这里选择阿里云为例"></a>1.选择国内的云服务商，这里选择阿里云为例</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL http:<span class="comment">//acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-安装所需要的包"><a href="#2-安装所需要的包" class="headerlink" title="2.安装所需要的包"></a>2.安装所需要的包</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
 
-<h4 id="2、初始化你的博客文件夹"><a href="#2、初始化你的博客文件夹" class="headerlink" title="2、初始化你的博客文件夹"></a>2、初始化你的博客文件夹</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init your_blog   <span class="comment">//your_blog为你的文件夹名称</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-添加使用-HTTPS-传输的软件包以及-CA-证书"><a href="#3-添加使用-HTTPS-传输的软件包以及-CA-证书" class="headerlink" title="3.添加使用 HTTPS 传输的软件包以及 CA 证书"></a>3.添加使用 HTTPS 传输的软件包以及 CA 证书</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install apt-transport-https ca-certificates</span><br></pre></td></tr></table></figure>
 
-<h4 id="3、进入该目录并启动服务"><a href="#3、进入该目录并启动服务" class="headerlink" title="3、进入该目录并启动服务"></a>3、进入该目录并启动服务</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd your_blog</span><br><span class="line">hexo s		<span class="comment">//s为server的缩写	hexo s 等价于 hexo server</span></span><br></pre></td></tr></table></figure>
+<h5 id="4-添加GPG密钥"><a href="#4-添加GPG密钥" class="headerlink" title="4.添加GPG密钥"></a>4.添加GPG密钥</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp:<span class="comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span></span><br></pre></td></tr></table></figure>
 
-<p>如果你的控制台有以下输出,证明博客已经启动。可以打开<code>localhost:4000</code>来访问站点。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+<h5 id="5-添加软件源"><a href="#5-添加软件源" class="headerlink" title="5.添加软件源"></a>5.添加软件源</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
 
-<h4 id="4、在Gitee上面新增仓库"><a href="#4、在Gitee上面新增仓库" class="headerlink" title="4、在Gitee上面新增仓库"></a>4、在Gitee上面新增仓库</h4><p>仓库名称和用户名相同，以使用GiteePages服务</p>
-<h4 id="5、清除缓存"><a href="#5、清除缓存" class="headerlink" title="5、清除缓存"></a>5、清除缓存</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<h5 id="6-添加成功后更新软件包缓存"><a href="#6-添加成功后更新软件包缓存" class="headerlink" title="6.添加成功后更新软件包缓存"></a>6.添加成功后更新软件包缓存</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<h4 id="6、生成静态资源并部署"><a href="#6、生成静态资源并部署" class="headerlink" title="6、生成静态资源并部署"></a>6、生成静态资源并部署</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h5 id="7-安装docker"><a href="#7-安装docker" class="headerlink" title="7.安装docker"></a>7.安装docker</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-engine</span><br></pre></td></tr></table></figure>
 
-<h4 id="7、部署配置"><a href="#7、部署配置" class="headerlink" title="7、部署配置"></a>7、部署配置</h4><p>在项目目录下有一个<code>_config.yml</code>文件，站点的相关配置都在这里进行</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:you_account/you_account.git <span class="comment">//配置你的仓库，我这里使用的是Gitee上面的仓库</span></span><br></pre></td></tr></table></figure>
+<h5 id="8-启动-docker"><a href="#8-启动-docker" class="headerlink" title="8.启动 docker"></a>8.启动 docker</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker sudo systemctl start docker</span><br></pre></td></tr></table></figure>
 
-<h4 id="8、启用Gitee-Pages服务"><a href="#8、启用Gitee-Pages服务" class="headerlink" title="8、启用Gitee Pages服务"></a>8、启用Gitee Pages服务</h4><p>点击仓库服务按钮，启动Gitee Pages服务<br>此时再访问 <a target="_blank" rel="noopener" href="https://your-account.gitee.io/">https://your-account.gitee.io</a> 这个网址就能访问你的博客了。</p>
+
 
     </div>
 
@@ -410,16 +406,16 @@
 
           <li class="post-copyright-link">
             <strong>本文标题：</strong>
-            <a href="https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用Hexo和Gitee Pages搭建个人博客">使用Hexo和Gitee Pages搭建个人博客</a>
+            <a href="https://wzhichi.gitee.io/20200908/075321.html" title="Docker安装">Docker安装</a>
           </li>
 
           <li class="post-copyright-link">
             <strong>本文链接：</strong>
-            <a href="https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用Hexo和Gitee Pages搭建个人博客">https://wzhichi.gitee.io/2020/09/05/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a>
+            <a href="https://wzhichi.gitee.io/20200908/075321.html" title="Docker安装">https://wzhichi.gitee.io/20200908/075321.html</a>
           </li>
 
           <li class="post-copyright-date">
-              <strong>发布时间：</strong>2020年9月5日 - 17时09分
+              <strong>发布时间：</strong>2020年9月8日 - 19时09分
           </li>  
 
           <li class="post-copyright-license">
@@ -430,17 +426,21 @@
       
     </div>
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag"># 部署</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/20200907/035321.html" rel="prev" title="Git使用总结">
+                  <i class="fa fa-chevron-left"></i> Git使用总结
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/05/uni-app%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="next" title="uni-app使用总结">
-                  uni-app使用总结 <i class="fa fa-chevron-right"></i>
+                <a href="/20200909/015203.html" rel="next" title="浏览器数据库IndexDB入门">
+                  浏览器数据库IndexDB入门 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

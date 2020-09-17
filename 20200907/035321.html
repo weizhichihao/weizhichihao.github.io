@@ -22,20 +22,22 @@
     var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="不积跬步，无以至千里；不积小流，无以成江海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://wzhichi.gitee.io/tags/index.html">
+  <meta name="description" content="前言 Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git使用总结">
+<meta property="og:url" content="https://wzhichi.gitee.io/20200907/035321.html">
 <meta property="og:site_name" content="韦枝池的博客">
-<meta property="og:description" content="不积跬步，无以至千里；不积小流，无以成江海">
+<meta property="og:description" content="前言 Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-05T03:43:12.000Z">
-<meta property="article:modified_time" content="2020-09-05T09:27:58.748Z">
+<meta property="article:published_time" content="2020-09-07T07:53:21.000Z">
+<meta property="article:modified_time" content="2020-09-09T13:27:06.010Z">
 <meta property="article:author" content="JackeyW">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="版本管理">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wzhichi.gitee.io/tags/">
+<link rel="canonical" href="https://wzhichi.gitee.io/20200907/035321.html">
 
 
 <script class="page-configurations">
@@ -43,13 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签 | 韦枝池的博客
-</title>
+  <title>Git使用总结 | 韦枝池的博客</title>
   
 
 
@@ -197,7 +198,7 @@
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -208,6 +209,7 @@
       </ul>
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2"><span class="nav-text">1、文档查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4"><span class="nav-text">2、配置命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="nav-text">3、分支管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81fetch%E6%8C%87%E4%BB%A4"><span class="nav-text">4、fetch指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%96%87%E4%BB%B6%E6%9A%82%E5%AD%98"><span class="nav-text">5、文件暂存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E6%92%A4%E9%94%80%E7%9B%B8%E5%85%B3"><span class="nav-text">6、撤销相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E5%B7%AE%E5%BC%82%E6%AF%94%E8%BE%83"><span class="nav-text">7、差异比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81Git%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="nav-text">8、Git文件状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9%E3%80%81%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83"><span class="nav-text">9、分支管理规范</span></a></li></ol></div>
       </section>
       <!--/noindex-->
       <section class="site-overview-wrap sidebar-panel">
@@ -299,53 +301,222 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
       
-  
-  
 
       
 
     
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/20200907/035321.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="JackeyW">
+      <meta itemprop="description" content="不积跬步，无以至千里；不积小流，无以成江海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="韦枝池的博客">
+    </span>
+
     
     
-    <div class="post-block" lang="zh-CN">
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git使用总结
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta-container">
+      <time title="创建时间：2020-09-07 15:53:21" itemprop="dateCreated datePublished" datetime="2020-09-07T15:53:21+08:00">2020-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">版本管理</span></a>
+        </span>
+    </span>
+
   
-
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-  <div class="tag-cloud-title">
-    目前共计 18 个标签
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/Git/" style="font-size: 12px;" class="tag-cloud-0">Git</a> <a href="/tags/Linux/" style="font-size: 12px;" class="tag-cloud-0">Linux</a> <a href="/tags/Vue/" style="font-size: 12px;" class="tag-cloud-0">Vue</a> <a href="/tags/app/" style="font-size: 12px;" class="tag-cloud-0">app</a> <a href="/tags/docker/" style="font-size: 12px;" class="tag-cloud-0">docker</a> <a href="/tags/hexo/" style="font-size: 12px;" class="tag-cloud-0">hexo</a> <a href="/tags/typescript/" style="font-size: 12px;" class="tag-cloud-0">typescript</a> <a href="/tags/uni-app/" style="font-size: 12px;" class="tag-cloud-0">uni-app</a> <a href="/tags/vuex/" style="font-size: 12px;" class="tag-cloud-0">vuex</a> <a href="/tags/webpack/" style="font-size: 12px;" class="tag-cloud-0">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 12px;" class="tag-cloud-0">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 12px;" class="tag-cloud-0">安全</a> <a href="/tags/%E6%89%93%E5%8C%85%E6%9E%84%E5%BB%BA/" style="font-size: 12px;" class="tag-cloud-0">打包构建</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%8CIndexDB/" style="font-size: 12px;" class="tag-cloud-0">本地存储，IndexDB</a> <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" style="font-size: 12px;" class="tag-cloud-0">版本管理</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;" class="tag-cloud-0">系统</a> <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" style="font-size: 12px;" class="tag-cloud-0">跨平台</a> <a href="/tags/%E9%83%A8%E7%BD%B2/" style="font-size: 12px;" class="tag-cloud-0">部署</a>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
+</blockquote>
+<a id="more"></a>
 
+<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
+<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
+<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
+<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
+</ul>
+<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
+<li><code>git config list</code>    一一 列出当前配置</li>
+<li><code>git config --local --list</code>    一一 列出仓库设置</li>
+<li><code>git config --global --list</code>    一一 列出全局配置</li>
+<li><code>git config --system --list</code>    一一 列出系统配置</li>
+<li><code>git config --global user.name</code>    一一 配置用户名</li>
+<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
+</ul>
+<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
+<li><code>git branch</code>    一一 查看本地分支</li>
+<li><code>git branch -r</code>    一一 查看远程分支</li>
+<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
+<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
+<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
+<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
+<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
+<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
+<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
+<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
+<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
+<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
+<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
+</ul>
+<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
+<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
+<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
+<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
+</ul>
+<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
+<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
+<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
+<li><code>git stash list</code>    一一 查看stash列表</li>
+<li><code>git stash clear</code>    一一 删除全部缓存</li>
+<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
+<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
+</ul>
+<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
+<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
+<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
+<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
+</ul>
+<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
+<li><code>git diff</code>    一一 比较工作区与缓存区</li>
+<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
+<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
+<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
+</ul>
+<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
+<ul>
+<li><code>untracked</code>    在暂存区没有该文件</li>
+<li><code>modified</code>      文件发生了修改</li>
+</ul>
+<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
+<li><code>master</code>分支<ul>
+<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
+<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
+</ul>
+</li>
+<li><code>develop</code>分支<ul>
+<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
+<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
+</ul>
+</li>
+<li><code>feature</code>分支<ul>
+<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
+<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
+</ul>
+</li>
+<li><code>release</code>分支<ul>
+<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
+</ul>
+</li>
+<li><code>hotfix</code>分支<ul>
+<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
+<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer" style="font-size:15px;">
+    <hr>
+    <div>    
         
-      </div>
-      
-      
+        <ul class="post-copyright">
+          <li class="post-copyright-link">
+            <strong>本文作者：</strong>
+            <a href="/" title="欢迎访问 韦枝池 的个人博客">JackeyW</a>
+          </li>
+
+          <li class="post-copyright-link">
+            <strong>本文标题：</strong>
+            <a href="https://wzhichi.gitee.io/20200907/035321.html" title="Git使用总结">Git使用总结</a>
+          </li>
+
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="https://wzhichi.gitee.io/20200907/035321.html" title="Git使用总结">https://wzhichi.gitee.io/20200907/035321.html</a>
+          </li>
+
+          <li class="post-copyright-date">
+              <strong>发布时间：</strong>2020年9月7日 - 15时09分
+          </li>  
+
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本文由 JackeyW 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> </br>转载请保留以上声明信息！
+          </li>
+        </ul>
       
     </div>
-    
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
+          </div>
 
-    
-    
-    
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/20200905/073836.html" rel="prev" title="uni-app使用总结">
+                  <i class="fa fa-chevron-left"></i> uni-app使用总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/20200908/075321.html" rel="next" title="Docker安装">
+                  Docker安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
 
 
       
