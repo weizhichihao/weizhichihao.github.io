@@ -30,7 +30,7 @@
 <meta property="og:description" content="前言 uni-app 是一个使用 Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信&#x2F;支付宝&#x2F;百度&#x2F;头条&#x2F;QQ&#x2F;钉钉&#x2F;淘宝）、快应用等多个平台，也使用uni-app开发了几个项目了，在这里对uni-app的使用做一些总结记录。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-05T11:38:36.000Z">
-<meta property="article:modified_time" content="2020-09-09T13:28:11.145Z">
+<meta property="article:modified_time" content="2020-09-30T17:28:41.074Z">
 <meta property="article:author" content="JackeyW">
 <meta property="article:tag" content="uni-app">
 <meta property="article:tag" content="app">
@@ -156,6 +156,16 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>观影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>阅读</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -225,20 +235,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -378,7 +388,7 @@
 <li><p>将文件拷贝到项目资源文件夹common内</p>
 </li>
 <li><p>在App.vue文件里面引用该动画库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;App.vue</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入样式文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;animate.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//App.vue</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;style&gt;</span><br><span class="line">	<span class="comment">//引入样式文件</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;./common/animate.css&#x27;</span></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -392,7 +402,7 @@
 <li><p>将iconfont.css拷贝到资源文件夹common内</p>
 </li>
 <li><p>在App.vue中引入该样式文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入字体文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;iconfont.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	<span class="comment">//引入字体文件</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;./common/iconfont.css&#x27;</span></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -402,7 +412,7 @@
 <li><p>打开iconfont.css文件，将里面的<code>@font-face</code>里面的url只保留base64位的数据就行。</p>
 </li>
 <li><p>使用如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;iconfont icon-user&quot;&gt;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;iconfont icon-user&quot;</span>&gt;&lt;/text&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -509,13 +519,13 @@
 </ul>
 <h4 id="7、自定义导航栏"><a href="#7、自定义导航栏" class="headerlink" title="7、自定义导航栏"></a>7、自定义导航栏</h4><ul>
 <li><p><code>custom-navbar.vue</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;custom-bar&quot;&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;status-bar&quot; :style&#x3D;&quot;&#123;height:statusBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;nav-bar&quot;&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style&#x3D;&quot;&#123;height:navBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				navBarHeight:0,</span><br><span class="line">				statusBarHeight:0</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			this.navBarHeight&#x3D;uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #ifdef APP-PLUS</span><br><span class="line">			this.statusBarHeight&#x3D;plus.navigator.getStatusbarHeight();</span><br><span class="line">			this.navBarHeight&#x3D;this.statusBarHeight+uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #endif</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:0;</span><br><span class="line">		right:0;</span><br><span class="line">		top:0;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">		font-size:41.66rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:100rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;custom-bar&quot;</span>&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;status-bar&quot;</span> :style=<span class="string">&quot;&#123;height:statusBarHeight+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;nav-bar&quot;</span>&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;/view&gt;</span><br><span class="line">		&lt;/view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style=<span class="string">&quot;&#123;height:navBarHeight+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				navBarHeight:<span class="number">0</span>,</span><br><span class="line">				statusBarHeight:<span class="number">0</span></span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			<span class="built_in">this</span>.navBarHeight=uni.upx2px(<span class="number">100</span>);</span><br><span class="line">			<span class="comment">// #ifdef APP-PLUS</span></span><br><span class="line">			<span class="built_in">this</span>.statusBarHeight=plus.navigator.getStatusbarHeight();</span><br><span class="line">			<span class="built_in">this</span>.navBarHeight=<span class="built_in">this</span>.statusBarHeight+uni.upx2px(<span class="number">100</span>);</span><br><span class="line">			<span class="comment">// #endif</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">&quot;scss&quot;</span>&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:<span class="number">0</span>;</span><br><span class="line">		right:<span class="number">0</span>;</span><br><span class="line">		top:<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:<span class="number">100</span>rpx;</span><br><span class="line">		font-size:<span class="number">41.66</span>rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:<span class="number">100</span>rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:<span class="number">100</span>rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>index.vue</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref&#x3D;&#39;custombar&#39;&gt;&lt;&#x2F;custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;filter-box&quot; :style&#x3D;&quot;&#123;top:filterBoxTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;select-time&quot; :style&#x3D;&quot;&#123;top:timeSelectTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;pad&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;item&quot; v-for&#x3D;&quot;(item,index) in 100&quot; :Key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">				&#123;&#123;index+1&#125;&#125;</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:100rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:85.41rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:185.41rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref=<span class="string">&#x27;custombar&#x27;</span>&gt;&lt;/custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;filter-box&quot;</span> :style=<span class="string">&quot;&#123;top:filterBoxTop+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;select-time&quot;</span> :style=<span class="string">&quot;&#123;top:timeSelectTop+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;pad&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;content&quot;</span>&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item&quot;</span> v-<span class="keyword">for</span>=<span class="string">&quot;(item,index) in 100&quot;</span> :Key=<span class="string">&quot;index&quot;</span>&gt;</span><br><span class="line">				&#123;&#123;index+<span class="number">1</span>&#125;&#125;</span><br><span class="line">			&lt;/view&gt;</span><br><span class="line">		&lt;/view&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">&quot;scss&quot;</span>&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:<span class="number">0</span>;</span><br><span class="line">	right:<span class="number">0</span>;</span><br><span class="line">	height:<span class="number">100</span>rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:<span class="number">0</span>;</span><br><span class="line">	right:<span class="number">0</span>;</span><br><span class="line">	height:<span class="number">85.41</span>rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:<span class="number">185.41</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>navbar.mixin</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">export default&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			filterBoxTop:0,</span><br><span class="line">			timeSelectTop:0</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		if(this.$refs[&#39;custombar&#39;])&#123;</span><br><span class="line">			this.filterBoxTop&#x3D;this.$refs[&#39;custombar&#39;].navBarHeight;</span><br><span class="line">			this.timeSelectTop&#x3D;this.filterBoxTop+uni.upx2px(85.41);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">			filterBoxTop:<span class="number">0</span>,</span><br><span class="line">			timeSelectTop:<span class="number">0</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">this</span>.$refs[<span class="string">&#x27;custombar&#x27;</span>])&#123;</span><br><span class="line">			<span class="built_in">this</span>.filterBoxTop=<span class="built_in">this</span>.$refs[<span class="string">&#x27;custombar&#x27;</span>].navBarHeight;</span><br><span class="line">			<span class="built_in">this</span>.timeSelectTop=<span class="built_in">this</span>.filterBoxTop+uni.upx2px(<span class="number">85.41</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -565,36 +575,23 @@
     
 
     <footer class="post-footer" style="font-size:15px;">
-    <hr>
-    <div>    
-        
-        <ul class="post-copyright">
-          <li class="post-copyright-link">
-            <strong>本文作者：</strong>
-            <a href="/" title="欢迎访问 韦枝池 的个人博客">JackeyW</a>
-          </li>
+          
 
-          <li class="post-copyright-link">
-            <strong>本文标题：</strong>
-            <a href="https://wzhichi.gitee.io/20200905/073836.html" title="uni-app使用总结">uni-app使用总结</a>
-          </li>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>JackeyW
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://wzhichi.gitee.io/20200905/073836.html" title="uni-app使用总结">https://wzhichi.gitee.io/20200905/073836.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-          <li class="post-copyright-link">
-            <strong>本文链接：</strong>
-            <a href="https://wzhichi.gitee.io/20200905/073836.html" title="uni-app使用总结">https://wzhichi.gitee.io/20200905/073836.html</a>
-          </li>
-
-          <li class="post-copyright-date">
-              <strong>发布时间：</strong>2020年9月5日 - 19时09分
-          </li>  
-
-          <li class="post-copyright-license">
-            <strong>版权声明： </strong>
-            本文由 JackeyW 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> </br>转载请保留以上声明信息！
-          </li>
-        </ul>
-      
-    </div>
           <div class="post-tags">
               <a href="/tags/uni-app/" rel="tag"># uni-app</a>
               <a href="/tags/app/" rel="tag"># app</a>
@@ -686,7 +683,6 @@
   </footer>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
@@ -724,6 +720,10 @@
   
 
   
+
+   
+
+  <script async src="/js/cursor/fireworks.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

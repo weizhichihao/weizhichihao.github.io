@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blog_ico.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="HTTP（Hypertext Transfer Protocal）协议 a stateless application-level request&#x2F;response protocal that uses extensible semantics and self-descriptive message payloads for flexible interaction with network-b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP笔记整理">
+<meta property="og:url" content="https://wzhichi.gitee.io/20201006/081025.html">
+<meta property="og:site_name" content="韦枝池的博客">
+<meta property="og:description" content="HTTP（Hypertext Transfer Protocal）协议 a stateless application-level request&#x2F;response protocal that uses extensible semantics and self-descriptive message payloads for flexible interaction with network-b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzhichi.gitee.io/images/HTTP/http_request.png">
+<meta property="og:image" content="https://wzhichi.gitee.io/images/HTTP/http_response.png">
+<meta property="article:published_time" content="2020-10-06T12:10:25.000Z">
+<meta property="article:modified_time" content="2020-10-06T12:16:12.447Z">
+<meta property="article:author" content="JackeyW">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzhichi.gitee.io/images/HTTP/http_request.png">
+
+
+<link rel="canonical" href="https://wzhichi.gitee.io/20201006/081025.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTTP笔记整理 | 韦枝池的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">韦枝池的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">生活就是一场修行</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>观影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>阅读</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%EF%BC%88Hypertext-Transfer-Protocal%EF%BC%89%E5%8D%8F%E8%AE%AE"><span class="nav-text">HTTP（Hypertext Transfer Protocal）协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%89%B9%E7%82%B9"><span class="nav-text">HTTP协议特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#URL%E5%92%8CURI"><span class="nav-text">URL和URI</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-text">HTTP报文结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E9%95%BF%E8%BF%9E%E6%8E%A5%E4%B8%8E%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="nav-text">HTTP长连接与短连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="nav-text">HTTP请求方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E5%93%8D%E5%BA%94%E7%A0%81"><span class="nav-text">HTTP响应码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E4%B8%AD%E4%BB%8B%E4%B9%8B%E4%BB%A3%E7%90%86"><span class="nav-text">HTTP中介之代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E4%B8%AD%E4%BB%8B%E4%B9%8B%E7%BD%91%E5%85%B3"><span class="nav-text">HTTP中介之网关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98"><span class="nav-text">HTTP缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98%E4%BD%9C%E7%94%A8"><span class="nav-text">HTTP缓存作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98%E5%A4%B4%E9%83%A8%E5%AD%97%E6%AE%B5"><span class="nav-text">HTTP缓存头部字段</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%94%B9%E8%BF%9B%E6%96%B9%E6%A1%88"><span class="nav-text">缓存改进方案</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%93%8D%E4%BD%9C%E5%AF%B9HTTP%E7%BC%93%E5%AD%98%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-text">浏览器操作对HTTP缓存的影响</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cookie%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%90%E5%88%B6"><span class="nav-text">Cookie使用的限制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cookie%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">Cookie存在的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9Cookie"><span class="nav-text">第三方Cookie</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="nav-text">浏览器的同源策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS"><span class="nav-text">CORS</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82"><span class="nav-text">简单请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%A4%96%E7%9A%84%E5%85%B6%E4%BB%96%E8%AF%B7%E6%B1%82"><span class="nav-text">简单请求以外的其他请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%83%A8"><span class="nav-text">预检请求头部</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94"><span class="nav-text">预检请求响应</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%8D%8F%E5%95%86%E6%9C%BA%E5%88%B6"><span class="nav-text">内容协商机制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%8D%8F%E5%95%86%E6%96%B9%E5%BC%8F"><span class="nav-text">内容协商方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E9%9B%86"><span class="nav-text">请求首部集</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E9%9B%86"><span class="nav-text">响应首部集</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD"><span class="nav-text">断点续传和多线程下载</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%E8%BF%87%E7%A8%8B"><span class="nav-text">断点续传过程</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-1-1%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">HTTP&#x2F;1.1遇到的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP2%E7%89%B9%E6%80%A7"><span class="nav-text">HTTP2特性</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JackeyW"
+      src="/images/avator.png">
+  <p class="site-author-name" itemprop="name">JackeyW</p>
+  <div class="site-description" itemprop="description">不积跬步，无以至千里；不积小流，无以成江海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/weizhichihao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;weizhichihao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15119631881@163.com" title="E-Mail → mailto:15119631881@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-fw fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://segmentfault.com/" title="https:&#x2F;&#x2F;segmentfault.com&#x2F;" rel="noopener" target="_blank">思否</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.oschina.net/" title="https:&#x2F;&#x2F;www.oschina.net&#x2F;" rel="noopener" target="_blank">开源中国</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net&#x2F;" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.douban.com/" title="https:&#x2F;&#x2F;www.douban.com&#x2F;" rel="noopener" target="_blank">豆瓣</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;" rel="noopener" target="_blank">知乎</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=316654&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/weizhichihao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/20201006/081025.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="JackeyW">
+      <meta itemprop="description" content="不积跬步，无以至千里；不积小流，无以成江海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="韦枝池的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTTP笔记整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-06 20:10:25" itemprop="dateCreated datePublished" datetime="2020-10-06T20:10:25+08:00">2020-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="HTTP（Hypertext-Transfer-Protocal）协议"><a href="#HTTP（Hypertext-Transfer-Protocal）协议" class="headerlink" title="HTTP（Hypertext Transfer Protocal）协议"></a>HTTP（Hypertext Transfer Protocal）协议</h5><blockquote>
+<p>a stateless application-level request/response protocal that uses extensible semantics and self-descriptive message payloads for flexible interaction with network-based hypertext information systems（RFC7230 2014.6）</p>
+<p>一种无状态的、应用层的、以请求/应答方式运行的协议，它使用可扩展的语义和自描述消息格式，与基于网络的超文本信息系统灵活的互动。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h5><ul>
+<li><p>支持客户/服务器模式</p>
+<ul>
+<li>客户/服务器模式工作的方式是由客户端向服务器发起请求，服务器端响应请求，并进行相应服务</li>
+</ul>
+</li>
+<li><p>简单快速</p>
+<ul>
+<li>客户向服务器请求服务时，只需传送请求方法和路径</li>
+<li>请求方法常用的有<code>GET</code>、<code>HEAD</code>、<code>POST</code>。每种方法规定了客户与服务器联系的类型不同</li>
+<li>由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快</li>
+</ul>
+</li>
+<li><p>灵活</p>
+<ul>
+<li>HTTP允许传输任意类型的数据对象</li>
+<li>正在传输的类型由<code>Content-Type</code>加以标记</li>
+</ul>
+</li>
+<li><p>无连接</p>
+<ul>
+<li>无连接的含义是限制每次连接只处理一个请求</li>
+<li>服务器处理完客户的请求，并接收到客户的应答后，即断开连接</li>
+<li>采用这种方式可以节省传输时间</li>
+</ul>
+</li>
+<li><p>无状态</p>
+<ul>
+<li>HTTP协议是无状态协议</li>
+<li>无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则必须重传，这样可能导致每次连接传送的数据量大</li>
+<li>在服务器不需要先前信息时，它的应答就较快</li>
+</ul>
+</li>
+</ul>
+<h5 id="URL和URI"><a href="#URL和URI" class="headerlink" title="URL和URI"></a>URL和URI</h5><ul>
+<li>URI：一个紧凑的字符串用来标示抽象或物理资源</li>
+<li>一个URI可以进一步被分为定位符、名字或两者都是</li>
+<li>URL是URI的子集，除了确定一个资源，还提供了一种定位该资源的主要访问机制</li>
+<li>URI可以分为URL,URN或同时具备locators和names特性的一个东西</li>
+<li>URN作用就好像一个人的名字，URL就像一个人的地址，URN确定了东西的身份，URL提供了找到它的方式</li>
+<li>URL是URI的一种，但不是所有的URI都是URL</li>
+<li>URI和URL最大的差别是“访问机制”</li>
+<li>URN是唯一标识的一部分，是身份信息</li>
+</ul>
+<h5 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h5><ul>
+<li><strong>请求报文：</strong></li>
+</ul>
+<p><img data-src="/images/HTTP/http_request.png" alt="http_request"></p>
+<ul>
+<li><strong>响应报文：</strong></li>
+</ul>
+<p><img data-src="/images/HTTP/http_response.png" alt="http_response"></p>
+<ul>
+<li><p><strong>HTTP报文头：</strong></p>
+<ul>
+<li><p>通用报文头</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cache-Control</td>
+<td>控制缓存的行为</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>逐跳首部、连接的管理</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>报文指令</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>报文末端的首部一览</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指定报文主体的传输编码方式</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>代理服务器的相关信息</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>错误通知</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>请求报文头</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept</td>
+<td>用户代理可处理的媒体类型</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>优先的字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>优先的内容编码</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>优先的语言（自然语言）</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Web认证信息</td>
+</tr>
+<tr>
+<td>Expect</td>
+<td>期待服务器的特定行为</td>
+</tr>
+<tr>
+<td>From</td>
+<td>用户的电子邮箱地址</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求资源所在服务器</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td>比较实体标记（ETag）</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>比较资源的更新时间</td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>比较实体标记（与If-Match相反）</td>
+</tr>
+<tr>
+<td>If-Range</td>
+<td>资源未更新时发送试题Byte的范围请求</td>
+</tr>
+<tr>
+<td>If-Unmodified-Since</td>
+<td>比较资源的更新时间（与If-Modified-Since相反）</td>
+</tr>
+<tr>
+<td>Max-Forwards</td>
+<td>最大传输逐跳数</td>
+</tr>
+<tr>
+<td>Proxy-Authorization</td>
+<td>代理服务器要求客户端的认证信息</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>实体的字节范围请求</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>对请求中URI的院士获取方</td>
+</tr>
+<tr>
+<td>TE</td>
+<td>传输编码的优先级</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>HTTP客户端程序的信息</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="HTTP长连接与短连接"><a href="#HTTP长连接与短连接" class="headerlink" title="HTTP长连接与短连接"></a>HTTP长连接与短连接</h5><ul>
+<li>HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP请求就结束了</li>
+<li>HTTP的长连接和短连接本质上是TCP长连接和短连接</li>
+<li>HTTP/1.0中，默认使用的是短连接，也就是说，浏览器和服务器每进行一次HTTP操作，就建立一次连接，结束就中断</li>
+<li>HTTP/1.1起，默认使用长连接，用以保持连接特性</li>
+<li>短连接：建立连接-数据传输-关闭连接（重复这些步骤）</li>
+<li>长连接：建立连接-数据传输…（保持连接）…数据传输-关闭连接</li>
+</ul>
+<h5 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h5><ul>
+<li>GET：用来请求访问已被URI识别的资源，指定的资源经服务器端解析后返回响应内容，GET方法也可以用来提交表单和其他数据，通过地址传参方式</li>
+<li>POST：一般用来传输实体的主体，主要目的不是获取响应主体的内容</li>
+<li>PUT：从客户端向服务器传送的数据取代指定的文档的内容，该方法与POST方法最大的不同是：PUT是幂等的，而POST是不幂等的，因此，更多时候将PUT方法用作传输资源</li>
+<li>HEAD：类似GET请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
+<li>DELETE：请求服务器删除指定的资源</li>
+<li>OPTIONS：预检请求，用来查询针对请求URI指定的资源支持的方法</li>
+<li>TRACE：回显服务器收到的请求，主要用于测试或诊断</li>
+<li>CONNECT：开启一个客户端与所请求资源之间的双向沟通的通道，它可以用来创建隧道</li>
+</ul>
+<h5 id="HTTP响应码"><a href="#HTTP响应码" class="headerlink" title="HTTP响应码"></a>HTTP响应码</h5><ul>
+<li><strong>1xx：</strong>请求已接收到，需要进一步处理才能完成，HTTP1.0不支持<ul>
+<li><strong>100 Continue：</strong>上传大文件前使用。<ul>
+<li>由客户端发起请求中携带Expect：100-continue头部触发。</li>
+</ul>
+</li>
+<li><strong>101 Switch Protocols：</strong>协议升级使用。<ul>
+<li>由客户端发起请求中携带Upgrade头部触发，如升级websocket或者http/2.0。</li>
+</ul>
+</li>
+<li><strong>102 Processing：</strong>WebDAV请求可能包含许多设计文件操作的自请求，需要很长时间才能完成请求。该代码表示服务器已经收到并正在处理请求，但无响应可用。这样可以防止客户端超时，并假设请求丢失。</li>
+</ul>
+</li>
+<li><strong>2xx：</strong>成功处理请求’<ul>
+<li><strong>200  OK：</strong>成功返回响应。</li>
+<li><strong>201 Created：</strong>有新资源在服务器端被成功创建。</li>
+<li><strong>202 Accepted：</strong>服务器接收并开始处理请求，但请求未处理完成。这样一个模糊的概念是有意如此设计的，可以覆盖更多的场景。例如异步、需要长时间处理的任务。</li>
+<li><strong>203 Non-Authoritative Information：</strong>当代理服务器修改了origin server的原始响应包体时（例如更换了HTML中的元素值），代理服务器可以通过修改200为203的方式告知客户端这一个事实，方便客户端为这一行为做出相应的处理。203响应可以被缓存。</li>
+<li><strong>204 No Content：</strong>成功执行了请求但是不携带响应包体， 并暗示客户端无需更新当前的页面视图。</li>
+<li><strong>205 Reset Content：</strong>成功执行了请求且不携带响应包体，同时指明客户端需要更新当前页面视图。</li>
+<li><strong>206 Partial Content：</strong>使用range协议时返回部分响应内容时的响应码。</li>
+<li><strong>207 Multi-Status：</strong>在WEBDAV协议中以XML返回多个资源的状态。</li>
+<li><strong>208 Already Reported：</strong>为避免相同集合下资源在207响应码下重复上报，使用208可以使用父集合的响应码。</li>
+</ul>
+</li>
+<li><strong>3xx：</strong>重定向使用Location指向的资源或者缓存中的资源。在RFC2068中规定客户端重定向次数不应该超过5次，以防止死循环。<ul>
+<li><strong>300 Multiple Choices：</strong>资源有多种表述，通过300返回给客户端后由其自行选择访问哪一种表述。由于缺乏明确的细节，300很少使用。</li>
+<li><strong>301 Moved Permanently：</strong>资源永久性地重定向到另一个URI中。</li>
+<li><strong>302 Found：</strong>资源临时地重定向到另一个URI中。</li>
+<li><strong>303 See Other：</strong>重定向到其他资源，常用于POST/PUT等方法的响应中。</li>
+<li><strong>304 Not Modified：</strong>当客户端拥有可能过期的缓存时，会携带缓存的标识etag、时间等信息询问服务器缓存是否仍可复用，而304是告诉客户端可以复用缓存。</li>
+<li><strong>307 Temporary Redirect：</strong>类似302，但明确重定向后请求方法必须与原请求方法相同，不得改变。</li>
+<li><strong>308 Permanent Redirect：</strong>类似301，但明确重定向后请求方法必须与原请求方法相同，不得改变。</li>
+</ul>
+</li>
+<li><strong>4xx：</strong>客户端出现错误<ul>
+<li><strong>400 Bad Request：</strong>服务器认为客户端出现了错误，但不能明确判断为哪种错误时使用此错误码。例如HTTP请求格式错误。</li>
+<li><strong>401 Unauthorized：</strong>用户认证信息缺失或者不正确，导致服务器无法处理请求。</li>
+<li><strong>407 Proxy Authentication Required：</strong>对需要经由代理的请求，认证信息未通过代理服务器的验证</li>
+<li><strong>403 Forbidden：</strong>服务器理解请求的含义，但没有权限执行此请求</li>
+<li><strong>404 Not Found：</strong>服务器没有找到对应的资源</li>
+<li><strong>410 Gone：</strong>服务器没有找到对应的资源，且明确地之道该位置永久性找不到该资源</li>
+<li><strong>405 Method Not Allowed：</strong>服务器不支持请求行中的method方法</li>
+<li><strong>406 Not Acceptable：</strong>对客户端指定的资源表述不存在（例如对语言或者编码有要求），服务器返回表述列表供客户端选择</li>
+<li><strong>408 Request Timeout：</strong>服务器接收请求超时</li>
+<li><strong>409 Conflict：</strong>资源冲突，例如上传文件时目标位置已经存在版本更新的资源</li>
+<li><strong>411 Length Required：</strong>如果请求含有包体且未携带Content-Length头部，且不属于Chunk类请求时，返回411</li>
+<li><strong>412 Precondition Failed：</strong>复用缓存时传递的If-Unmodified-Since或If-None-Match头部不被满足</li>
+<li><strong>413 Payload Too Large/Request Entity Too Large：</strong>请求的包体超出服务器能处理的最大长度</li>
+<li><strong>414 URI Too Long：</strong>请求的URI超出服务器能接受的最大长度</li>
+<li><strong>415 Unsupported Media Type：</strong>上传的文件类型不被服务器支持</li>
+<li><strong>416 Range Not Satisfiable：</strong>无法提供Range请求中指定的那段包体</li>
+<li><strong>417 Expectation Failed：</strong>对于Expect请求头部期待的情况无法满足时的响应码</li>
+<li><strong>421 Misdirected Request：</strong>服务器认为这个请求不该发给它，因为它没有能力处理。</li>
+<li><strong>426 Upgrade Required：</strong>服务器拒绝基于当前HTTP协议提供服务，通过Upgrade头部告知客户端必须升级协议才能继续处理。</li>
+<li><strong>428 Precondition Required：</strong>用户请求中缺失了条件类头部，例如If-Match</li>
+<li><strong>429 Too Many Requests：</strong>客户端发送请求的速率过快</li>
+<li><strong>431 Request Header Fields Too Large：</strong>其你去的HEADER头部大小超过限制</li>
+<li><strong>451 Unavailable For Legal Reasons：</strong>由于法律原因资源不可访问</li>
+</ul>
+</li>
+<li><strong>5xx：</strong>服务器端出现错误<ul>
+<li><strong>500 Internal Server Error：</strong>服务器内部错误，且不属于以下错误类型</li>
+<li><strong>501 Not Implemented：</strong>服务器不支持实现请求所需要的功能</li>
+<li><strong>502 Bad Gateway：</strong>代理服务器无法获取到合法响应</li>
+<li><strong>503 Service Unavailable：</strong>服务器资源尚未准备好处理当前请求</li>
+<li><strong>504 Gateway Timeout：</strong>代理服务器无法及时从上游获得响应</li>
+<li><strong>505 HTTP Version Not Supported：</strong>其你去使用的HTTP协议版本不支持</li>
+<li><strong>507 Insufficient Storage：</strong>服务器没有足够的空间处理请求</li>
+<li><strong>508 Loop Detected：</strong>访问资源时检测到循环</li>
+<li><strong>511 Network Authentication Required：</strong>代理服务器发现客户端需要进行身份验证才能获得网络访问权限</li>
+</ul>
+</li>
+</ul>
+<h5 id="HTTP中介之代理"><a href="#HTTP中介之代理" class="headerlink" title="HTTP中介之代理"></a>HTTP中介之代理</h5><p>代理既是客户端，也是服务端</p>
+<p>对于Web客户端来说，代理扮演的是服务器的角色，接受Request，返回Response</p>
+<p>对于Web服务器来说，代理扮演的是客户端的角色，发送Request，接受Response</p>
+<p>典型的代理服务器例如Fiddler，WireShark等</p>
+<p><strong>代理常见用处：</strong></p>
+<ul>
+<li>抓包</li>
+<li>科学上网</li>
+<li>匿名访问 (中间代理服务器可以隐藏原始ip等信息)</li>
+<li>过滤器</li>
+</ul>
+<h5 id="HTTP中介之网关"><a href="#HTTP中介之网关" class="headerlink" title="HTTP中介之网关"></a>HTTP中介之网关</h5><p>网关是一种协议转换器，连接的是使用两种不同协议的端点</p>
+<ul>
+<li>（HTTP/）服务器端网关：通过HTTP协议与客户端对话，通过其他协议与服务器通信。</li>
+<li>（/HTTP）客户端网关：通过其他协议与客户端对话，通过HTTP协议与服务器通信。</li>
+</ul>
+<p><strong>常见的网关类型：</strong></p>
+<ul>
+<li>（HTTP/*）服务器端Web网关</li>
+<li>（HTTP/HTTPS）服务器端安全网关</li>
+<li>（HTTPS/HTTP）客户端安全加速器网关</li>
+<li>资源网关</li>
+</ul>
+<h5 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h5><h6 id="HTTP缓存作用"><a href="#HTTP缓存作用" class="headerlink" title="HTTP缓存作用"></a>HTTP缓存作用</h6><ul>
+<li>减少冗余请求，节省开销</li>
+<li>减少服务器负担，提高网站性能</li>
+<li>加快客户端网页加载的速度</li>
+</ul>
+<h6 id="HTTP缓存头部字段"><a href="#HTTP缓存头部字段" class="headerlink" title="HTTP缓存头部字段"></a>HTTP缓存头部字段</h6><ul>
+<li>Cache-Control    请求/响应头，缓存控制字段<ul>
+<li>no-store：所有内容都不缓存</li>
+<li>no-cache：缓存，但是浏览器使用缓存前，都会请求服务器判断缓存资源是否是最新。</li>
+<li>max-age=x(单位：秒) 请求缓存后的x秒不再发起请求。</li>
+<li>s-maxage=x(单位：秒)代理服务器请求源站缓存后的x秒不再发起请求，只对CDN缓存有效</li>
+<li>public：客户端和代理服务器(CDN)都可缓存</li>
+<li>private：只有客户端可以缓存 </li>
+</ul>
+</li>
+<li>Expires：响应头，代表资源过期时间，由服务器返回提供，是HTTP1.0的属性，在与max-age共存的情况下，优先级相对要低</li>
+<li>Last-Modified：响应头，资源最新修改时间，由服务器告诉浏览器</li>
+<li>if-Modified-Since：请求头，资源最新修改时间，由浏览器告诉服务器，和Last-Modified是一对，它两会进行比对</li>
+<li>Etag：响应头，资源标识，由服务器告诉浏览器</li>
+<li>if-None-Match：请求头，缓存资源标识，由浏览器告诉服务器，和Etag是一对，它两会进行比对</li>
+</ul>
+<h6 id="缓存改进方案"><a href="#缓存改进方案" class="headerlink" title="缓存改进方案"></a>缓存改进方案</h6><ul>
+<li>MD5/Hash缓存：通过不缓存html，为静态文件添加MD5或者Hash标识，解决浏览器无法跳过缓存过期时间主动感知文件变化的问题</li>
+<li>CDN缓存 ：CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络堵塞，提高用户访问响应速度和命中率</li>
+</ul>
+<h6 id="浏览器操作对HTTP缓存的影响"><a href="#浏览器操作对HTTP缓存的影响" class="headerlink" title="浏览器操作对HTTP缓存的影响"></a>浏览器操作对HTTP缓存的影响</h6><table>
+<thead>
+<tr>
+<th>用户操作</th>
+<th>Expires/Cache-Control</th>
+<th>Last-Modified/Etag</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>地址栏回车</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>页面链接跳转</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>新开窗口</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>前进、后退</td>
+<td>有效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>F5刷新</td>
+<td>无效</td>
+<td>有效</td>
+</tr>
+<tr>
+<td>Ctrl+F5刷新</td>
+<td>无效</td>
+<td>无效</td>
+</tr>
+</tbody></table>
+<h5 id="Cookie使用的限制"><a href="#Cookie使用的限制" class="headerlink" title="Cookie使用的限制"></a>Cookie使用的限制</h5><ul>
+<li>浏览器使用Cookie的要求<ul>
+<li>每条Cookie的长度（包括name、value以及描述的属性总长度）至少要达到4KB</li>
+<li>每个域名下至少支持50个Cookie</li>
+<li>至少要支持3000个Cookie</li>
+</ul>
+</li>
+<li>代理服务器传递Cookie时会有限制</li>
+</ul>
+<h5 id="Cookie存在的问题"><a href="#Cookie存在的问题" class="headerlink" title="Cookie存在的问题"></a>Cookie存在的问题</h5><ul>
+<li>Cookie会被附加到每个HTTP请求中，所以无形中增加了流量</li>
+<li>由于在HTTP请求中的Cookie是明文传输的，所以存在安全性问题</li>
+<li>Cookie的大小不应超过4KB，故对于复杂的存储需求来说是不够用的</li>
+</ul>
+<h5 id="第三方Cookie"><a href="#第三方Cookie" class="headerlink" title="第三方Cookie"></a>第三方Cookie</h5><p>浏览器允许对于不安全域下的资源（例如广告图片）响应中的Set-Cookie保存，并在后续访问该域时自动使用Cookie</p>
+<h5 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a>浏览器的同源策略</h5><p>限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互</p>
+<ul>
+<li><p>何为同源？协议、主机、端口必须完全相同</p>
+</li>
+<li><p>例如：<a target="_blank" rel="noopener" href="http://a.test.com/dir/page.html%E6%A3%80%E6%B5%8B%E4%BB%A5%E4%B8%8B%E6%98%AF%E5%90%A6%E5%90%8C%E6%BA%90">http://a.test.com/dir/page.html检测以下是否同源</a></p>
+<table>
+<thead>
+<tr>
+<th><strong>URL</strong></th>
+<th>结果</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="http://a.test.com/dir2/other.html">http://a.test.com/dir2/other.html</a></td>
+<td>成功</td>
+<td>只有路径不同</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://a.test.com/dir/inner/another.html">http://a.test.com/dir/inner/another.html</a></td>
+<td>成功</td>
+<td>只有路径不同</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://store.company.com/secure.html">https://store.company.com/secure.html</a></td>
+<td>失败</td>
+<td>不同协议（https和http）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://a.test.com:81/dir/etc.html">http://a.test.com:81/dir/etc.html</a></td>
+<td>失败</td>
+<td>不同端口（http默认端口是80)，和81端口不同）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://b.test.com/dir/other.html">http://b.test.com/dir/other.html</a></td>
+<td>失败</td>
+<td>不同域名（a和b）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h5><p>CORS（Cross-Origin Resource Sharing）可以用来解决跨域问题。</p>
+<p>浏览器会对所有跨域请求进行验证，分为简单请求验证处理和预检请求验证处理</p>
+<h6 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h6><ul>
+<li>GET/HEAD/POST方法之一</li>
+<li>仅能使用CORS安全的头部：<code>Accept</code>、<code>Accept-Language</code>、<code>Content-Language</code>、<code>Content-Type</code></li>
+<li>Content-Type值只能是：<code>text/plain</code>、<code>multipart/form-data</code>、<code>application/x-www-form-urlencoded</code>三者其中之一</li>
+</ul>
+<h6 id="简单请求以外的其他请求"><a href="#简单请求以外的其他请求" class="headerlink" title="简单请求以外的其他请求"></a>简单请求以外的其他请求</h6><ul>
+<li>访问资源前，需要先发起preflight预检请求（方法为OPTIONS）询问何种请求是被允许的</li>
+</ul>
+<h6 id="预检请求头部"><a href="#预检请求头部" class="headerlink" title="预检请求头部"></a>预检请求头部</h6><ul>
+<li><p>Origin</p>
+<ul>
+<li>来自哪个域名</li>
+</ul>
+</li>
+<li><p>Access-Control-Request-Method</p>
+<ul>
+<li>在preflight预检请求（OPTIONS）中，告知服务器接下来的请求会使用哪些方法</li>
+</ul>
+</li>
+<li><p>Access-Control-Request-Headers</p>
+<ul>
+<li>在preflight预检请求（OPTIONS）中，告知服务器接下来的请求会传递哪些头部</li>
+</ul>
+</li>
+</ul>
+<h6 id="预检请求响应"><a href="#预检请求响应" class="headerlink" title="预检请求响应"></a>预检请求响应</h6><ul>
+<li>Access-Control-Allow-Methods<ul>
+<li>在preflight预检请求的响应中，告知客户端后续请求允许使用的方法</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Headers<ul>
+<li>在preflight预检请求的响应中，告知客户端后续请求允许携带的头部</li>
+</ul>
+</li>
+<li>Access-Control-Max-Age<ul>
+<li>在preflight预检请求的响应中，告知客户端该响应的信息可以缓存多久</li>
+</ul>
+</li>
+<li>Access-Control-Expose-Headers<ul>
+<li>告知浏览器哪些响应头部可以供客户端使用，默认情况下只有<code>Cache-Control</code>、<code>Content-Language</code>、<code>Content-Type</code>、<code>Expires</code>、<code>Last-Modified</code>、<code>Pragma</code>可供使用</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Origin<ul>
+<li>告知浏览器允许哪些域访问当前资源，<code>*</code>表示允许所有域</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Credentials<ul>
+<li>告知浏览器是否可以将<code>Credentials</code>暴露给客户端使用，<code>Credentials</code>包含<code>cookie</code>、<code>authorization</code>类头部、TLS证书等</li>
+</ul>
+</li>
+</ul>
+<h5 id="内容协商机制"><a href="#内容协商机制" class="headerlink" title="内容协商机制"></a>内容协商机制</h5><p>指客户端和服务端就响应的资源内容进行交涉，然后提供给客户端最为适合的资源。内容协商会以响应资源的语言，字符集，编码方式等作为判断的基准</p>
+<h6 id="内容协商方式"><a href="#内容协商方式" class="headerlink" title="内容协商方式"></a>内容协商方式</h6><ul>
+<li>客户端驱动：客户端发起请求，服务器发送可选项列表，客户端做出选择后再发送第二次请求</li>
+<li>服务器驱动：服务器检查客户端的请求头部集并决定提供哪个版本的页面</li>
+<li>透明协商</li>
+<li>某个中间设备（通常是缓存代理）代表客户端进行协商</li>
+</ul>
+<h6 id="请求首部集"><a href="#请求首部集" class="headerlink" title="请求首部集"></a>请求首部集</h6><ul>
+<li>Accept：告知服务器发送何种媒体类型</li>
+<li>Accept-Language：告知服务器发送何种语言</li>
+<li>Accept-Charset：告知服务器发送何种字符集</li>
+<li>Accept-Encoding：告知服务器采用何种编码</li>
+</ul>
+<h6 id="响应首部集"><a href="#响应首部集" class="headerlink" title="响应首部集"></a>响应首部集</h6><ul>
+<li>Content-Type：对应请求首部Accept和Accept-Charset</li>
+<li>Content-Language：对应请求首部Accept-Language</li>
+<li>Content-Encoding：对应请求首部Accept-Encoding</li>
+</ul>
+<h5 id="断点续传和多线程下载"><a href="#断点续传和多线程下载" class="headerlink" title="断点续传和多线程下载"></a>断点续传和多线程下载</h5><p>HTTP是通过在Header里两个参数实现的，客户端发请求时对应的是<code>Range</code>，服务端响应时对应的是<code>Content-Range</code></p>
+<ul>
+<li><p>Range</p>
+<p>Range：bytes=0-499</p>
+<p>Range：bytes=500-999</p>
+<p>Range：bytes=-500</p>
+<p>Range：bytes=500-</p>
+<p>Range：bytes=500-600,601-999</p>
+</li>
+<li><p>Content-Range</p>
+<p>在响应完成后，返回的响应头内容也不同：</p>
+<ul>
+<li>HTTP/1.1 200 OK (不使用断点续传方式)</li>
+<li>HTTP/1.1 206 Partial Content (使用断点续传方式)</li>
+</ul>
+</li>
+</ul>
+<h6 id="断点续传过程"><a href="#断点续传过程" class="headerlink" title="断点续传过程"></a>断点续传过程</h6><ol>
+<li>客户端下载一个1024K文件，已经下载了其中512K</li>
+<li>网络中断，客户端请求续传，因此需要在HTTP头中申明本次需要续传的片段：<code>Range:bytes=512000-</code>这个头通知服务端从文件的512K位置开始传输文件。</li>
+<li>服务端收到断点续传请求，从文件的512K位置开始传输，并且在HTTP头中增加：<code>Content-Range:bytes 512000-/1024000</code>，并且此时服务端返回的HTTP状态码应该是206，而不是200</li>
+</ol>
+<h5 id="HTTP-1-1遇到的问题"><a href="#HTTP-1-1遇到的问题" class="headerlink" title="HTTP/1.1遇到的问题"></a>HTTP/1.1遇到的问题</h5><ul>
+<li>高延迟带来页面加载速度的降低<ul>
+<li>随着带宽的增加，延迟并没有显著下降</li>
+<li>并发连接有限</li>
+<li>同一连接同时只能在完成一个HTTP事务（请求/响应）才能处理下一个事务</li>
+</ul>
+</li>
+<li>单连接上的串行请求</li>
+<li>无状态导致的高传输量（低网络效率）</li>
+<li>重复传输的体积巨大的HTTP头部</li>
+<li>不支持服务器推送消息</li>
+</ul>
+<h5 id="HTTP2特性"><a href="#HTTP2特性" class="headerlink" title="HTTP2特性"></a>HTTP2特性</h5><ul>
+<li>传输数据量大幅减少<ul>
+<li>以二进制方式传输</li>
+<li>标头压缩</li>
+</ul>
+</li>
+<li>多路复用及相关功能<ul>
+<li>消息优先级</li>
+</ul>
+</li>
+<li>服务端消息推送<ul>
+<li>并行推送</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer" style="font-size:15px;">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>JackeyW
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://wzhichi.gitee.io/20201006/081025.html" title="HTTP笔记整理">https://wzhichi.gitee.io/20201006/081025.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/20200928/094824.html" rel="prev" title="TypeScript笔记整理">
+                  <i class="fa fa-chevron-left"></i> TypeScript笔记整理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackeyW</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      本站访客数：
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      人次
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      本站总访问量：
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+      次
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+   
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
