@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/blog_ico.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/blog_ico.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wzhichi.gitee.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"fadeIn","sidebar":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="前言 react-router是react官方推荐的路由库，在这里简单记录一下react-router的使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-router使用记录">
+<meta property="og:url" content="https://wzhichi.gitee.io/20210601/033538.html">
+<meta property="og:site_name" content="韦枝池的博客">
+<meta property="og:description" content="前言 react-router是react官方推荐的路由库，在这里简单记录一下react-router的使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-01T07:35:38.000Z">
+<meta property="article:modified_time" content="2021-07-14T04:43:17.134Z">
+<meta property="article:author" content="JackeyW">
+<meta property="article:tag" content="react-router">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wzhichi.gitee.io/20210601/033538.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>react-router使用记录 | 韦枝池的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">韦枝池的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">生活就是一场修行</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>观影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>阅读</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="nav-text">1、基础使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81URL-Parameters"><span class="nav-text">2、URL Parameters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1"><span class="nav-text">3、嵌套路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%88%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%EF%BC%89"><span class="nav-text">4、重定向（权限控制）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89Link%E7%BB%84%E4%BB%B6"><span class="nav-text">5、自定义Link组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E9%98%B2%E6%AD%A2%E8%BD%AC%E6%8D%A2"><span class="nav-text">5、防止转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81Not-Match%EF%BC%88404%EF%BC%89"><span class="nav-text">6、Not Match（404）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81Query-Parameters"><span class="nav-text">7、Query Parameters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8%E3%80%81Hooks"><span class="nav-text">8、Hooks</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JackeyW"
+      src="/images/avator.png">
+  <p class="site-author-name" itemprop="name">JackeyW</p>
+  <div class="site-description" itemprop="description">不积跬步，无以至千里；不积小流，无以成江海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/weizhichihao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;weizhichihao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15119631881@163.com" title="E-Mail → mailto:15119631881@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-fw fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://segmentfault.com/" title="https:&#x2F;&#x2F;segmentfault.com&#x2F;" rel="noopener" target="_blank">思否</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.oschina.net/" title="https:&#x2F;&#x2F;www.oschina.net&#x2F;" rel="noopener" target="_blank">开源中国</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net&#x2F;" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.douban.com/" title="https:&#x2F;&#x2F;www.douban.com&#x2F;" rel="noopener" target="_blank">豆瓣</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;" rel="noopener" target="_blank">知乎</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1349189603&auto=1&height=32"></iframe>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/weizhichihao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wzhichi.gitee.io/20210601/033538.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="JackeyW">
+      <meta itemprop="description" content="不积跬步，无以至千里；不积小流，无以成江海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="韦枝池的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react-router使用记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-01 15:35:38" itemprop="dateCreated datePublished" datetime="2021-06-01T15:35:38+08:00">2021-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>react-router是react官方推荐的路由库，在这里简单记录一下react-router的使用。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="1、基础使用"><a href="#1、基础使用" class="headerlink" title="1、基础使用"></a>1、基础使用</h5><p>安装<code>react-router-dom</code>    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-router-dom -D</span><br></pre></td></tr></table></figure>
+
+<p><code>BaseRoute.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">    Switch,</span><br><span class="line">    Route,</span><br><span class="line">    Link</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;Home&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> About = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;About&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Dashboard = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;Dashboard&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;Router&gt;</span><br><span class="line">        	&lt;ul&gt;</span><br><span class="line">            	&lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/dashboard&quot;</span>&gt;</span>Dashboard<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">           		&lt;Switch&gt;</span><br><span class="line">                	&lt;Route exact path=<span class="string">&quot;/&quot;</span>&gt;</span><br><span class="line">                    	&lt;Home /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                    &lt;Route exact path=<span class="string">&quot;/about&quot;</span>&gt;</span><br><span class="line">                    	&lt;About /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                    &lt;Route exact path=<span class="string">&quot;/dashboard&quot;</span>&gt;</span><br><span class="line">                    	&lt;Dashboard /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、URL-Parameters"><a href="#2、URL-Parameters" class="headerlink" title="2、URL Parameters"></a>2、URL Parameters</h5><p><code>UrlParameters.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">    Switch,</span><br><span class="line">    Route,</span><br><span class="line">    Link,</span><br><span class="line">    useParams</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ParamCom = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 &#x27;useParams&#x27; hook 来获取url参数</span></span><br><span class="line">    <span class="keyword">const</span> &#123; id &#125; = useParams();</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&#123;id&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;Router&gt;</span><br><span class="line">        	&lt;ul&gt;</span><br><span class="line">            	&lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/dashboard&quot;</span>&gt;</span>Dashboard<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">           		&lt;Switch&gt;</span><br><span class="line">                	&lt;Route exact path=<span class="string">&quot;/:name&quot;</span>&gt;</span><br><span class="line">                    	&lt;ParamCom /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、嵌套路由"><a href="#3、嵌套路由" class="headerlink" title="3、嵌套路由"></a>3、嵌套路由</h5><p><code>NestingRoute.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">  Switch,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  useParams,</span><br><span class="line">  useRouteMatch</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Article = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; topicId &#125; = useParams()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;&#123;topicId&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Articles = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;path, url&#125; = useRouteMatch()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">    	&lt;Router&gt;</span><br><span class="line">        	&lt;div&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">              &lt;li&gt;</span><br><span class="line">                &lt;Link to=&#123;<span class="string">`<span class="subst">$&#123;url&#125;</span>/article1`</span>&#125;&gt;article1&lt;/Link&gt;</span><br><span class="line">              &lt;/li&gt;</span><br><span class="line">              &lt;li&gt;</span><br><span class="line">                &lt;Link to=&#123;<span class="string">`<span class="subst">$&#123;url&#125;</span>/article2`</span>&#125;&gt;article2&lt;/Link&gt;</span><br><span class="line">              &lt;/li&gt;</span><br><span class="line">              &lt;li&gt;</span><br><span class="line">                &lt;Link to=&#123;<span class="string">`<span class="subst">$&#123;url&#125;</span>/article3`</span>&#125;&gt;article3&lt;/Link&gt;</span><br><span class="line">              &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">            &lt;Switch&gt;</span><br><span class="line">              &lt;Route exact path=&#123;path&#125;&gt;</span><br><span class="line">                &lt;h3&gt;Articles&lt;/h3&gt;</span><br><span class="line">              &lt;/Route&gt;</span><br><span class="line">              &lt;Route path=&#123;<span class="string">`<span class="subst">$&#123;path&#125;</span>/:topicId`</span>&#125;&gt;</span><br><span class="line">                &lt;Article /&gt;</span><br><span class="line">              &lt;/Route&gt;</span><br><span class="line">            &lt;/Switch&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;Router&gt;</span><br><span class="line">        	&lt;ul&gt;</span><br><span class="line">            	&lt;li&gt;</span><br><span class="line">                	&lt;Link to=<span class="string">&#x27;/&#x27;</span>&gt;Home&lt;/Link&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                	&lt;Link to=<span class="string">&#x27;/article&#x27;</span>&gt;Article&lt;/Link&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">            	&lt;Switch&gt;</span><br><span class="line">                	&lt;Route exact path=<span class="string">&#x27;/&#x27;</span>&gt;Home&lt;/Route&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&#x27;/article&#x27;</span>&gt;</span><br><span class="line">                    	&lt;Articles /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4、重定向（权限控制）"><a href="#4、重定向（权限控制）" class="headerlink" title="4、重定向（权限控制）"></a>4、重定向（权限控制）</h5><p><code>AuthRedirect.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useContext, createContext, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">  Switch,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  Redirect,</span><br><span class="line">  useHistory,</span><br><span class="line">  useLocation</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fakeAuth = &#123;</span><br><span class="line">  isAuthenticated: <span class="literal">false</span>,</span><br><span class="line">  signin() &#123;</span><br><span class="line">    fakeAuth.isAuthenticated = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(cb, <span class="number">100</span>); <span class="comment">// fake async</span></span><br><span class="line">  &#125;,</span><br><span class="line">  signout(cb) &#123;</span><br><span class="line">    fakeAuth.isAuthenticated = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(cb, <span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> authContext = createContext();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ProvideAuth = <span class="function">(<span class="params">&#123; children &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> auth = useProvideAuth();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;authContext.Provider value=&#123;auth&#125;&gt;</span><br><span class="line">      &#123;children&#125;</span><br><span class="line">    &lt;/authContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useAuth =&gt; () &#123;</span><br><span class="line">  <span class="keyword">return</span> useContext(authContext);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useProvideAuth =&gt; () &#123;</span><br><span class="line">  <span class="keyword">const</span> [user, setUser] = useState(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> signin = <span class="function"><span class="params">cb</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fakeAuth.signin(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      setUser(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">      cb();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> signout = <span class="function"><span class="params">cb</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fakeAuth.signout(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      setUser(<span class="literal">null</span>);</span><br><span class="line">      cb();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    user,</span><br><span class="line">    signin,</span><br><span class="line">    signout</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> AuthButton = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> history = useHistory();</span><br><span class="line">  <span class="keyword">let</span> auth = useAuth();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> auth.user ? (</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      Welcome!&#123;<span class="string">&quot; &quot;</span>&#125;</span><br><span class="line">      &lt;button</span><br><span class="line">        onClick=&#123;<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          auth.signout(<span class="function">() =&gt;</span> history.push(<span class="string">&quot;/&quot;</span>));</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">        Sign out</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  ) : (</span><br><span class="line">    &lt;p&gt;You are not logged <span class="keyword">in</span>.&lt;/p&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PrivateRoute = <span class="function">(<span class="params">&#123; children, ...rest &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> auth = useAuth();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Route</span><br><span class="line">      &#123;...rest&#125;</span><br><span class="line">      render=&#123;<span class="function">(<span class="params">&#123; location &#125;</span>) =&gt;</span></span><br><span class="line">        auth.user ? (</span><br><span class="line">          children</span><br><span class="line">        ) : (</span><br><span class="line">          &lt;Redirect</span><br><span class="line">            to=&#123;&#123;</span><br><span class="line">              pathname: <span class="string">&quot;/login&quot;</span>,</span><br><span class="line">              state: &#123; <span class="attr">from</span>: location &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PublicPage = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>Public<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ProtectedPage = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>Protected<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> LoginPage = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> history = useHistory();</span><br><span class="line">  <span class="keyword">let</span> location = useLocation();</span><br><span class="line">  <span class="keyword">let</span> auth = useAuth();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> &#123; <span class="keyword">from</span> &#125; = location.state || &#123; <span class="attr">from</span>: &#123; <span class="attr">pathname</span>: <span class="string">&quot;/&quot;</span> &#125; &#125;;</span><br><span class="line">  <span class="keyword">let</span> login = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    auth.signin(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      history.replace(<span class="keyword">from</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You must log <span class="keyword">in</span> to view the page at &#123;<span class="keyword">from</span>.pathname&#125;&lt;/p&gt;</span><br><span class="line">      &lt;button onClick=&#123;login&#125;&gt;Log <span class="keyword">in</span>&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ProvideAuth&gt;</span><br><span class="line">      &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;AuthButton /&gt;</span><br><span class="line"></span><br><span class="line">          &lt;ul&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;Link to=<span class="string">&quot;/public&quot;</span>&gt;Public Page&lt;/Link&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;Link to=<span class="string">&quot;/protected&quot;</span>&gt;Protected Page&lt;/Link&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">          &lt;Switch&gt;</span><br><span class="line">            &lt;Route path=<span class="string">&quot;/public&quot;</span>&gt;</span><br><span class="line">              &lt;PublicPage /&gt;</span><br><span class="line">            &lt;/Route&gt;</span><br><span class="line">            &lt;Route path=<span class="string">&quot;/login&quot;</span>&gt;</span><br><span class="line">              &lt;LoginPage /&gt;</span><br><span class="line">            &lt;/Route&gt;</span><br><span class="line">            &lt;PrivateRoute path=<span class="string">&quot;/protected&quot;</span>&gt;</span><br><span class="line">              &lt;ProtectedPage /&gt;</span><br><span class="line">            &lt;/PrivateRoute&gt;</span><br><span class="line">          &lt;/Switch&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/Router&gt;</span><br><span class="line">    &lt;/ProvideAuth&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、自定义Link组件"><a href="#5、自定义Link组件" class="headerlink" title="5、自定义Link组件"></a>5、自定义Link组件</h5><p><code>CustomLink.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./CustomLink.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">    Switch,</span><br><span class="line">    Route,</span><br><span class="line">    Link,</span><br><span class="line">    useRouteMatch</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CustomLink = <span class="function">(<span class="params">&#123;to,label,activeExactOnly&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> match = useRouteMatch(&#123;</span><br><span class="line">        path: to,</span><br><span class="line">        exact: activeExactOnly</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            &#123;match &amp;&amp; <span class="string">&#x27;&gt;&#x27;</span>&#125;</span><br><span class="line">            &lt;Link to=&#123;to&#125;&gt;&#123;label&#125;&lt;/Link&gt;</span><br><span class="line">        &lt;/&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Router&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;CustomLink to=<span class="string">&quot;/&quot;</span> label=<span class="string">&quot;Home&quot;</span> activeExactOnly=&#123;<span class="literal">true</span>&#125;&gt;&lt;/CustomLink&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;CustomLink to=<span class="string">&quot;/about&quot;</span> label=<span class="string">&quot;About&quot;</span>&gt;&lt;/CustomLink&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;CustomLink to=<span class="string">&quot;/article&quot;</span> label=<span class="string">&quot;Articles&quot;</span>&gt;&lt;/CustomLink&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;CustomLink to=<span class="string">&quot;/new&quot;</span> label=<span class="string">&quot;News&quot;</span>&gt;&lt;/CustomLink&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            &lt;hr/&gt;</span><br><span class="line">            &lt;Switch&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/&quot;</span> exact&gt;Home&lt;/Route&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/about&quot;</span>&gt;About&lt;/Route&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/article&quot;</span>&gt;Articles&lt;/Route&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/new&quot;</span>&gt;News&lt;/Route&gt;</span><br><span class="line">            &lt;/Switch&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、防止转换"><a href="#5、防止转换" class="headerlink" title="5、防止转换"></a>5、防止转换</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">    Link,</span><br><span class="line">    Route,</span><br><span class="line">    Switch,</span><br><span class="line">    Prompt</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> About = <span class="function">(<span class="params">&#123;lock&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            &lt;Prompt when=&#123;lock&#125; message=<span class="string">&quot;请确认要离开about页面&quot;</span>&gt;&lt;/Prompt&gt;</span><br><span class="line">            &#123;<span class="string">`this is about page, before you leave, you need to confirm!`</span>&#125;</span><br><span class="line">        &lt;/&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PreventTransition = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> [lock, setLock] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Router&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;Link to=<span class="string">&quot;/&quot;</span>&gt;Home&lt;/Link&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;Link to=<span class="string">&quot;/about&quot;</span>&gt;About&lt;/Link&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">            &lt;hr /&gt;</span><br><span class="line"></span><br><span class="line">            &lt;Switch&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/&quot;</span> exact&gt;Home&lt;/Route&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/about&quot;</span>&gt;</span><br><span class="line">                    &lt;About lock=&#123;lock&#125;/&gt;</span><br><span class="line">                &lt;/Route&gt;</span><br><span class="line">            &lt;/Switch&gt;</span><br><span class="line"></span><br><span class="line">            &lt;hr /&gt;</span><br><span class="line">            &lt;button onClick=&#123;<span class="function">() =&gt;</span> setLock(!lock)&#125;&gt;当前lock的值为&#123;lock.toString()&#125;设置lock的值为:&#123;(!lock).toString()&#125;&lt;/button&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> PreventTransition;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6、Not-Match（404）"><a href="#6、Not-Match（404）" class="headerlink" title="6、Not Match（404）"></a>6、Not Match（404）</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">    Switch,</span><br><span class="line">    Route,</span><br><span class="line">    Link</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;Home&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> About = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;About&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> NotMatch = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;div&gt;</span><br><span class="line">        	&lt;h2&gt;<span class="number">404</span> Page Not Found&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    	&lt;Router&gt;</span><br><span class="line">        	&lt;ul&gt;</span><br><span class="line">            	&lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/thisisthewrongpath&quot;</span>&gt;</span>this is the wrong path<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span>&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">           		&lt;Switch&gt;</span><br><span class="line">                	&lt;Route exact path=<span class="string">&quot;/&quot;</span>&gt;</span><br><span class="line">                    	&lt;Home /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                    &lt;Route exact path=<span class="string">&quot;/about&quot;</span>&gt;</span><br><span class="line">                    	&lt;About /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;*&quot;</span>&gt;</span><br><span class="line">                        &lt;NotMatch /&gt;</span><br><span class="line">                    &lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/Router&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="7、Query-Parameters"><a href="#7、Query-Parameters" class="headerlink" title="7、Query Parameters"></a>7、Query Parameters</h5><p><code>QueryParameters.js</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">  Link,</span><br><span class="line">  useLocation</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> QueryParameters = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">      &lt;QueryParamsDemo /&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useQuery = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> URLSearchParams(useLocation().search);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> QueryParamsDemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> query = useQuery();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to=<span class="string">&quot;/account?name=张三&quot;</span>&gt;张三&lt;/Link&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to=<span class="string">&quot;/account?name=李四&quot;</span>&gt;李四&lt;/Link&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to=<span class="string">&quot;/account?name=王五&quot;</span>&gt;王五&lt;/Link&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to=<span class="string">&quot;/account?name=赵六&quot;</span>&gt;赵六&lt;/Link&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Child name=&#123;query.get(<span class="string">&quot;name&quot;</span>)&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Child = <span class="function">(<span class="params">&#123; name &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;姓名：&#123;name&#125;&lt;/h3&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> QueryParameters;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8、Hooks"><a href="#8、Hooks" class="headerlink" title="8、Hooks"></a>8、Hooks</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://reactrouter.com/web/api/Hooks/usehistory">useHistory</a></li>
+<li><a target="_blank" rel="noopener" href="https://reactrouter.com/web/api/Hooks/uselocation">useLocation</a></li>
+<li><a target="_blank" rel="noopener" href="https://reactrouter.com/web/api/Hooks/useparams">useParams</a></li>
+<li><a target="_blank" rel="noopener" href="https://reactrouter.com/web/api/Hooks/useroutematch">useRouteMatch</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer" style="font-size:15px;">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>JackeyW
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://wzhichi.gitee.io/20210601/033538.html" title="react-router使用记录">https://wzhichi.gitee.io/20210601/033538.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/react-router/" rel="tag"># react-router</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/20201126/110019.html" rel="prev" title="vim常用命令总结">
+                  <i class="fa fa-chevron-left"></i> vim常用命令总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/20210601/035440.html" rel="next" title="vue后台管理之精细化的权限控制">
+                  vue后台管理之精细化的权限控制 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackeyW</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      本站访客数：
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      人次
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      本站总访问量：
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+      次
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+   
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
