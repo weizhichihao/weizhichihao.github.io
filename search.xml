@@ -267,36 +267,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue中的程序化事件监听器</title>
-    <url>/20200917/085354.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>vue事件相关接口</p>
-<ul>
-<li>通过$on(eventName,eventHandler)      侦听一个事件</li>
-<li>通过$once(eventName,eventHandler)  一次性侦听一个事件</li>
-<li>通过$off(eventName,eventHandler)      停止侦听一个事件</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-
-<p>当我们在组件中初始化一些第三方库或者使用定时器的时候，通常需要在实例定义相关的变量，然后在相关的生命周期进行清理销毁。如下代码所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        data: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                timer: <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="built_in">this</span>.timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// beforeDestroy lifcycle -&gt; clearInterval()</span></span><br><span class="line">        beforeDestroy() &#123;</span><br><span class="line">            <span class="built_in">clearInterval</span>(<span class="built_in">this</span>.timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>其实，这时候还有第二种简单的方案，不用在实例里面特意定义一个属性，也可以在定义后马上进行相关的处理，逻辑比较集中。这方案就是使用一个<strong>程序化事件监听器</strong>来解决问题,修改上面代码如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// use this.$once(&#x27;hook:beforeDestroy&#x27;,handler) to clear timer</span></span><br><span class="line">                <span class="built_in">this</span>.$once(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">clearInterval</span>(timer);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这样写的话，逻辑就比较清晰了，不需要特定的实例属性，定义的代码和清理的代码也不用独立在不同的地方。</p>
-<p><a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8">Vue官网资料</a></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>react-router使用记录</title>
     <url>/20210601/033538.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -360,42 +330,33 @@
       </tags>
   </entry>
   <entry>
-    <title>vim常用命令总结</title>
-    <url>/20201126/110019.html</url>
+    <title>Vue中的程序化事件监听器</title>
+    <url>/20200917/085354.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>记录一下vim的常用操作命令</p>
+<p>vue事件相关接口</p>
+<ul>
+<li>通过$on(eventName,eventHandler)      侦听一个事件</li>
+<li>通过$once(eventName,eventHandler)  一次性侦听一个事件</li>
+<li>通过$off(eventName,eventHandler)      停止侦听一个事件</li>
+</ul>
 </blockquote>
 <a id="more"></a>
 
-<h5 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h5><p><code>v</code>：从光标开始，光标后续所经过的地方会被选中，再按一次结束</p>
-<p><code>V</code>：从光标当前行开始，光标经过的行都被选中，再按一次结束</p>
-<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><p><code>Y</code>：复制行</p>
-<p><code>y</code>：复制</p>
-<h5 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h5><p><code>P</code>：在光标前面粘贴</p>
-<p><code>p</code>：在光标后面粘贴</p>
-<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p><code>dd</code>：删除当前行</p>
-<h5 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h5><p><code>u</code>：撤销上一步操作</p>
-<p><code>U</code>：反撤销</p>
-<h5 id="主要ex指令"><a href="#主要ex指令" class="headerlink" title="主要ex指令"></a>主要ex指令</h5><p><code>:w</code>：保存</p>
-<p><code>:q</code>：退出</p>
-<p><code>:h</code>：打开帮助</p>
-<h5 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h5><p><code>==</code>：对光标所在行进行排版</p>
-<p><code>n ==</code>：对光标及以下的n行内容进行排版</p>
-<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p><code>i</code>：切换到输入模式</p>
-<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><p><code>w</code>：以word为单位进行光标的移动</p>
-<p><code>nw</code>：以n个word为单位进行光标的移动</p>
-<h5 id="找到当前的位置"><a href="#找到当前的位置" class="headerlink" title="找到当前的位置"></a>找到当前的位置</h5><p><code>ctrl+g</code>：告诉你当前所在位置</p>
-<h5 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h5><p><code>/string</code>：搜索和string相关的内容</p>
-<p><code>:set hlsearch</code>：高亮显示搜索结果</p>
-<p><code>:set nohlsearch</code>：去掉高亮显示</p>
-<h5 id="窗口分割"><a href="#窗口分割" class="headerlink" title="窗口分割"></a>窗口分割</h5><p><code>:split</code>：分割出一个新的窗口</p>
+<p>当我们在组件中初始化一些第三方库或者使用定时器的时候，通常需要在实例定义相关的变量，然后在相关的生命周期进行清理销毁。如下代码所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        data: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                timer: <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="built_in">this</span>.timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// beforeDestroy lifcycle -&gt; clearInterval()</span></span><br><span class="line">        beforeDestroy() &#123;</span><br><span class="line">            <span class="built_in">clearInterval</span>(<span class="built_in">this</span>.timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其实，这时候还有第二种简单的方案，不用在实例里面特意定义一个属性，也可以在定义后马上进行相关的处理，逻辑比较集中。这方案就是使用一个<strong>程序化事件监听器</strong>来解决问题,修改上面代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        methods: &#123;</span><br><span class="line">            <span class="comment">// startMethod</span></span><br><span class="line">            startMethod() &#123;</span><br><span class="line">                <span class="comment">// defining a Timer</span></span><br><span class="line">                <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// do something</span></span><br><span class="line">                &#125;,<span class="number">10000</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// use this.$once(&#x27;hook:beforeDestroy&#x27;,handler) to clear timer</span></span><br><span class="line">                <span class="built_in">this</span>.$once(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">clearInterval</span>(timer);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样写的话，逻辑就比较清晰了，不需要特定的实例属性，定义的代码和清理的代码也不用独立在不同的地方。</p>
+<p><a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8">Vue官网资料</a></p>
 ]]></content>
       <categories>
-        <category>运维</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>运维</tag>
-        <tag>vim</tag>
+        <tag>前端</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -602,6 +563,45 @@
       </tags>
   </entry>
   <entry>
+    <title>vim常用命令总结</title>
+    <url>/20201126/110019.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>记录一下vim的常用操作命令</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h5><p><code>v</code>：从光标开始，光标后续所经过的地方会被选中，再按一次结束</p>
+<p><code>V</code>：从光标当前行开始，光标经过的行都被选中，再按一次结束</p>
+<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><p><code>Y</code>：复制行</p>
+<p><code>y</code>：复制</p>
+<h5 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h5><p><code>P</code>：在光标前面粘贴</p>
+<p><code>p</code>：在光标后面粘贴</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p><code>dd</code>：删除当前行</p>
+<h5 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h5><p><code>u</code>：撤销上一步操作</p>
+<p><code>U</code>：反撤销</p>
+<h5 id="主要ex指令"><a href="#主要ex指令" class="headerlink" title="主要ex指令"></a>主要ex指令</h5><p><code>:w</code>：保存</p>
+<p><code>:q</code>：退出</p>
+<p><code>:h</code>：打开帮助</p>
+<h5 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h5><p><code>==</code>：对光标所在行进行排版</p>
+<p><code>n ==</code>：对光标及以下的n行内容进行排版</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p><code>i</code>：切换到输入模式</p>
+<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><p><code>w</code>：以word为单位进行光标的移动</p>
+<p><code>nw</code>：以n个word为单位进行光标的移动</p>
+<h5 id="找到当前的位置"><a href="#找到当前的位置" class="headerlink" title="找到当前的位置"></a>找到当前的位置</h5><p><code>ctrl+g</code>：告诉你当前所在位置</p>
+<h5 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h5><p><code>/string</code>：搜索和string相关的内容</p>
+<p><code>:set hlsearch</code>：高亮显示搜索结果</p>
+<p><code>:set nohlsearch</code>：去掉高亮显示</p>
+<h5 id="窗口分割"><a href="#窗口分割" class="headerlink" title="窗口分割"></a>窗口分割</h5><p><code>:split</code>：分割出一个新的窗口</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vuex-module-decorators使用记录</title>
     <url>/20200916/083105.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -690,6 +690,46 @@
       <tags>
         <tag>vuex</tag>
         <tag>typescript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue后台管理之精细化的权限控制</title>
+    <url>/20210601/035440.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>做后台管理，权限控制是必不可少的，在这里做个记录。</p>
+</blockquote>
+<a id="more"></a>
+
+
+
+<h5 id="1、权限组件"><a href="#1、权限组件" class="headerlink" title="1、权限组件"></a>1、权限组件</h5><p>使用函数式组件，只做权限控制功能，控制权限组件slot区域的内容是否能显示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// components -&gt; AuthCheck.vue</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">import</span> &#123; check &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  	functional: <span class="literal">true</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">    	authority: &#123;</span><br><span class="line">      	type: <span class="built_in">Array</span>,</span><br><span class="line">        required: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render(h, context) &#123;</span><br><span class="line">    	<span class="keyword">const</span> &#123;props, scopedSlots&#125; = context</span><br><span class="line">      <span class="keyword">return</span> check(props.authority) ? scopedSlots.default() : <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注册为全局组件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> AuthCheck <span class="keyword">from</span> <span class="string">&#x27;@/components/AuthCheck&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">&#x27;AuthCheck&#x27;</span>, AuthCheck)</span><br></pre></td></tr></table></figure>
+
+<p>使用方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;AuthCheck :authority=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;</span><br><span class="line">  		<span class="comment">// some btns</span></span><br><span class="line">  	&lt;/AuthCheck&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、权限指令"><a href="#2、权限指令" class="headerlink" title="2、权限指令"></a>2、权限指令</h5><p>使用插件的方式封装指令函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// directives -&gt; auth.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;check&#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">install</span>(<span class="params">Vue, optoins = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">	Vue.directive(options.name || <span class="string">&#x27;auth&#x27;</span>, &#123;</span><br><span class="line">  	inserted(el, binding) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (!check(binding.value)) &#123;</span><br><span class="line">      	el.parentNode &amp;&amp; el.parentNode.removeChild(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;install&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用指令插件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> Auth <span class="keyword">from</span> <span class="string">&#x27;@/directives/auth&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Auth)</span><br></pre></td></tr></table></figure>
+
+<p>使用方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;button v-auth=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、两者优劣分析"><a href="#3、两者优劣分析" class="headerlink" title="3、两者优劣分析"></a>3、两者优劣分析</h5><ul>
+<li>权限组件写着会复杂一些，但支持动态权限修改，比较灵活</li>
+<li>权限指令会简单一些，但是不支持动态权限修改，因为已经删除掉的节点不能加回来了</li>
+</ul>
+]]></content>
+      <categories>
+        <category>vue, 后台管理</category>
+      </categories>
+      <tags>
+        <tag>后台管理</tag>
       </tags>
   </entry>
   <entry>
@@ -826,46 +866,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue后台管理之精细化的权限控制</title>
-    <url>/20210601/035440.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>做后台管理，权限控制是必不可少的，在这里做个记录。</p>
-</blockquote>
-<a id="more"></a>
-
-
-
-<h5 id="1、权限组件"><a href="#1、权限组件" class="headerlink" title="1、权限组件"></a>1、权限组件</h5><p>使用函数式组件，只做权限控制功能，控制权限组件slot区域的内容是否能显示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// components -&gt; AuthCheck.vue</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">import</span> &#123; check &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  	functional: <span class="literal">true</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">    	authority: &#123;</span><br><span class="line">      	type: <span class="built_in">Array</span>,</span><br><span class="line">        required: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render(h, context) &#123;</span><br><span class="line">    	<span class="keyword">const</span> &#123;props, scopedSlots&#125; = context</span><br><span class="line">      <span class="keyword">return</span> check(props.authority) ? scopedSlots.default() : <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>注册为全局组件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> AuthCheck <span class="keyword">from</span> <span class="string">&#x27;@/components/AuthCheck&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">&#x27;AuthCheck&#x27;</span>, AuthCheck)</span><br></pre></td></tr></table></figure>
-
-<p>使用方式</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;AuthCheck :authority=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;</span><br><span class="line">  		<span class="comment">// some btns</span></span><br><span class="line">  	&lt;/AuthCheck&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2、权限指令"><a href="#2、权限指令" class="headerlink" title="2、权限指令"></a>2、权限指令</h5><p>使用插件的方式封装指令函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// directives -&gt; auth.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;check&#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">install</span>(<span class="params">Vue, optoins = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">	Vue.directive(options.name || <span class="string">&#x27;auth&#x27;</span>, &#123;</span><br><span class="line">  	inserted(el, binding) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (!check(binding.value)) &#123;</span><br><span class="line">      	el.parentNode &amp;&amp; el.parentNode.removeChild(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;install&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用指令插件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> Auth <span class="keyword">from</span> <span class="string">&#x27;@/directives/auth&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Auth)</span><br></pre></td></tr></table></figure>
-
-<p>使用方式</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;button v-auth=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3、两者优劣分析"><a href="#3、两者优劣分析" class="headerlink" title="3、两者优劣分析"></a>3、两者优劣分析</h5><ul>
-<li>权限组件写着会复杂一些，但支持动态权限修改，比较灵活</li>
-<li>权限指令会简单一些，但是不支持动态权限修改，因为已经删除掉的节点不能加回来了</li>
-</ul>
-]]></content>
-      <categories>
-        <category>vue, 后台管理</category>
-      </categories>
-      <tags>
-        <tag>后台管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>web安全问题及防御</title>
     <url>/20200913/111312.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -980,6 +980,55 @@
       </tags>
   </entry>
   <entry>
+    <title>使用URLSearchParams解决axios中post请求参数问题</title>
+    <url>/20201015/052307.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>在使用axios发送post请求时，后端小伙伴拿不到传递的参数，于是想到使用<code>URLSearchParams</code>来解决这个问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>首先，由于axios请求默认<code>Content-Type</code>为<code>application/json</code>，需要修改为<code>application/x-www-form-urlencoded</code>，如下代码所示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> testApi = <span class="function">(<span class="params">data: any</span>) =&gt;</span></span><br><span class="line">  request(&#123;</span><br><span class="line">    url: path.testApi,</span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    data</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后在传递参数的时候，使用<code>URLSearchParams</code>处理参数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> params = <span class="keyword">new</span> URLSearchParams()</span><br><span class="line">params.append(<span class="string">&#x27;paramA&#x27;</span>, id)</span><br><span class="line">params.append(<span class="string">&#x27;paramb&#x27;</span>, arr)</span><br><span class="line"></span><br><span class="line">testApi(params)</span><br><span class="line">    .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">            type: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">            message: <span class="string">&#x27;test成功!&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样处理过后，后端小伙伴就能愉快地拿到post请求传递的参数了。</p>
+<p>顺便说一下，这个<code>URLSearchParams</code>兼容性不是很理想，如果你还是想使用该方法的话，可以使用<code>url-search-params-polyfill</code>这个polyfill库来解决兼容问题，具体使用可以查看相关文档：<a href="https://github.com/jerrybendy/url-search-params-polyfill/">地址传送门</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用axios.cancelToken在页面跳转时取消请求</title>
+    <url>/20210930/030025.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>在单页应用中，如果在路由跳转完的时候，存在这么一种情况，上一个页面的请求还没完成，然后在当前页面出现上一个页面的弹框信息，这样会显得奇怪，所以，可以在路由导航钩子里面取消上一个页面的请求，做法如下：</p>
+</blockquote>
+<a id="more"></a>
+
+<p><code>request.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">request.js</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line"></span><br><span class="line">axios.interceptors.request.use( <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  config.cancelToken = <span class="keyword">new</span> axios.cancelToken(<span class="function"><span class="params">cancel</span> =&gt;</span> &#123;</span><br><span class="line">  	store.commit(<span class="string">&#x27;PUSH_CANCELTOKEN&#x27;</span>, &#123;</span><br><span class="line">    	cancel</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">	<span class="keyword">return</span> config;	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// mutations</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">	PUSH_CANCELTOKEN(state, token) &#123;</span><br><span class="line">  	state.cancelTokens.push(token)</span><br><span class="line">  &#125;,</span><br><span class="line">  TRIGGER_CANCELTOKEN(state, token) &#123;</span><br><span class="line">  	state.cancelTokens.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    	item.cancel()</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// clear</span></span><br><span class="line">    state.cancelTokens = []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>store/cancelToken.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// state</span></span><br><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  cancelTokens: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>router.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">	store.commit(<span class="string">&#x27;TRIGGER_CANCELTOKEN&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>axios</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Hexo和Gitee Pages搭建个人博客</title>
     <url>/20200905/050927.html</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
@@ -1017,30 +1066,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用URLSearchParams解决axios中post请求参数问题</title>
-    <url>/20201015/052307.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>在使用axios发送post请求时，后端小伙伴拿不到传递的参数，于是想到使用<code>URLSearchParams</code>来解决这个问题。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>首先，由于axios请求默认<code>Content-Type</code>为<code>application/json</code>，需要修改为<code>application/x-www-form-urlencoded</code>，如下代码所示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> testApi = <span class="function">(<span class="params">data: any</span>) =&gt;</span></span><br><span class="line">  request(&#123;</span><br><span class="line">    url: path.testApi,</span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    data</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>然后在传递参数的时候，使用<code>URLSearchParams</code>处理参数。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> params = <span class="keyword">new</span> URLSearchParams()</span><br><span class="line">params.append(<span class="string">&#x27;paramA&#x27;</span>, id)</span><br><span class="line">params.append(<span class="string">&#x27;paramb&#x27;</span>, arr)</span><br><span class="line"></span><br><span class="line">testApi(params)</span><br><span class="line">    .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">            type: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">            message: <span class="string">&#x27;test成功!&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>这样处理过后，后端小伙伴就能愉快地拿到post请求传递的参数了。</p>
-<p>顺便说一下，这个<code>URLSearchParams</code>兼容性不是很理想，如果你还是想使用该方法的话，可以使用<code>url-search-params-polyfill</code>这个polyfill库来解决兼容问题，具体使用可以查看相关文档：<a href="https://github.com/jerrybendy/url-search-params-polyfill/">地址传送门</a></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>axios</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>壁纸分享</title>
     <url>/20200924/060026.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -1061,6 +1086,31 @@
       <tags>
         <tag>壁纸</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>巧用require.context实现前端工程自动化</title>
+    <url>/20210601/042122.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>使用require.context实现前端工程自动化</p>
+</blockquote>
+<a id="more"></a>
+
+<p>1、相关概念</p>
+<p>一个webpack的api,通过执行require.context函数获取一个特定的上下文,主要用来实现自动化导入模块,在前端工程中,如果遇到从一个文件夹引入很多模块的情况,可以使用这个api,它会遍历文件夹中的指定文件,然后自动导入,使得不需要每次显式的调用import导入模块</p>
+<h5 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h5><p>例如引入分模块进行管理的api、状态管理文件、自定义组件、指令等场景都可使用</p>
+<h5 id="3、API说明"><a href="#3、API说明" class="headerlink" title="3、API说明"></a>3、API说明</h5><p>require.context(directory,useSubdirectories,regExp)</p>
+<ul>
+<li><p>directory：说明需要检索的目录</p>
+</li>
+<li><p>useSubdirectories：是否检索子目录</p>
+</li>
+<li><p>regExp: 匹配文件的正则表达式</p>
+</li>
+</ul>
+<h5 id="4、使用示例"><a href="#4、使用示例" class="headerlink" title="4、使用示例"></a>4、使用示例</h5><h6 id="4-1、分模块进行管理的vuex相关文件"><a href="#4-1、分模块进行管理的vuex相关文件" class="headerlink" title="4.1、分模块进行管理的vuex相关文件"></a>4.1、分模块进行管理的vuex相关文件</h6><p><img data-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-558672e8-7d20-4e12-a61d-9f94a5784fe8/26a4f48b-1ed4-4c97-be49-e818b21a6b3b.png"></p>
+<h5 id="4-2、在index-js文件自动引入、导出"><a href="#4-2、在index-js文件自动引入、导出" class="headerlink" title="4.2、在index.js文件自动引入、导出"></a>4.2、在index.js文件自动引入、导出</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="keyword">import</span> getters <span class="keyword">from</span> <span class="string">&#x27;./getters&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modulesFiles = <span class="built_in">require</span>.context(<span class="string">&#x27;./modules&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"><span class="keyword">const</span> modules = modulesFiles.keys().reduce(<span class="function">(<span class="params">modules, modulePath</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// set &#x27;./app.js&#x27; =&gt; &#x27;app&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> moduleName = modulePath.replace(<span class="regexp">/^\.\/(.*)\.\w+$/</span>, <span class="string">&#x27;$1&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> value = modulesFiles(modulePath)</span><br><span class="line">  modules[moduleName] = value.default</span><br><span class="line">  <span class="keyword">return</span> modules</span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  modules,</span><br><span class="line">  getters</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+
+]]></content>
   </entry>
   <entry>
     <title>尝试使用rollup进行库的构建</title>
@@ -1123,31 +1173,6 @@
       </tags>
   </entry>
   <entry>
-    <title>巧用require.context实现前端工程自动化</title>
-    <url>/20210601/042122.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>使用require.context实现前端工程自动化</p>
-</blockquote>
-<a id="more"></a>
-
-<p>1、相关概念</p>
-<p>一个webpack的api,通过执行require.context函数获取一个特定的上下文,主要用来实现自动化导入模块,在前端工程中,如果遇到从一个文件夹引入很多模块的情况,可以使用这个api,它会遍历文件夹中的指定文件,然后自动导入,使得不需要每次显式的调用import导入模块</p>
-<h5 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h5><p>例如引入分模块进行管理的api、状态管理文件、自定义组件、指令等场景都可使用</p>
-<h5 id="3、API说明"><a href="#3、API说明" class="headerlink" title="3、API说明"></a>3、API说明</h5><p>require.context(directory,useSubdirectories,regExp)</p>
-<ul>
-<li><p>directory：说明需要检索的目录</p>
-</li>
-<li><p>useSubdirectories：是否检索子目录</p>
-</li>
-<li><p>regExp: 匹配文件的正则表达式</p>
-</li>
-</ul>
-<h5 id="4、使用示例"><a href="#4、使用示例" class="headerlink" title="4、使用示例"></a>4、使用示例</h5><h6 id="4-1、分模块进行管理的vuex相关文件"><a href="#4-1、分模块进行管理的vuex相关文件" class="headerlink" title="4.1、分模块进行管理的vuex相关文件"></a>4.1、分模块进行管理的vuex相关文件</h6><p><img data-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-558672e8-7d20-4e12-a61d-9f94a5784fe8/26a4f48b-1ed4-4c97-be49-e818b21a6b3b.png"></p>
-<h5 id="4-2、在index-js文件自动引入、导出"><a href="#4-2、在index-js文件自动引入、导出" class="headerlink" title="4.2、在index.js文件自动引入、导出"></a>4.2、在index.js文件自动引入、导出</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="keyword">import</span> getters <span class="keyword">from</span> <span class="string">&#x27;./getters&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modulesFiles = <span class="built_in">require</span>.context(<span class="string">&#x27;./modules&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"><span class="keyword">const</span> modules = modulesFiles.keys().reduce(<span class="function">(<span class="params">modules, modulePath</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// set &#x27;./app.js&#x27; =&gt; &#x27;app&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> moduleName = modulePath.replace(<span class="regexp">/^\.\/(.*)\.\w+$/</span>, <span class="string">&#x27;$1&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> value = modulesFiles(modulePath)</span><br><span class="line">  modules[moduleName] = value.default</span><br><span class="line">  <span class="keyword">return</span> modules</span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  modules,</span><br><span class="line">  getters</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
-
-]]></content>
-  </entry>
-  <entry>
     <title>推荐快速搭建本地静态资源服务器的两款工具</title>
     <url>/20201020/071228.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -1177,6 +1202,28 @@
       </categories>
       <tags>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Uncaught (in promise)问题</title>
+    <url>/20210930/025627.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>如果发现项目在运行的时候，控制台会输出报错信息Uncaught (in promise)，这是由于项目中使用到的Promise被 reject但没有经过reject处理器进行处理，catch方法就是reject处理器。如果没有通过catch进行reject的处理的话，在浏览器控制台就会输出Uncaught (in promise)的报错信息。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>如果想要处理这种在控制台输出报错信息的情况，那么需要用到unhandledrejection事件，当Promise被reject且没有reject处理器的时候，就会触发unhandledrejection事件，可以通过监听该事件对未处理的reject进行捕获</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; promise, reason&#125; = event;</span><br><span class="line">  <span class="built_in">console</span>.log(promise)</span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>事件对象包括两个信息：</p>
+<p>promise（reject状态没有被进行处理的特定的Promise）</p>
+<p>reason（将会传入异常处理方法的错误原因）</p>
+<p>如果想要阻止信息输出在控制台，可以使用event.preventDefault()阻止默认事件行为来实现</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">	event.preventDefault()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>错误处理</tag>
       </tags>
   </entry>
   <entry>
@@ -1302,30 +1349,6 @@
       </tags>
   </entry>
   <entry>
-    <title>记一次基于el-table组件的前端分页</title>
-    <url>/20201022/072037.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>今天，在和后端同事对接口的时候，有个需要分页的接口，由于数据量不大，他是一次性返回给我，希望由我这边进行分页处理。于是，我这边基于<code>el-table</code>表格组件进行了前端的表格分页处理，在这里做个记录。</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="核心代码："><a href="#核心代码：" class="headerlink" title="核心代码："></a>核心代码：</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">&quot;tabelData.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="slice说明："><a href="#slice说明：" class="headerlink" title="slice说明："></a><code>slice</code>说明：</h5><blockquote>
-<p><code>arrayObject.slice(start, end)</code>返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
-</blockquote>
-<p>这样，就快速简单地实现了基于<code>el-table</code>的前端分页处理。</p>
-]]></content>
-      <categories>
-        <category>问题记录</category>
-      </categories>
-      <tags>
-        <tag>问题记录</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决electron依赖包安装失败的问题</title>
     <url>/20201019/074625.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -1348,6 +1371,30 @@
       </categories>
       <tags>
         <tag>electron</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次基于el-table组件的前端分页</title>
+    <url>/20201022/072037.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>今天，在和后端同事对接口的时候，有个需要分页的接口，由于数据量不大，他是一次性返回给我，希望由我这边进行分页处理。于是，我这边基于<code>el-table</code>表格组件进行了前端的表格分页处理，在这里做个记录。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="核心代码："><a href="#核心代码：" class="headerlink" title="核心代码："></a>核心代码：</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">&quot;tabelData.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="slice说明："><a href="#slice说明：" class="headerlink" title="slice说明："></a><code>slice</code>说明：</h5><blockquote>
+<p><code>arrayObject.slice(start, end)</code>返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
+</blockquote>
+<p>这样，就快速简单地实现了基于<code>el-table</code>的前端分页处理。</p>
+]]></content>
+      <categories>
+        <category>问题记录</category>
+      </categories>
+      <tags>
+        <tag>问题记录</tag>
       </tags>
   </entry>
   <entry>
