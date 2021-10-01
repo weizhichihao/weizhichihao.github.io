@@ -297,6 +297,45 @@
       </tags>
   </entry>
   <entry>
+    <title>vim常用命令总结</title>
+    <url>/20201126/110019.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>记录一下vim的常用操作命令</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h5><p><code>v</code>：从光标开始，光标后续所经过的地方会被选中，再按一次结束</p>
+<p><code>V</code>：从光标当前行开始，光标经过的行都被选中，再按一次结束</p>
+<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><p><code>Y</code>：复制行</p>
+<p><code>y</code>：复制</p>
+<h5 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h5><p><code>P</code>：在光标前面粘贴</p>
+<p><code>p</code>：在光标后面粘贴</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p><code>dd</code>：删除当前行</p>
+<h5 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h5><p><code>u</code>：撤销上一步操作</p>
+<p><code>U</code>：反撤销</p>
+<h5 id="主要ex指令"><a href="#主要ex指令" class="headerlink" title="主要ex指令"></a>主要ex指令</h5><p><code>:w</code>：保存</p>
+<p><code>:q</code>：退出</p>
+<p><code>:h</code>：打开帮助</p>
+<h5 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h5><p><code>==</code>：对光标所在行进行排版</p>
+<p><code>n ==</code>：对光标及以下的n行内容进行排版</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p><code>i</code>：切换到输入模式</p>
+<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><p><code>w</code>：以word为单位进行光标的移动</p>
+<p><code>nw</code>：以n个word为单位进行光标的移动</p>
+<h5 id="找到当前的位置"><a href="#找到当前的位置" class="headerlink" title="找到当前的位置"></a>找到当前的位置</h5><p><code>ctrl+g</code>：告诉你当前所在位置</p>
+<h5 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h5><p><code>/string</code>：搜索和string相关的内容</p>
+<p><code>:set hlsearch</code>：高亮显示搜索结果</p>
+<p><code>:set nohlsearch</code>：去掉高亮显示</p>
+<h5 id="窗口分割"><a href="#窗口分割" class="headerlink" title="窗口分割"></a>窗口分割</h5><p><code>:split</code>：分割出一个新的窗口</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>uni-app使用总结</title>
     <url>/20200905/073836.html</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
@@ -500,6 +539,97 @@
       </tags>
   </entry>
   <entry>
+    <title>vuex-module-decorators使用记录</title>
+    <url>/20200916/083105.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>vuex-module-decorators是用 Typescript 写 vuex 的一个插件，在项目中有使用到该插件，在这里做个使用总结。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install vuex-module-decorators</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line">yarn add vuex-module-decorators</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>1、在<code>tsconfig.json</code>文件里面修改部分配置，如下所示</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;experimentalDecorators&quot;</span>: <span class="literal">true</span> <span class="comment">//将实验性装饰器属性设置为true</span></span><br><span class="line">        <span class="string">&quot;importHelpers&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、修改vue项目配置文件<code>vue.config.js</code>，如下所示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ... your other options</span></span><br><span class="line">  transpileDependencies: [</span><br><span class="line">    <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="写法对比"><a href="#写法对比" class="headerlink" title="写法对比"></a>写法对比</h5><p>1、vuex原写法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// equivalent eg. /app/store/posts.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    posts: []</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    totalComments: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> state.posts</span><br><span class="line">        .filter(<span class="function">(<span class="params">post</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> post.comments &amp;&amp; post.comments.length</span><br><span class="line">        &#125;)</span><br><span class="line">        .reduce(<span class="function">(<span class="params">sum, post</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> sum + post.comments.length</span><br><span class="line">        &#125;, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    updatePosts: <span class="function">(<span class="params">state, posts</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// &#x27;posts&#x27; is payload</span></span><br><span class="line">      state.posts = posts</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    fetchPosts: <span class="keyword">async</span> (context) =&gt; &#123;</span><br><span class="line">      <span class="comment">// the return of the function is passed as payload</span></span><br><span class="line">      <span class="keyword">const</span> payload = <span class="keyword">await</span> get(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)</span><br><span class="line">      <span class="comment">// the value of &#x27;commit&#x27; in decorator is the mutation used</span></span><br><span class="line">      context.commit(<span class="string">&#x27;updatePosts&#x27;</span>, payload)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、vuex-module-decorators写法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// eg. /app/store/posts.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; VuexModule, Module, Mutation, Action &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; get &#125; <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line">interface PostEntity &#123;</span><br><span class="line">  comments: string[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Module</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Posts</span> <span class="keyword">extends</span> <span class="title">VuexModule</span> </span>&#123;</span><br><span class="line">  posts: PostEntity[] = [] <span class="comment">// initialize empty for now</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">totalComments</span>(): <span class="title">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.posts</span><br><span class="line">      .filter(<span class="function"><span class="params">post</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// Take those posts that have comments</span></span><br><span class="line">        <span class="keyword">return</span> post.comments &amp;&amp; post.comments.length</span><br><span class="line">      &#125;)</span><br><span class="line">      .reduce(<span class="function">(<span class="params">sum, post</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// Sum all the lengths of comments arrays</span></span><br><span class="line">        <span class="keyword">return</span> sum + post.comments.length</span><br><span class="line">      &#125;, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Mutation</span><br><span class="line">  updatePosts(posts: PostEntity[]) &#123;</span><br><span class="line">    <span class="built_in">this</span>.posts = posts</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Action(&#123; <span class="attr">commit</span>: <span class="string">&#x27;updatePosts&#x27;</span> &#125;)</span><br><span class="line">  <span class="keyword">async</span> fetchPosts() &#123;</span><br><span class="line">    <span class="keyword">return</span> get(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h5><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;getModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Post <span class="keyword">from</span> <span class="string">&#x27;@/store/posts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PostModule = getModule(Post);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用state</span></span><br><span class="line"><span class="keyword">const</span> posts = PostModule.posts;</span><br><span class="line"><span class="comment">// 使用getters</span></span><br><span class="line"><span class="keyword">const</span> totalComments = PostModule.totalComments;</span><br><span class="line"><span class="comment">// 提交mutation</span></span><br><span class="line">PostModule.updatePosts(newPostArr)</span><br><span class="line"><span class="comment">// 调用action</span></span><br><span class="line"><span class="keyword">await</span> PostModule.fetchPosts()</span><br></pre></td></tr></table></figure>
+
+<h5 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h5><p>要定义一个模块，需要创建一个类继承于<code>VuexModule</code>，而且必须使用<code>Module</code>装饰器来装饰该类</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @/store/module/test_module.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Test_Module <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    test_field: <span class="built_in">number</span> = <span class="string">&#x27;somedata&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h5><p>将Test_Module类本身作为一个模块使用，而不是一个由类构造的对象</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Test_Module <span class="keyword">from</span> <span class="string">&#x27;./module/test_module&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">        tMod:Test_Module</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="模块内容调用"><a href="#模块内容调用" class="headerlink" title="模块内容调用"></a>模块内容调用</h5><p>1、state</p>
+<ul>
+<li><p>使用import引入store</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line"></span><br><span class="line">store.state.tMod.test_field</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在组件内使用<code>this.$store</code></p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.state.tMod.test_field</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>getModule()</code>来创建类型安全存取器(type-safe accessor)</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule, getModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> store frm <span class="string">&#x27;@/store&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(dynamic: <span class="literal">true</span>, store, name:<span class="string">&#x27;tMod&#x27;</span>)</span><br><span class="line"><span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    test_field: <span class="built_in">number</span> = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TMod = getModule(TestModule)</span><br><span class="line">TMod.test_field</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="State"><a href="#State" class="headerlink" title="State"></a>State</h5><p>模块文件类里面的属性都会转化为state属性</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule&#123;</span><br><span class="line">    wheels = <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等同以下原始写法</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Getters"><a href="#Getters" class="headerlink" title="Getters"></a>Getters</h5><p>模块文件类里面所有的ES6 getter 函数都会转化为vuex getters</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    get axles() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等同于以下原始写法</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        axles: <span class="function">(<span class="params">state</span>) =&gt;</span> state.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h5><p>模块文件类里面所有使用<code>@Mutation</code>装饰器修饰的方法都会被转换成vuex的mutations</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule, Mutation&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    puncture(n: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels = <span class="built_in">this</span>.wheels - n</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等同于以下原始写法</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        puncture: <span class="function">(<span class="params">state, payload</span>) =&gt;</span> &#123;</span><br><span class="line">            state.wheels = state.wheels - payload</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h5><p>模块文件类里面所有使用<code>@Action</code>装饰器修饰的方法都会被转换成vuex的actions</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule, Mutation, Action&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    addWheel(n: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels = <span class="built_in">this</span>.wheels + n</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Action</span></span><br><span class="line">    <span class="keyword">async</span> fetchNewWheels(wheelStore: <span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> wheels = <span class="keyword">await</span> get(wheelStore)</span><br><span class="line">        <span class="built_in">this</span>.context.commit(<span class="string">&#x27;addWheel&#x27;</span>, wheels)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等同于以下原始写法</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        addWheel: <span class="function">(<span class="params">state,payload</span>) =&gt;</span> &#123;</span><br><span class="line">            state.wheels = state.wheels + payload</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    actions: &#123;</span><br><span class="line">        fetchNewWheels: <span class="keyword">async</span>(&#123;commit&#125;, payload) =&gt; &#123;</span><br><span class="line">            <span class="keyword">const</span> wheels = <span class="keyword">await</span> request.get(payload)</span><br><span class="line">            commit(<span class="string">&#x27;addWheel&#x27;</span>, wheels)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="命名空间模块"><a href="#命名空间模块" class="headerlink" title="命名空间模块"></a>命名空间模块</h5><p>如果你尝试以命名空间的方式使用模块，那么你就需要在<code>@Module</code>中进行指定</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">//@/store/module/TestModule.ts</span></span><br><span class="line"><span class="meta">@Module</span>(&#123; namespaced: <span class="literal">true</span>, name: <span class="string">&#x27;TM&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels = <span class="number">2</span></span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    incrWheels(extra: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels +=extra</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    get axles() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@/store/index.ts</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    modules:&#123;</span><br><span class="line">        TM:TestModule</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>装饰器里面的<code>name</code>字段需要和@/store/index.ts里面的定义模块的名字相同</p>
+<h5 id="动态模块"><a href="#动态模块" class="headerlink" title="动态模块"></a>动态模块</h5><p>只需要将一些属性传递给<code>@Module</code>装饰器即可动态地注册模块</p>
+<p>步骤1：建立store文件</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @/store/index.ts</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	<span class="comment">// 如果你定义的所有模块都是动态的，这里可以不用写内容</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>步骤2：创建动态模块</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在装饰器里面设置属性dynamic为true即可动态注册模块</span></span><br><span class="line"><span class="meta">@Module</span>(&#123;dynamic: ture, store, name:<span class="string">&#x27;TM&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">	<span class="comment">// 模块定义内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><ul>
+<li>github仓库地址 <a href="https://github.com/championswimmer/vuex-module-decorators">https://github.com/championswimmer/vuex-module-decorators</a> </li>
+<li>官方文档地址 <a href="https://championswimmer.in/vuex-module-decorators">https://championswimmer.in/vuex-module-decorators</a> </li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vuex</tag>
+        <tag>typescript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>react-router使用记录</title>
     <url>/20210601/033538.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -560,6 +690,46 @@
       </categories>
       <tags>
         <tag>react-router</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue后台管理之精细化的权限控制</title>
+    <url>/20210601/035440.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>做后台管理，权限控制是必不可少的，在这里做个记录。</p>
+</blockquote>
+<a id="more"></a>
+
+
+
+<h5 id="1、权限组件"><a href="#1、权限组件" class="headerlink" title="1、权限组件"></a>1、权限组件</h5><p>使用函数式组件，只做权限控制功能，控制权限组件slot区域的内容是否能显示</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// components -&gt; AuthCheck.vue</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">import</span> &#123; check &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  	functional: <span class="literal">true</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">    	authority: &#123;</span><br><span class="line">      	type: <span class="built_in">Array</span>,</span><br><span class="line">        required: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render(h, context) &#123;</span><br><span class="line">    	<span class="keyword">const</span> &#123;props, scopedSlots&#125; = context</span><br><span class="line">      <span class="keyword">return</span> check(props.authority) ? scopedSlots.default() : <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注册为全局组件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> AuthCheck <span class="keyword">from</span> <span class="string">&#x27;@/components/AuthCheck&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">&#x27;AuthCheck&#x27;</span>, AuthCheck)</span><br></pre></td></tr></table></figure>
+
+<p>使用方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;AuthCheck :authority=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;</span><br><span class="line">  		<span class="comment">// some btns</span></span><br><span class="line">  	&lt;/AuthCheck&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、权限指令"><a href="#2、权限指令" class="headerlink" title="2、权限指令"></a>2、权限指令</h5><p>使用插件的方式封装指令函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// directives -&gt; auth.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;check&#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">install</span>(<span class="params">Vue, optoins = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">	Vue.directive(options.name || <span class="string">&#x27;auth&#x27;</span>, &#123;</span><br><span class="line">  	inserted(el, binding) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (!check(binding.value)) &#123;</span><br><span class="line">      	el.parentNode &amp;&amp; el.parentNode.removeChild(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;install&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用指令插件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> Auth <span class="keyword">from</span> <span class="string">&#x27;@/directives/auth&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Auth)</span><br></pre></td></tr></table></figure>
+
+<p>使用方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;button v-auth=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、两者优劣分析"><a href="#3、两者优劣分析" class="headerlink" title="3、两者优劣分析"></a>3、两者优劣分析</h5><ul>
+<li>权限组件写着会复杂一些，但支持动态权限修改，比较灵活</li>
+<li>权限指令会简单一些，但是不支持动态权限修改，因为已经删除掉的节点不能加回来了</li>
+</ul>
+]]></content>
+      <categories>
+        <category>vue, 后台管理</category>
+      </categories>
+      <tags>
+        <tag>后台管理</tag>
       </tags>
   </entry>
   <entry>
@@ -693,176 +863,6 @@
       <tags>
         <tag>webpack</tag>
         <tag>打包构建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim常用命令总结</title>
-    <url>/20201126/110019.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>记录一下vim的常用操作命令</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="选择文本"><a href="#选择文本" class="headerlink" title="选择文本"></a>选择文本</h5><p><code>v</code>：从光标开始，光标后续所经过的地方会被选中，再按一次结束</p>
-<p><code>V</code>：从光标当前行开始，光标经过的行都被选中，再按一次结束</p>
-<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><p><code>Y</code>：复制行</p>
-<p><code>y</code>：复制</p>
-<h5 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h5><p><code>P</code>：在光标前面粘贴</p>
-<p><code>p</code>：在光标后面粘贴</p>
-<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p><code>dd</code>：删除当前行</p>
-<h5 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h5><p><code>u</code>：撤销上一步操作</p>
-<p><code>U</code>：反撤销</p>
-<h5 id="主要ex指令"><a href="#主要ex指令" class="headerlink" title="主要ex指令"></a>主要ex指令</h5><p><code>:w</code>：保存</p>
-<p><code>:q</code>：退出</p>
-<p><code>:h</code>：打开帮助</p>
-<h5 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h5><p><code>==</code>：对光标所在行进行排版</p>
-<p><code>n ==</code>：对光标及以下的n行内容进行排版</p>
-<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p><code>i</code>：切换到输入模式</p>
-<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><p><code>w</code>：以word为单位进行光标的移动</p>
-<p><code>nw</code>：以n个word为单位进行光标的移动</p>
-<h5 id="找到当前的位置"><a href="#找到当前的位置" class="headerlink" title="找到当前的位置"></a>找到当前的位置</h5><p><code>ctrl+g</code>：告诉你当前所在位置</p>
-<h5 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h5><p><code>/string</code>：搜索和string相关的内容</p>
-<p><code>:set hlsearch</code>：高亮显示搜索结果</p>
-<p><code>:set nohlsearch</code>：去掉高亮显示</p>
-<h5 id="窗口分割"><a href="#窗口分割" class="headerlink" title="窗口分割"></a>窗口分割</h5><p><code>:split</code>：分割出一个新的窗口</p>
-]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue后台管理之精细化的权限控制</title>
-    <url>/20210601/035440.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>做后台管理，权限控制是必不可少的，在这里做个记录。</p>
-</blockquote>
-<a id="more"></a>
-
-
-
-<h5 id="1、权限组件"><a href="#1、权限组件" class="headerlink" title="1、权限组件"></a>1、权限组件</h5><p>使用函数式组件，只做权限控制功能，控制权限组件slot区域的内容是否能显示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// components -&gt; AuthCheck.vue</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="keyword">import</span> &#123; check &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  	functional: <span class="literal">true</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">    	authority: &#123;</span><br><span class="line">      	type: <span class="built_in">Array</span>,</span><br><span class="line">        required: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render(h, context) &#123;</span><br><span class="line">    	<span class="keyword">const</span> &#123;props, scopedSlots&#125; = context</span><br><span class="line">      <span class="keyword">return</span> check(props.authority) ? scopedSlots.default() : <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>注册为全局组件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> AuthCheck <span class="keyword">from</span> <span class="string">&#x27;@/components/AuthCheck&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">&#x27;AuthCheck&#x27;</span>, AuthCheck)</span><br></pre></td></tr></table></figure>
-
-<p>使用方式</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;AuthCheck :authority=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;</span><br><span class="line">  		<span class="comment">// some btns</span></span><br><span class="line">  	&lt;/AuthCheck&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2、权限指令"><a href="#2、权限指令" class="headerlink" title="2、权限指令"></a>2、权限指令</h5><p>使用插件的方式封装指令函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// directives -&gt; auth.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;check&#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">install</span>(<span class="params">Vue, optoins = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">	Vue.directive(options.name || <span class="string">&#x27;auth&#x27;</span>, &#123;</span><br><span class="line">  	inserted(el, binding) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (!check(binding.value)) &#123;</span><br><span class="line">      	el.parentNode &amp;&amp; el.parentNode.removeChild(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;install&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用指令插件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> Auth <span class="keyword">from</span> <span class="string">&#x27;@/directives/auth&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Auth)</span><br></pre></td></tr></table></figure>
-
-<p>使用方式</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;button v-auth=<span class="string">&quot;[&#x27;admin&#x27;]&quot;</span>&gt;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3、两者优劣分析"><a href="#3、两者优劣分析" class="headerlink" title="3、两者优劣分析"></a>3、两者优劣分析</h5><ul>
-<li>权限组件写着会复杂一些，但支持动态权限修改，比较灵活</li>
-<li>权限指令会简单一些，但是不支持动态权限修改，因为已经删除掉的节点不能加回来了</li>
-</ul>
-]]></content>
-      <categories>
-        <category>vue, 后台管理</category>
-      </categories>
-      <tags>
-        <tag>后台管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vuex-module-decorators使用记录</title>
-    <url>/20200916/083105.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>vuex-module-decorators是用 Typescript 写 vuex 的一个插件，在项目中有使用到该插件，在这里做个使用总结。</p>
-</blockquote>
-<a id="more"></a>
-
-<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install vuex-module-decorators</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line">yarn add vuex-module-decorators</span><br></pre></td></tr></table></figure>
-
-<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>1、在<code>tsconfig.json</code>文件里面修改部分配置，如下所示</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;experimentalDecorators&quot;</span>: <span class="literal">true</span> <span class="comment">//将实验性装饰器属性设置为true</span></span><br><span class="line">        <span class="string">&quot;importHelpers&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、修改vue项目配置文件<code>vue.config.js</code>，如下所示</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ... your other options</span></span><br><span class="line">  transpileDependencies: [</span><br><span class="line">    <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="写法对比"><a href="#写法对比" class="headerlink" title="写法对比"></a>写法对比</h5><p>1、vuex原写法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// equivalent eg. /app/store/posts.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    posts: []</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    totalComments: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> state.posts</span><br><span class="line">        .filter(<span class="function">(<span class="params">post</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> post.comments &amp;&amp; post.comments.length</span><br><span class="line">        &#125;)</span><br><span class="line">        .reduce(<span class="function">(<span class="params">sum, post</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> sum + post.comments.length</span><br><span class="line">        &#125;, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    updatePosts: <span class="function">(<span class="params">state, posts</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// &#x27;posts&#x27; is payload</span></span><br><span class="line">      state.posts = posts</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    fetchPosts: <span class="keyword">async</span> (context) =&gt; &#123;</span><br><span class="line">      <span class="comment">// the return of the function is passed as payload</span></span><br><span class="line">      <span class="keyword">const</span> payload = <span class="keyword">await</span> get(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)</span><br><span class="line">      <span class="comment">// the value of &#x27;commit&#x27; in decorator is the mutation used</span></span><br><span class="line">      context.commit(<span class="string">&#x27;updatePosts&#x27;</span>, payload)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、vuex-module-decorators写法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// eg. /app/store/posts.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; VuexModule, Module, Mutation, Action &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; get &#125; <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line">interface PostEntity &#123;</span><br><span class="line">  comments: string[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Module</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Posts</span> <span class="keyword">extends</span> <span class="title">VuexModule</span> </span>&#123;</span><br><span class="line">  posts: PostEntity[] = [] <span class="comment">// initialize empty for now</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">totalComments</span>(): <span class="title">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.posts</span><br><span class="line">      .filter(<span class="function"><span class="params">post</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// Take those posts that have comments</span></span><br><span class="line">        <span class="keyword">return</span> post.comments &amp;&amp; post.comments.length</span><br><span class="line">      &#125;)</span><br><span class="line">      .reduce(<span class="function">(<span class="params">sum, post</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// Sum all the lengths of comments arrays</span></span><br><span class="line">        <span class="keyword">return</span> sum + post.comments.length</span><br><span class="line">      &#125;, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Mutation</span><br><span class="line">  updatePosts(posts: PostEntity[]) &#123;</span><br><span class="line">    <span class="built_in">this</span>.posts = posts</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Action(&#123; <span class="attr">commit</span>: <span class="string">&#x27;updatePosts&#x27;</span> &#125;)</span><br><span class="line">  <span class="keyword">async</span> fetchPosts() &#123;</span><br><span class="line">    <span class="keyword">return</span> get(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h5><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;getModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Post <span class="keyword">from</span> <span class="string">&#x27;@/store/posts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PostModule = getModule(Post);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用state</span></span><br><span class="line"><span class="keyword">const</span> posts = PostModule.posts;</span><br><span class="line"><span class="comment">// 使用getters</span></span><br><span class="line"><span class="keyword">const</span> totalComments = PostModule.totalComments;</span><br><span class="line"><span class="comment">// 提交mutation</span></span><br><span class="line">PostModule.updatePosts(newPostArr)</span><br><span class="line"><span class="comment">// 调用action</span></span><br><span class="line"><span class="keyword">await</span> PostModule.fetchPosts()</span><br></pre></td></tr></table></figure>
-
-<h5 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h5><p>要定义一个模块，需要创建一个类继承于<code>VuexModule</code>，而且必须使用<code>Module</code>装饰器来装饰该类</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @/store/module/test_module.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Test_Module <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    test_field: <span class="built_in">number</span> = <span class="string">&#x27;somedata&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h5><p>将Test_Module类本身作为一个模块使用，而不是一个由类构造的对象</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Test_Module <span class="keyword">from</span> <span class="string">&#x27;./module/test_module&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">        tMod:Test_Module</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="模块内容调用"><a href="#模块内容调用" class="headerlink" title="模块内容调用"></a>模块内容调用</h5><p>1、state</p>
-<ul>
-<li><p>使用import引入store</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line"></span><br><span class="line">store.state.tMod.test_field</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在组件内使用<code>this.$store</code></p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.state.tMod.test_field</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用<code>getModule()</code>来创建类型安全存取器(type-safe accessor)</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule, getModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> store frm <span class="string">&#x27;@/store&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(dynamic: <span class="literal">true</span>, store, name:<span class="string">&#x27;tMod&#x27;</span>)</span><br><span class="line"><span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    test_field: <span class="built_in">number</span> = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TMod = getModule(TestModule)</span><br><span class="line">TMod.test_field</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h5 id="State"><a href="#State" class="headerlink" title="State"></a>State</h5><p>模块文件类里面的属性都会转化为state属性</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule&#123;</span><br><span class="line">    wheels = <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等同以下原始写法</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Getters"><a href="#Getters" class="headerlink" title="Getters"></a>Getters</h5><p>模块文件类里面所有的ES6 getter 函数都会转化为vuex getters</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    get axles() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等同于以下原始写法</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        axles: <span class="function">(<span class="params">state</span>) =&gt;</span> state.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h5><p>模块文件类里面所有使用<code>@Mutation</code>装饰器修饰的方法都会被转换成vuex的mutations</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule, Mutation&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    puncture(n: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels = <span class="built_in">this</span>.wheels - n</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等同于以下原始写法</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        puncture: <span class="function">(<span class="params">state, payload</span>) =&gt;</span> &#123;</span><br><span class="line">            state.wheels = state.wheels - payload</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h5><p>模块文件类里面所有使用<code>@Action</code>装饰器修饰的方法都会被转换成vuex的actions</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule, Mutation, Action&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Vehicle <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels =<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    addWheel(n: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels = <span class="built_in">this</span>.wheels + n</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Action</span></span><br><span class="line">    <span class="keyword">async</span> fetchNewWheels(wheelStore: <span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> wheels = <span class="keyword">await</span> get(wheelStore)</span><br><span class="line">        <span class="built_in">this</span>.context.commit(<span class="string">&#x27;addWheel&#x27;</span>, wheels)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等同于以下原始写法</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        wheels: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        addWheel: <span class="function">(<span class="params">state,payload</span>) =&gt;</span> &#123;</span><br><span class="line">            state.wheels = state.wheels + payload</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    actions: &#123;</span><br><span class="line">        fetchNewWheels: <span class="keyword">async</span>(&#123;commit&#125;, payload) =&gt; &#123;</span><br><span class="line">            <span class="keyword">const</span> wheels = <span class="keyword">await</span> request.get(payload)</span><br><span class="line">            commit(<span class="string">&#x27;addWheel&#x27;</span>, wheels)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="命名空间模块"><a href="#命名空间模块" class="headerlink" title="命名空间模块"></a>命名空间模块</h5><p>如果你尝试以命名空间的方式使用模块，那么你就需要在<code>@Module</code>中进行指定</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">//@/store/module/TestModule.ts</span></span><br><span class="line"><span class="meta">@Module</span>(&#123; namespaced: <span class="literal">true</span>, name: <span class="string">&#x27;TM&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">    wheels = <span class="number">2</span></span><br><span class="line">    <span class="meta">@Mutation</span></span><br><span class="line">    incrWheels(extra: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.wheels +=extra</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    get axles() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.wheels / <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@/store/index.ts</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    modules:&#123;</span><br><span class="line">        TM:TestModule</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>装饰器里面的<code>name</code>字段需要和@/store/index.ts里面的定义模块的名字相同</p>
-<h5 id="动态模块"><a href="#动态模块" class="headerlink" title="动态模块"></a>动态模块</h5><p>只需要将一些属性传递给<code>@Module</code>装饰器即可动态地注册模块</p>
-<p>步骤1：建立store文件</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @/store/index.ts</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	<span class="comment">// 如果你定义的所有模块都是动态的，这里可以不用写内容</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>步骤2：创建动态模块</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;Module, VuexModule&#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在装饰器里面设置属性dynamic为true即可动态注册模块</span></span><br><span class="line"><span class="meta">@Module</span>(&#123;dynamic: ture, store, name:<span class="string">&#x27;TM&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> TestModule <span class="keyword">extends</span> VuexModule &#123;</span><br><span class="line">	<span class="comment">// 模块定义内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><ul>
-<li>github仓库地址 <a href="https://github.com/championswimmer/vuex-module-decorators">https://github.com/championswimmer/vuex-module-decorators</a> </li>
-<li>官方文档地址 <a href="https://championswimmer.in/vuex-module-decorators">https://championswimmer.in/vuex-module-decorators</a> </li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vuex</tag>
-        <tag>typescript</tag>
       </tags>
   </entry>
   <entry>
@@ -1066,28 +1066,6 @@
       </tags>
   </entry>
   <entry>
-    <title>壁纸分享</title>
-    <url>/20200924/060026.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>分享几张自己喜欢的高清壁纸，安利一个超高清壁纸站点：<a href="https://wallhaven.cc/">https://wallhaven.cc/</a>  ，拥有非常多的原画/二次元类型的壁纸提供挑选，可以选择自己喜欢风格的壁纸进行下载(<em>^_^</em>)。</p>
-</blockquote>
-<a id="more"></a>
-
-<p><img data-src="/images/202009241806/bizhi1.jpg"></p>
-<p><img data-src="/images/202009241806/bizhi2.jpg"></p>
-<p><img data-src="/images/202009241806/bizhi3.jpg"></p>
-<p><img data-src="/images/202009241806/bizhi4.jpg"></p>
-<p><img data-src="/images/202009241806/bizhi5.jpg"></p>
-<p><img data-src="/images/202009241806/bizhi6.jpg"></p>
-]]></content>
-      <categories>
-        <category>壁纸</category>
-      </categories>
-      <tags>
-        <tag>壁纸</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>尝试使用rollup进行库的构建</title>
     <url>/20201029/015111.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -1148,6 +1126,28 @@
       </tags>
   </entry>
   <entry>
+    <title>壁纸分享</title>
+    <url>/20200924/060026.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>分享几张自己喜欢的高清壁纸，安利一个超高清壁纸站点：<a href="https://wallhaven.cc/">https://wallhaven.cc/</a>  ，拥有非常多的原画/二次元类型的壁纸提供挑选，可以选择自己喜欢风格的壁纸进行下载(<em>^_^</em>)。</p>
+</blockquote>
+<a id="more"></a>
+
+<p><img data-src="/images/202009241806/bizhi1.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi2.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi3.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi4.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi5.jpg"></p>
+<p><img data-src="/images/202009241806/bizhi6.jpg"></p>
+]]></content>
+      <categories>
+        <category>壁纸</category>
+      </categories>
+      <tags>
+        <tag>壁纸</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>巧用require.context实现前端工程自动化</title>
     <url>/20210601/042122.html</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
@@ -1202,6 +1202,53 @@
       </categories>
       <tags>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Uncaught (in promise)问题</title>
+    <url>/20210930/025627.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>如果发现项目在运行的时候，控制台会输出报错信息Uncaught (in promise)，这是由于项目中使用到的Promise被 reject但没有经过reject处理器进行处理，catch方法就是reject处理器。如果没有通过catch进行reject的处理的话，在浏览器控制台就会输出Uncaught (in promise)的报错信息。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>如果想要处理这种在控制台输出报错信息的情况，那么需要用到unhandledrejection事件，当Promise被reject且没有reject处理器的时候，就会触发unhandledrejection事件，可以通过监听该事件对未处理的reject进行捕获</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; promise, reason&#125; = event;</span><br><span class="line">  <span class="built_in">console</span>.log(promise)</span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>事件对象包括两个信息：</p>
+<p>promise（reject状态没有被进行处理的特定的Promise）</p>
+<p>reason（将会传入异常处理方法的错误原因）</p>
+<p>如果想要阻止信息输出在控制台，可以使用event.preventDefault()阻止默认事件行为来实现</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">	event.preventDefault()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>错误处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决electron依赖包安装失败的问题</title>
+    <url>/20201019/074625.html</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>在使用npm安装electron依赖包的时候，进度老是卡住，导致安装失败。于是上网查询了一下，主要的还是要修改一下electron依赖包的镜像源，这样就能解决这个安装耗时失败的问题，亲测有效。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>首先设置npm的electron镜像源：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm config set ELECTRON_MIRROR <span class="string">&quot;https://cdn.npm.taobao.org/dist/electron/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就可以全局安装<code>electron</code>了</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i -g electron</span><br></pre></td></tr></table></figure>
+
+<p>最后<code>electron -v</code>可以得知<code>electron</code>安装成功</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">electron -v</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>electron</category>
+      </categories>
+      <tags>
+        <tag>electron</tag>
       </tags>
   </entry>
   <entry>
@@ -1324,53 +1371,6 @@
       </categories>
       <tags>
         <tag>本地存储，IndexDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决electron依赖包安装失败的问题</title>
-    <url>/20201019/074625.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>在使用npm安装electron依赖包的时候，进度老是卡住，导致安装失败。于是上网查询了一下，主要的还是要修改一下electron依赖包的镜像源，这样就能解决这个安装耗时失败的问题，亲测有效。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>首先设置npm的electron镜像源：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm config set ELECTRON_MIRROR <span class="string">&quot;https://cdn.npm.taobao.org/dist/electron/&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后就可以全局安装<code>electron</code>了</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i -g electron</span><br></pre></td></tr></table></figure>
-
-<p>最后<code>electron -v</code>可以得知<code>electron</code>安装成功</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">electron -v</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>electron</category>
-      </categories>
-      <tags>
-        <tag>electron</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Uncaught (in promise)问题</title>
-    <url>/20210930/025627.html</url>
-    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>如果发现项目在运行的时候，控制台会输出报错信息Uncaught (in promise)，这是由于项目中使用到的Promise被 reject但没有经过reject处理器进行处理，catch方法就是reject处理器。如果没有通过catch进行reject的处理的话，在浏览器控制台就会输出Uncaught (in promise)的报错信息。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>如果想要处理这种在控制台输出报错信息的情况，那么需要用到unhandledrejection事件，当Promise被reject且没有reject处理器的时候，就会触发unhandledrejection事件，可以通过监听该事件对未处理的reject进行捕获</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; promise, reason&#125; = event;</span><br><span class="line">  <span class="built_in">console</span>.log(promise)</span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>事件对象包括两个信息：</p>
-<p>promise（reject状态没有被进行处理的特定的Promise）</p>
-<p>reason（将会传入异常处理方法的错误原因）</p>
-<p>如果想要阻止信息输出在控制台，可以使用event.preventDefault()阻止默认事件行为来实现</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;unhandledrejection&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">	event.preventDefault()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>错误处理</tag>
       </tags>
   </entry>
   <entry>
